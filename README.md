@@ -24,3 +24,13 @@ CSV format. These files are for those who choose to do the segmented
 prediction sub-task. The segmented prediction and speech-only
 sub-tasks will be assessed separately.
 
+Audio to text:
+python src/data_extraction/transcribe_audio.py data/ADReSSo21_audio/diagnosis/train/audio
+
+Audio features:
+python src/data_extraction/extract_audio_features.py data/ADReSSo21_audio/diagnosis/train/audio/cn --output_csv data/ADReSSo21_audio/diagnosis/train/extracted_data/cn/audio_features.csv  
+
+
+
+
+
