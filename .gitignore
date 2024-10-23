@@ -2,3 +2,5 @@ data/
 zip_files/
 neuroxvocal/
 test.ipynb
+results/
+**/__pycache__/

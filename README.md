@@ -37,6 +37,8 @@ Process audio features:
 python preprocess.py --input_path <input_csv_path> --output_path <output_directory> --scaler_path <scaler_pkl_path>
 python src/data_processing/preprocess_audio_features.py --input_path data/ADReSSo21_audio/diagnosis/train/extracted_data/cn/audio_features.csv --output_path data/ADReSSo21_audio/diagnosis/train/processed_data/cn --scaler_path src/inference/scaler_params.pkl 
 
+Training:
+python src/train/main.py  
 
 
 
