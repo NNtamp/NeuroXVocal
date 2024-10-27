@@ -43,6 +43,10 @@ python src/train/main.py
 Inf Adr:
 python inf_adr.py --text_data_dir "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\test-dist\processed_data" --audio_csv_path "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\test-dist\processed_data\audio_features.csv" --model_path "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\results\results\model_fold1_epoch48.pth" --output_dir "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\test-dist\submissions"
 
+Rearrange orders to match template:
+python rearrange_predictions.py --template_path "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\test-dist\test_results_task1.csv" --predictions_path "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\test-dist\submissions\test_results-task1-1_48.csv"
+
+
 
 
 
