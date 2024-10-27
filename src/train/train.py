@@ -1,36 +1,36 @@
+import os
 import torch
+import torch.nn as nn
 import torch.optim as optim
+from sklearn.metrics import classification_report, accuracy_score
 from torch.nn import BCEWithLogitsLoss
-import numpy as np
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import classification_report
 from tqdm import tqdm
-
-
-import torch
-import torch.optim as optim
-from torch.nn import BCEWithLogitsLoss
 import numpy as np
-from sklearn.metrics import accuracy_score, classification_report
-from tqdm import tqdm
 
+def reset_weights(m):
+    if hasattr(m, 'reset_parameters'):
+        m.reset_parameters()
 
 def train_model(model, dataloaders, epochs, learning_rate, log_path, save_model_path, device):
-    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-    criterion = BCEWithLogitsLoss()
-
     for fold, (train_loader, val_loader) in enumerate(dataloaders):
-        print(f"Training on fold {fold+1}/{len(dataloaders)}")
-        
-        best_val_loss = float('inf')
+        print(f"Training on fold {fold + 1}/{len(dataloaders)}")
+
+        model.apply(reset_weights)
+
+        optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+        criterion = BCEWithLogitsLoss()
+
+        best_val_acc = 0.0
+        best_epoch = 0
+        best_model_path = None
 
         for epoch in range(epochs):
             model.train()
             running_loss = 0.0
-            all_train_outputs = []  
-            all_train_labels = []  
-            
-            progress_bar = tqdm(train_loader, desc=f"Epoch {epoch+1}/{epochs}", leave=False)
+            all_train_outputs = []
+            all_train_labels = []
+
+            progress_bar = tqdm(train_loader, desc=f"Fold {fold+1}, Epoch {epoch+1}/{epochs}", leave=False)
 
             for text_data, audio_data, label in progress_bar:
                 optimizer.zero_grad()
@@ -40,7 +40,7 @@ def train_model(model, dataloaders, epochs, learning_rate, log_path, save_model_
                 label = label.to(device)
 
                 outputs = model(text_data, audio_data)
-                loss = criterion(outputs, label.unsqueeze(1))
+                loss = criterion(outputs, label.unsqueeze(1).float())
                 loss.backward()
                 optimizer.step()
 
@@ -51,8 +51,10 @@ def train_model(model, dataloaders, epochs, learning_rate, log_path, save_model_
 
                 progress_bar.set_postfix({"loss": running_loss / (progress_bar.n + 1)})
 
+            
             train_predictions = (np.array(all_train_outputs) > 0.5).astype(int)
-            train_report = classification_report(np.array(all_train_labels), train_predictions)
+            train_report = classification_report(np.array(all_train_labels), train_predictions, zero_division=0)
+
 
             val_loss, val_acc, val_report = validate_model(model, val_loader, criterion, device)
 
@@ -64,13 +66,29 @@ def train_model(model, dataloaders, epochs, learning_rate, log_path, save_model_
             print(f"Training Classification Report (Epoch {epoch+1}):\n{train_report}")
             print(f"Validation Classification Report (Epoch {epoch+1}):\n{val_report}")
 
-            if val_loss < best_val_loss:
-                best_val_loss = val_loss
-                torch.save(model.state_dict(), f"{save_model_path}_best_fold{fold+1}.pth")
-                print(f"Best model saved for fold {fold+1} at epoch {epoch+1}")
+
+            if val_acc > best_val_acc:
+                best_val_acc = val_acc
+                best_epoch = epoch + 1
+
+                if best_model_path is not None and os.path.exists(best_model_path):
+                    os.remove(best_model_path)
+
+                model_save_path = f"{save_model_path}_fold{fold+1}_epoch{best_epoch}.pth"
+
+                if isinstance(model, nn.DataParallel):
+                    torch.save(model.module.state_dict(), model_save_path)
+                else:
+                    torch.save(model.state_dict(), model_save_path)
+
+                best_model_path = model_save_path
+
+                print(f"Best model saved for fold {fold+1} at epoch {best_epoch} with val_acc {best_val_acc:.4f}")
+
+        with open(log_path, 'a') as f:
+            f.write(f"Best model for fold {fold+1} saved at epoch {best_epoch} with validation accuracy {best_val_acc:.4f}\n")
 
 
-            
 def validate_model(model, val_loader, criterion, device):
     model.eval()
     val_loss = 0.0
@@ -84,7 +102,7 @@ def validate_model(model, val_loader, criterion, device):
             label = label.to(device)
 
             outputs = model(text_data, audio_data)
-            loss = criterion(outputs, label.unsqueeze(1))
+            loss = criterion(outputs, label.unsqueeze(1).float())
             val_loss += loss.item()
 
             all_outputs.extend(outputs.cpu().numpy())
@@ -93,7 +111,7 @@ def validate_model(model, val_loader, criterion, device):
     predictions = (np.array(all_outputs) > 0.5).astype(int)
     accuracy = accuracy_score(np.array(all_labels), predictions)
 
-    report = classification_report(np.array(all_labels), predictions)
+    report = classification_report(np.array(all_labels), predictions, zero_division=0)
     
     return val_loss, accuracy, report
 
