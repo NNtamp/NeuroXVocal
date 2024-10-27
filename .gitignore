@@ -4,3 +4,4 @@ neuroxvocal/
 test.ipynb
 results/
 **/__pycache__/
+**/inference_ADReSSo21/
