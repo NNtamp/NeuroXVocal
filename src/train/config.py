@@ -1,13 +1,13 @@
 import os
 
 # Paths
-BASE_DIR = '/home/ntampakisnik/neroxvocal/processed_data/'
-AD_TEXT_DIR = '/home/ntampakisnik/neroxvocal/processed_data/ad/'
-CN_TEXT_DIR = '/home/ntampakisnik/neroxvocal/processed_data/cn/'
-AD_CSV = '/home/ntampakisnik/neroxvocal/processed_data/ad/audio_features_ad.csv'
-CN_CSV = '/home/ntampakisnik/neroxvocal/processed_data/cn/audio_features_cn.csv'
-AD_EMBEDDING_CSV = '/home/ntampakisnik/neroxvocal/processed_data/ad/audio_embeddings_ad.csv'
-CN_EMBEDDING_CSV = '/home/ntampakisnik/neroxvocal/processed_data/cn/audio_embeddings_cn.csv'
+BASE_DIR = 'path/to/processed_data/'
+AD_TEXT_DIR = 'path/to/processed_data/ad/'
+CN_TEXT_DIR = 'path/to/processed_data/cn/'
+AD_CSV = 'path/to/processed_data/ad/audio_features_ad.csv'
+CN_CSV = 'path/to/processed_data/cn/audio_features_cn.csv'
+AD_EMBEDDING_CSV = 'path/to/processed_data/ad/audio_embeddings_ad.csv'
+CN_EMBEDDING_CSV = 'path/to/processed_data/cn/audio_embeddings_cn.csv'
 
 # Model configuration
 TEXT_EMBEDDING_MODEL = 'microsoft/deberta-v3-base'
@@ -17,18 +17,18 @@ AUDIO_CHANNELS = 1
 CUDA = True
 
 # Training parameters
-BATCH_SIZE = 8
-EPOCHS = 100
-LEARNING_RATE = 1e-4
-WEIGHT_DECAY = 1e-4 
-NUM_FOLDS = 6  
-SAVE_BEST_MODEL = False 
+BATCH_SIZE = 16  # Desired number of samples per training batch
+EPOCHS = 200  # Total number of training epochs
+LEARNING_RATE = 1e-3  # Learning rate for the optimizer
+WEIGHT_DECAY = 1e-5  # Weight decay (L2 regularization) rate
+NUM_FOLDS = 5  # Number of folds for cross-validation
+SAVE_BEST_MODEL = True  # Flag to save only the best-performing model
 
-# Early stopping parameter
-EARLY_STOPPING_PATIENCE = 5 
+# Early stopping criteria
+EARLY_STOPPING_PATIENCE = 3  # Number of epochs with no improvement to trigger early stopping
 
 # Saving paths
-SAVE_MODEL_PATH = '/home/ntampakisnik/neroxvocal/results/model'
-LOG_PATH = '/home/ntampakisnik/neroxvocal/results/training.log'
+SAVE_MODEL_PATH = 'path/to/results/folder/model' #Create a folder "results" for saving the model
+LOG_PATH = 'path/to/results/folder/training.log' #Create a folder "results" for saving logs
 
 

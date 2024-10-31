@@ -1,58 +1,64 @@
-# This directory contains the training data for the [IS2021 ADReSSo Challenge](https://edin.ac/3p1cyaI).
 
-The data are in the following directories structure and files:
+## Training
+
+First of all install all the necessary requirements:
+```
+pip install -r requirements.txt
+```
+For the training of the classifier data from the [IS2021 ADReSSo Challenge](https://edin.ac/3p1cyaI) was used. Initial form of data was audio files of .wav format.
+
+The data should be organized in the following structure for the succesfull training following Steps I and II of data preparation.
 
 ```
-diagnosis
-└── train
-    ├── audio
-    │   ├── ad
-    │   └── cn
-    └── segmentation
-        ├── ad
-        └── cn
+train
+    ├── ad
+    │   ├── {patient_id1}.txt
+    │   └── {patient_id2}.txt
+    │   └── {patient_id...}.txt
+    │   └── audio_embeddings_ad.csv 
+    │   └── audio_features_ad.csv            
+    ├── cn
+    │   ├── {patient_id1}.txt
+    │   └── {patient_id2}.txt
+    │   └── {patient_id...}.txt
+    │   └── audio_embeddings_cn.csv 
+    │   └── audio_features_cn.csv 
 ```
+### I. Data extraction
 
-They contain the enhanced, volume normalised audio data for the
-diagnosis and MMSE score prediction tasks, and a table of MMSE scores
-for model training (adresso-train-mmse-scores.csv). The abbreviation
-'cn' denotes 'control' patients, and 'ad' patients with a (probable)
-Alzheimer's dementia diagnosis.
+1. Extract text from audio:
+```
+python src/data_extraction/transcribe_audio.py --path/to/audio/files
+```
+2. Extract audio features:
+```
+python src/data_extraction/extract_audio_features.py --path/to/audio/files --output_csv --path/to/create/the/audio_features.csv  
+```
+3. Extract audio embeddings:
+```
+python src/data_extraction\extract_audio_embeddings.py --path/to/audio/files --path/to/create/the/audio_embeddings.csv  
+```
+### II. Data process
 
-Also included are the utterance segmentation files (diarisation), in
-CSV format. These files are for those who choose to do the segmented
-prediction sub-task. The segmented prediction and speech-only
-sub-tasks will be assessed separately.
+1. Text processing:
+```
+python src/data_processing/preprocess_texts.py --path/to/txt/files --path/to/save/processed/txt/files
+```
+2. Audio features processing using scaler params:
+```
+python src/data_processing/preprocess_audio_features.py --path/to/audio_features.csv --path/to/save/processed/audio_features.csv --scaler_path src/inference/scaler_params_audio_features.pkl 
+```
+3. Audio embeddings processing using scaler params:
+```
+python src/data_processing/preprocess_audio_emb.py --path/to/audio_embeddings.csv --scaler_path src/inference/scaler_params_audio_emb.pkl --path/to/save/processed/audio_embeddings.csv
+```
+### III. NeuroXVocal Training
 
-Audio to text:
-python src/data_extraction/transcribe_audio.py data/ADReSSo21_audio/diagnosis/train/audio
+After setting up the values in src/train/config.py run:
 
-Audio features:
-python src/data_extraction/extract_audio_features.py data/ADReSSo21_audio/diagnosis/train/audio/cn --output_csv data/ADReSSo21_audio/diagnosis/train/extracted_data/cn/audio_features.csv  
-
-Audio embeddings:
-C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\src\data_extraction>python extract_audio_embeddings.py "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\train\audio\cn" --output_csv "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\d
-iagnosis\train\extracted_data\cn\audio_embeddings_cn.csv" 
-
-Process text:
-python src/data_processing/preprocess_texts.py data/ADReSSo21_audio/diagnosis/train/extracted_data/cn data/ADReSSo21_audio/diagnosis/train/processed_data/cn
-
-Process audio features:
-python preprocess.py --input_path <input_csv_path> --output_path <output_directory> --scaler_path <scaler_pkl_path>
-python src/data_processing/preprocess_audio_features.py --input_path data/ADReSSo21_audio/diagnosis/train/extracted_data/cn/audio_features.csv --output_path data/ADReSSo21_audio/diagnosis/train/processed_data/cn --scaler_path src/inference/scaler_params.pkl 
-
-Process audio emb:
-python preprocess_audio_emb.py "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\train\extracted_data\cn\audio_embeddings_cn.csv" "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\src\inference\scaler_params_audio_emb.pkl" "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\train\processed_data\cn\audio_embeddings_cn.csv"
-
-Training:
+```
 python src/train/main.py  
-
-Inf Adr:
-python inf_adr.py --text_data_dir "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\test-dist\processed_data" --audio_csv_path "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\test-dist\processed_data\audio_features.csv" --model_path "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\results\results\model_fold1_epoch48.pth" --output_dir "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\test-dist\submissions"
-
-Rearrange orders to match template:
-python rearrange_predictions.py --template_path "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\test-dist\test_results_task1.csv" --predictions_path "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\test-dist\submissions\test_results-task1-1_48.csv"
-
+```
 
 
 
