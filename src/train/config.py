@@ -22,7 +22,7 @@ EPOCHS = 'Total number of training epochs'
 LEARNING_RATE = 'Learning rate for the optimizer'
 WEIGHT_DECAY = 'Weight decay (L2 regularization) rate'
 NUM_FOLDS = 'Number of folds for cross-validation'
-SAVE_BEST_MODEL = 'Flag to save only the best-performing model (Trye/False)'
+SAVE_BEST_MODEL = 'Flag to save only the best-performing model (True/False)'
 
 # Early stopping criteria
 EARLY_STOPPING_PATIENCE ='Number of epochs with no improvement to trigger early stopping'
