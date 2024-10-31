@@ -1,7 +1,7 @@
 import torch
 from config import *
 from data_loader import create_full_dataset
-from models import MultiModalDementiaClassifier
+from models import NeuroXVocal
 from train import train_model
 import torch.nn as nn
 
@@ -21,7 +21,7 @@ def main():
 
     device = torch.device('cuda' if torch.cuda.is_available() and CUDA else 'cpu')
 
-    model = MultiModalDementiaClassifier(
+    model = NeuroXVocal(
         num_audio_features=NUM_MFCC_FEATURES,
         num_embedding_features=NUM_EMBEDDING_FEATURES,
         text_embedding_model=TEXT_EMBEDDING_MODEL

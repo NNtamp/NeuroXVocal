@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from transformers import DebertaV2Model 
 
-class MultiModalDementiaClassifier(nn.Module):
+class NeuroXVocal(nn.Module):
     def __init__(
         self,
         num_audio_features,
@@ -10,7 +10,7 @@ class MultiModalDementiaClassifier(nn.Module):
         text_embedding_model,
         hidden_size=768
     ):
-        super(MultiModalDementiaClassifier, self).__init__()
+        super(NeuroXVocal, self).__init__()
 
         self.text_model = DebertaV2Model.from_pretrained(text_embedding_model)
         self.hidden_size = self.text_model.config.hidden_size

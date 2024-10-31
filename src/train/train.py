@@ -109,7 +109,6 @@ def train_model(
                 digits=4
             )
 
-            # Validation
             model.eval()
             val_running_loss = 0.0
             all_val_outputs = []
@@ -169,7 +168,6 @@ def train_model(
                     print(f"Early stopping at epoch {epoch+1} for fold {fold+1}")
                     break
 
-            # Logging
             with open(log_path, 'a') as f:
                 f.write(
                     f"Fold {fold+1}, Epoch {epoch+1}, "
