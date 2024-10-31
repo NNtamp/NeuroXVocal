@@ -30,12 +30,19 @@ python src/data_extraction/transcribe_audio.py data/ADReSSo21_audio/diagnosis/tr
 Audio features:
 python src/data_extraction/extract_audio_features.py data/ADReSSo21_audio/diagnosis/train/audio/cn --output_csv data/ADReSSo21_audio/diagnosis/train/extracted_data/cn/audio_features.csv  
 
+Audio embeddings:
+C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\src\data_extraction>python extract_audio_embeddings.py "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\train\audio\cn" --output_csv "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\d
+iagnosis\train\extracted_data\cn\audio_embeddings_cn.csv" 
+
 Process text:
 python src/data_processing/preprocess_texts.py data/ADReSSo21_audio/diagnosis/train/extracted_data/cn data/ADReSSo21_audio/diagnosis/train/processed_data/cn
 
 Process audio features:
 python preprocess.py --input_path <input_csv_path> --output_path <output_directory> --scaler_path <scaler_pkl_path>
 python src/data_processing/preprocess_audio_features.py --input_path data/ADReSSo21_audio/diagnosis/train/extracted_data/cn/audio_features.csv --output_path data/ADReSSo21_audio/diagnosis/train/processed_data/cn --scaler_path src/inference/scaler_params.pkl 
+
+Process audio emb:
+python preprocess_audio_emb.py "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\train\extracted_data\cn\audio_embeddings_cn.csv" "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\src\inference\scaler_params_audio_emb.pkl" "C:\Users\30697\Desktop\Personal Projects\NeuroXVocal\data\ADReSSo21_audio\diagnosis\train\processed_data\cn\audio_embeddings_cn.csv"
 
 Training:
 python src/train/main.py  

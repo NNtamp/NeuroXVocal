@@ -44,7 +44,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Preprocess CSV files.")
     parser.add_argument("--input_path", type=str, required=True, help="Path to the input CSV file.")
     parser.add_argument("--output_path", type=str, required=True, help="Directory to save the processed CSV file.")
-    parser.add_argument("--scaler_path", type=str, required=True, help="Path to the scaler_params.pkl file.")
+    parser.add_argument("--scaler_path", type=str, required=True, help="Path to the scaler_params_audio_fetures.pkl file.")
     args = parser.parse_args()
     
     preprocess_csv(args.input_path, args.output_path, args.scaler_path)
