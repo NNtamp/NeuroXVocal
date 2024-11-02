@@ -1,5 +1,5 @@
 
-## Training
+## 🧠⚙️[A] Classifier Training
 
 First of all install all the necessary requirements:
 ```
