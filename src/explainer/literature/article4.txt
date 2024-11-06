@@ -1,0 +1,1443 @@
+
+
+Abstract.
+Background: Although memory impairment is the main symptom of Alzheimer’s disease (AD), language impairment can be an
+important marker. Relatively few studies of language in AD quantify the impairments in connected speech using computational
+techniques.
+Objective: We aim to demonstrate state-of-the-art accuracy in automatically identifying Alzheimer’s disease from short narrative
+samples elicited with a picture description task, and to uncover the salient linguistic factors with a statistical factor analysis.
+Methods: Data are derived from the DementiaBank corpus, from which 167 patients diagnosed with “possible” or “probable”
+AD provide 240 narrative samples, and 97 controls provide an additional 233. We compute a number of linguistic variables
+from the transcripts, and acoustic variables from the associated audio ﬁles, and use these variables to train a machine learning
+classiﬁer to distinguish between participants with AD and healthy controls. To examine the degree of heterogeneity of linguistic
+impairments in AD, we follow an exploratory factor analysis on these measures of speech and language with an oblique promax
+rotation, and provide interpretation for the resulting factors.
+Results: We obtain state-of-the-art classiﬁcation accuracies of over 81% in distinguishing individuals with AD from those
+without based on short samples of their language on a picture description task. Four clear factors emerge: semantic impairment,
+acoustic abnormality, syntactic impairment, and information impairment.
+Conclusion: Modern machine learning and linguistic analysis will be increasingly useful in assessment and clustering of
+suspected AD.
+
+Keywords: Automatic data processing, factor analysis, geriatric assessment, heterogeneity, language, statistical
+
+INTRODUCTION
+
+Our aging society faces the rising incidence of
+Alzheimer’s disease (AD).
+In the absence of a
+cure, researchers have mitigated the disease’s impact
+through better and earlier diagnosis, and effective
+symptomatic treatment. Spoken language is a rich
+source of information on an individual’s cognitive sta-
+tus. Unfortunately, the utility of naturalistic spoken
+
+∗Correspondence to: Frank Rudzicz, 550 University Avenue,
+Room 12-175, Toronto, Ontario M5G 2A2, Canada. Tel.: +1 416
+597 3422/Ext. 7971; E-mail: frank@cs.toronto.edu.
+
+language as a quantitative measure has been lim-
+ited, due to the time-consuming nature of manual
+analysis and human subjectivity. Recent progress in
+computational linguistics has brought powerful tools to
+bear, showing that fully automated analyses of speech
+and language can reliably distinguish patients with
+dementia from controls [1–4], and can differentiate
+between speciﬁc forms of dementia, such as early
+versus advanced stages of AD [5] and non-ﬂuent pro-
+gressive aphasia versus semantic dementia [6].
+
+Although memory impairment due to medial tempo-
+ral lobe damage is the characteristic symptom of AD,
+
+ISSN 1387-2877/16/$35.00 © 2016 – IOS Press and the authors. All rights reserved
+
+408
+
+K.C. Fraser et al. / Linguistic Features Identify Alzheimer’s
+
+language problems are also prevalent. Patients with AD
+frequently exhibit naming deﬁcits, and all aspects of
+language become affected as the disease progresses;
+typically starting with semantics before proceeding
+to syntax and phonology [7]. Since lesions conﬁned
+to the medial temporal lobe are typically associated
+only with mild impairment of high-level language [8],
+the deterioration of distinct micro-linguistic aspects
+of language is most likely attributable to the spread
+of pathology throughout the cortex. Cortical involve-
+ment in AD is highly variable across individuals and
+certain distinct variants of AD have been described,
+differing in both age-of-onset and cortical atrophy
+[9–11]. Among these variants is logopenic progres-
+sive aphasia, characterized by left parietal damage
+and impairments in phonology and repetition [12,
+13]. Other distinct dementia syndromes, such as
+progressive non-ﬂuent aphasia and semantic demen-
+tia, show clear dissociations between phonological,
+syntactic, and semantic impairments related to the
+location of cortical pathology, although these syn-
+dromes are caused by different pathologies than AD
+[14].
+
+Given that cortical damage is heterogeneous in AD
+as the disease progresses, both within and across indi-
+viduals, it is expected that linguistic symptomatology
+would be similarly heterogeneous.
+
+We have two aims. First, we test classiﬁcation accu-
+racy given automated analysis of narrative speech
+samples from a picture description task using machine
+learning methods. Second, we explore the heterogene-
+ity of linguistic impairment among participants with
+AD. Using exploratory factor analysis, we extract
+four factors that account for the majority of the
+variance among speakers. An oblique factor rotation
+method (promax) is used, as this method allows the
+underlying factors to be correlated, rather than guar-
+anteeing orthogonality. Thus, we are able to identify
+the degree to which linguistic abilities decline in
+parallel through dementia, as opposed to varying inde-
+pendently between subjects that experience varying
+extents of cortical degeneration.
+
+Background
+
+Although memory impairment is the main symp-
+tom of AD, language impairment can be an important
+marker. Faber-Langendoen et al. [15] found that 36%
+of mild AD patients and 100% of severe AD patients
+had aphasia, according to standard aphasia testing pro-
+tocols. Ahmed et al. [16] found that two-thirds of their
+participants showed subtle, but signiﬁcant, changes in
+
+connected speech production up to a year before their
+diagnosis of probable AD. Weiner et al. [17], in a
+study of 486 AD patients, reported a signiﬁcant cor-
+relation between dementia severity and a number of
+different linguistic measures, including confrontation
+naming, articulation, word-ﬁnding ability, and seman-
+tic ﬂuency.
+
+Declining performance on naming tasks can occur
+early in the disease progression [7, 18–20]. Krishner
+et al. [19] found that all the AD participants in their
+study were impaired on a naming task, even when their
+language functioning was normal by other measures.
+Individuals with AD can have difﬁculty retrieving the
+names of people and places [21], and may substi-
+tute generic terms for more speciﬁc ones [7, 18, 22].
+Numerous studies have reported a greater impairment
+in category naming ﬂuency (e.g., naming animals or
+tools) relative to letter naming ﬂuency (e.g., naming
+words that start with the letter R) [23–25], and this
+ﬁnding was supported by a meta-analysis of 153 stud-
+ies [26]. There is also some evidence that patients with
+AD may have more difﬁculty naming verbs than nouns.
+Robinson et al. [27] found that AD participants per-
+formed worse on a picture-naming task for verbs than
+nouns, even when the verbs and nouns were spelled and
+pronounced the same, and matched for frequency. As
+a result of word-ﬁnding difﬁculties and a reduction in
+working vocabulary, the language of AD patients can
+seem ‘empty’ [28, 29], and was described by Appell
+et al. [30] as “verbose and circuitous, running on with
+a semblance of ﬂuency, yet incomplete and lacking
+coherence.”
+
+Macro-linguistic language functions, such as under-
+standing metaphor and sarcasm, also tend to deteriorate
+in AD [31]. Thematic coherence, or the ability to
+maintain a theme throughout a discourse, may also be
+impaired. In a study comparing 9 AD participants to
+healthy controls and participants with ﬂuent aphasia,
+Glosser and Deser [32] found that the AD participants
+showed a reduction in global coherence in a structured
+interview task. Blonder et al. [33] reported a similar
+result when interviewing ﬁve AD participants and their
+healthy spouses.
+
+The effect of AD on syntax is controversial. Some
+researchers have reported syntactic impairments in
+AD, while others claim that any apparent deﬁcits are
+in fact due to difﬁculties with memory and seman-
+tics [18]. Several studies have found evidence for a
+decrease in the syntactic complexity of language in AD
+[34–36]. Croisile et al. [34] compared oral and written
+picture descriptions from 22 AD patients and matched
+controls, and found that the AD patients produced
+
+K.C. Fraser et al. / Linguistic Features Identify Alzheimer’s
+
+409
+
+fewer subordinate clauses than controls. Ehrlich et
+al. [35] reported a reduced utterance length on nar-
+rative tasks administered to 16 AD participants and
+controls. In a study comparing language production
+in AD and semantic dementia, Sajjadi et al. [36]
+found that their 20 patients with mild AD tended to
+produce fewer complex syntactic units on both a pic-
+ture description task and an interview. On the other
+hand, Kempler et al. [37] found that 10 individuals
+with AD used a range of syntactic constructions with
+the same frequency as control participants in sponta-
+neous conversation, despite showing signs of lexical
+impairment. Glosser and Deser [32] similarly did not
+ﬁnd any difference in syntactic complexity or correct-
+ness between AD patients and controls in spontaneous
+speech.
+
+There is evidence that language decline in AD is
+heterogeneous. Hodges and Patterson [38] divided 52
+AD patients into three different categories based on
+dementia severity and assessed their semantic impair-
+ment on a number of different tasks. They reported
+a wide range of performance in the “minimal” and
+“mild” AD groups. Duong et al. [39] had 46 AD partic-
+ipants produce narratives based on a single picture and
+a series of pictures. A cluster analysis subsequently
+revealed a number of different discourse patterns
+rather than a single characteristic pattern of impair-
+ment. Ahmed et al. [16] contrasted their ﬁndings of
+heterogeneous language decline in connected speech
+from 15 AD patients with the more predictable pat-
+terns of decline seen in primary progressive aphasia
+(PPA).
+
+Related computational work
+
+A relatively small subset of studies on language
+in AD attempt to quantify the impairments in con-
+nected speech using computational techniques. Bucks
+et al. [1] conducted a linear discriminant analysis of
+spontaneous speech from 8 AD participants and 16
+healthy controls. They considered eight linguistic fea-
+tures, including part-of-speech (POS) tag frequencies
+and measures of lexical diversity, and obtained a cross-
+validation accuracy of 87.5%.
+
+Thomas et al. [5] classiﬁed spontaneous speech sam-
+ples from 95 AD patients and an unspeciﬁed number
+of controls by treating the problem as an authorship
+attribution task, and employing a “common N-grams”
+approach. They were able to distinguish between
+patients with severe AD and controls with a best accu-
+racy of 94.5%, and between patients with mild AD and
+controls with a best accuracy of 75.3%. They suggested
+
+that closed-class words were particularly informative
+in their analysis.
+
+Guinn and Habash [3] built classiﬁers to distinguish
+between AD and non-AD language samples using 80
+conversations between 31 AD patients and 57 cogni-
+tively normal conversation partners. They found that
+features such as POS tags and measures of lexical
+diversity were less useful than measuring ﬁlled pauses,
+repetitions, and incomplete words, and achieved a best
+accuracy of 79.5%.
+
+Meil´an et al. [2] distinguished between 30 AD
+patients and 36 healthy controls with temporal and
+acoustic features alone, obtaining an accuracy of
+84.8%. For each participant, their speech sample con-
+sisted of two sentences read from a screen. The ﬁve
+most discriminating features were percentage of voice
+breaks, number of voice breaks, number of periods of
+voice, shimmer, and noise-to-harmonics ratio.
+
+Jarrold et al. [4] used acoustic features, POS
+features, and psychologically-motivated word lists
+to distinguish between semi-structured interview
+responses from 9 AD participants and 9 controls with
+an accuracy of 88%. They also conﬁrmed their hypoth-
+esis that AD patients would use more pronouns, verbs,
+and adjectives and fewer nouns than controls.
+
+Rentoumi et al. [40] considered a slightly dif-
+ferent problem: they used computational techniques
+to differentiate between picture descriptions from
+AD participants with and without additional vascular
+pathology (n = 18 for each group). They achieved an
+accuracy of up to 75% when they included frequency
+unigrams and excluded binary unigrams, syntactic
+complexity features, measures of vocabulary richness,
+and information theoretic features.
+
+Orimaye et al. [41] obtained F-measure scores up
+to 0.74 using a relatively restricted feature set on
+transcripts from DementiaBank, although they com-
+bined participants with different etiologies, rather
+than focusing on AD. Other related work has con-
+sidered the automatic analysis of language in other
+types of dementia, including semantic dementia [42],
+mild cognitive impairment (MCI) [43, 44], and PPA
+[6].
+
+Our study differs from previous work in several
+ways. Along with Orimaye et al. [41], we con-
+sider a much larger sample size than most previous
+work, giving a more representative sample for
+machine learning. We also consider a larger num-
+ber of features to help capture the array of different
+language impairments that can be seen in AD, and
+conduct factor analysis to characterize patterns of
+heterogeneity.
+
+410
+
+K.C. Fraser et al. / Linguistic Features Identify Alzheimer’s
+
+MATERIALS AND METHODS
+
+Our data are derived from the DementiaBank
+corpus1, which is part of the larger TalkBank project
+[45]. These data were collected between 1983 and
+1988 as part of the Alzheimer Research Program at the
+University of Pittsburgh. Information about the study
+cohort is available from Becker et al. [46]. Participants
+were referred directly from the Benedum Geriatric
+Center at the University of Pittsburgh Medical Cen-
+ter, and others were recruited through the Allegheny
+County Medical Society, local neurologists and psy-
+chiatrists, and public service messages on local media.
+To be eligible for inclusion in the study, all participants
+were required to be above 44 years of age, have at least
+7 years of education, have no history of nervous system
+disorders or be taking neuroleptic medication, have an
+initial Mini-Mental State Exam (MMSE) score of 10 or
+greater, and be able to give informed consent. Addition-
+ally, participants with dementia were required to have a
+relative or caregiver to act as an informant. All partic-
+ipants received an extensive neuropsychological and
+physical assessment (see [46] for complete details).
+Participants were assigned to the “patient” group pri-
+marily based on a history of cognitive and functional
+decline, and the results of a mental status examina-
+tion. In 1992, several years after the study had ended,
+the ﬁnal diagnosis of each patient was reviewed on the
+basis of their clinical record and any additional relevant
+information (in some cases, autopsy).
+
+From the “Dementia” group, we include partici-
+pants with a diagnosis of “possible AD” or “probable
+AD”, resulting in 240 samples from 167 participants.
+We also include control participants, resulting in 233
+additional ﬁles from 97 speakers. Demographics are
+given in Table 1. We compute averages over individual
+sessions instead of individual participants in order to
+capture intra-speaker variation over the ﬁve years these
+data were collected. The two groups are not matched
+for age and education, which is one limitation of these
+data.
+
+Narrative speech was elicited using the “Cookie
+Theft” picture description task from the Boston
+Diagnostic Aphasia Examination [47]. This protocol
+instructs the examiner to show the picture to the patient
+and say, “Tell me everything you see going on in this
+picture.” The examiner is permitted to encourage the
+patient to keep going if they do not produce very
+many words. Each speech sample was recorded then
+manually transcribed at the word level following the
+
+1Downloaded November 22, 2013.
+
+Table 1
+Demographics of DementiaBank data
+
+AD (n = 240)
+
+Control (n = 233)
+
+Age (years)
+Education (years)
+Gender (male/female)
+Mini-Mental State Exam
+
+71.8 (8.5)
+12.5 (2.9)
+82/158
+18.5 (5.1)
+
+65.2 (7.8)
+14.1 (2.4)
+82/151
+29.1 (1.1)
+
+TalkBank CHAT (Codes for the Human Analysis of
+Transcripts) protocol [48]. Narratives were segmented
+into utterances and annotated with ﬁlled pauses, para-
+phasias, and unintelligible words.
+
+From the CHAT transcripts, we keep only the word-
+level transcription and the utterance segmentation. We
+discard the morphological analysis, dysﬂuency anno-
+tations, and other associated information, as our goal
+is to create a fully automated system that does not
+require the input of a human annotator. Before tagging
+and parsing the transcripts, we automatically remove
+short false starts consisting of two letters or fewer (e.g.,
+The c-cookie jar would become The cookie jar) and
+ﬁlled pauses such as uh, um, er, and ah (e.g., The
+um um boy would become The boy). All other dys-
+ﬂuencies (including repetitions, revisions, paraphasias,
+and comments about the task) remain in the transcript.
+The AD participants produce an average of 104.3 (SD:
+59.0) words per narrative, while the control partici-
+pants produce an average of 114.4 (SD: 59.5) words
+per narrative, although the distribution in both cases is
+somewhat right-skewed.
+
+Each transcript has an associated audio ﬁle, allowing
+for lexical and acoustic analysis in parallel, which we
+convert from MP3 to 16-bit mono WAV format with a
+sampling rate of 16 kHz.
+
+Features
+
+We consider a large number (370) of features to
+capture a wide range of linguistic phenomena. Here
+we provide a brief description of the different feature
+types; a full explanation of each feature can be found
+in the Supplementary Material.
+
+Part-of-speech
+
+Some language changes in AD may be detected
+by measuring the production of different POS. For
+example, Ahmed et al. [16] reported changes in the
+number of pronouns and verbs, and Bucks et al. [1]
+and Jarrold et al. [4] reported a decrease in the pro-
+portion of nouns and an increase in the proportion
+of pronouns, adjectives, and verbs. We extract POS
+
+K.C. Fraser et al. / Linguistic Features Identify Alzheimer’s
+
+411
+
+information automatically using the Stanford tagger2.
+We compute the frequency of occurrence of different
+POS, normalized by the total number of words in each
+utterance. We also compute ratios, e.g., nouns to verbs,
+pronouns to nouns. As described in the previous sec-
+tion, we remove the ﬁlled pauses uh, um, er, and ah, but
+we keep track of the frequency of occurrence of each
+type, as previous work has suggested that they may
+serve different purposes [49]. We also tag words which
+do not appear in the English dictionary (i.e., “not in
+dictionary”, or NID), which include paraphasias (e.g.,
+the sink’s overﬂown) or word fragments that were not
+removed in the pre-processing phase (e.g., In her kitch-
+kitchen I suppose). Paraphasias or fragmented words
+that result in the unintentional production of another
+English word are not detected by our system.
+
+Although we do not consider the manually anno-
+tated POS tags from the DementiaBank corpus in our
+analysis, we can use that information to test the perfor-
+mance of the Stanford tagger on this data. The task is
+complicated by the fact that the Stanford tagger and the
+CHAT protocol use different tagsets, the CHAT proto-
+col does not include dysﬂuencies in the morphological
+analysis, and the DementiaBank corpus includes some
+user-deﬁned tags. With those caveats in mind, we ﬁnd
+the Stanford tagger has an accuracy of 85.4% on the
+control data, and 84.8% on the AD data (over the entire
+data sample).
+
+Syntactic complexity
+
+As discussed above, the degree to which syntactic
+complexity is affected in AD is uncertain. We measure
+the syntactic complexity of the picture descriptions
+using a number of well-known metrics, including the
+mean length of sentences, T-units, and clauses, and
+by calculating scores based on the parse tree, includ-
+ing the height of the tree and the mean, total, and
+maximum Yngve depth (a measure of embeddedness)
+[50]. Parse trees are computed using the Stanford
+parser3.
+
+Grammatical constituents
+
+We quantify the constituents comprising the parse
+tree, in a set of ‘context-free grammar’ (CFG) features.
+This allows us to explore possible syntactic differences
+in AD in greater detail than the more general syn-
+tactic complexity metrics. Previous work has shown
+
+that these features can distinguish between partici-
+pants with agrammatic aphasia and matched controls
+on a story-telling task [51]. To calculate these features,
+we compute the frequency of occurrence of different
+grammatical constituents, normalized by the total num-
+ber of constituents in the sample. For example, we can
+count the number of noun phrases (NP) that consist of
+a determiner (DT) and a noun (NN) (i.e., NP −→ DT
+NN), a noun without a determiner (NP −→ NN), a pro-
+noun (NP −→ PRP), etc. The symbols used here are
+from the Penn Treebank tagset4. We also consider the
+rate, proportion, and average length of noun phrases,
+verb phrases (VP), and prepositional phrases (PP). This
+is based on work by Chae and Nenkova [52], except
+that rather than assess these features for each utter-
+ance in the narrative, we compute them for the entire
+narrative.
+
+Psycholinguistics
+
+A semantic impairment may manifest
+
+in an
+increased reliance on highly familiar words. We there-
+fore rate each word on existing psycholinguistic norms.
+Speciﬁcally, we use the SUBTL frequency norms
+[53] and the combined Bristol and Gilhooly-Logie
+norms [54, 55] for familiarity, imageability, and age-of-
+acquisition. We compute the average of each of these
+for all content words, as well as for nouns and verbs
+separately.
+
+Vocabulary richness
+
+We assess the vocabulary richness (i.e.,
+
+lexical
+diversity) of a narrative sample using a number of
+different metrics, including type-token ratio, moving-
+average type-token ratio, Brunet’s index, and Honor´e’s
+statistic. Type-token ratio (TTR) is widely reported,
+but has also been criticized for its dependence on
+text length [56, 57]. Moving-average type-token ratio
+(MATTR) was proposed by Covington and McFall
+[58] as an adaptation of TTR that is independent
+of text length. In a study on language in aphasia,
+MATTR was reported to be one of the best metrics
+for providing an unbiased metric of lexical diver-
+sity [59]. Brunet’s index and Honor´e’s statistic are
+alternative measures of vocabulary richness that have
+been used in previous computational studies of AD
+[1, 3, 5].
+
+2Version 2015-01-29 http://nlp.stanford.edu/software/tagger.shtml.
+3Version 2010-11-30, nlp.stanford.edu/software/lex-parser.shtml.
+
+4For the full tag list, see: http://www.comp.leeds.ac.uk/amalgam/
+
+tagsets/upenn.html.
+
+412
+
+K.C. Fraser et al. / Linguistic Features Identify Alzheimer’s
+
+Information content
+
+Repetitiveness
+
+Previous studies of AD narratives in picture descrip-
+tion tasks have reported decreased information content
+[16, 34, 36, 60, 61]. We measure this computationally
+by searching for relevant lexical items that point to
+each of the expected information units listed in Croisile
+et al. [34]. For example, the occurrence of the word
+boy, son, or brother all suggest that the information
+unit “boy” has been mentioned. Our information unit
+features are binary: either a word related to a given
+information unit has been mentioned, or not. For infor-
+mation units describing actions, such as “the boy or
+stool falling”, we use the dependency structure from
+the Stanford parser to locate phrases with fall as the
+verb and boy or stool as the subject. There are obvi-
+ous limitations to this method: if a word is used in
+the incorrect context (e.g., if the speaker refers to the
+girl as the mother), then it would be applied to the
+wrong information unit, or if a speaker refers to a con-
+cept in an unpredictable way (e.g., refers to the woman
+at the sink as the nurse), then that information unit
+will not be counted. However, this method provides
+a simple, automated estimate of informativeness. A
+similar method was used by Pakhomov et al. [62] to
+automatically score picture descriptions from partici-
+pants with frontotemporal lobar degeneration, and by
+Hakkani-T¨ur et al. [63] to score picture descriptions
+from elderly, cognitively healthy speakers. A certi-
+ﬁed speech-language pathologist also annotated these
+information units over a random 5% of the data and
+we compared these against the automatically identiﬁed
+units. There was an observed agreement of 98.02%,
+which corresponds to a Cohen’s kappa coefﬁcient of
+0.8037, which is the maximum possible given observed
+marginal frequencies (p < 0.05).
+
+We also measure the frequency of speciﬁc words rel-
+evant to the Cookie Theft picture. For example, mother
+and woman both provide evidence for the “woman”
+information unit, as described above, but by counting
+the frequency of occurrence of the two words sepa-
+rately we can also detect if one participant group is
+more likely than the other to refer to the woman as a
+mother. We call these features “key words”, and they
+are integer-valued frequency counts. Previous work
+(e.g., [40, 42]) has shown the utility of simple binary
+and frequency unigrams (word tokens). Rather than
+considering the space of all possible unigrams, we have
+considered only a smaller set which we have deemed
+to be relevant to the expected information content, to
+avoid problems of data sparsity, and to help improve
+the interpretability of the selected features.
+
+AD patients can exhibit perseverative behavior
+in different areas of their lives, including in their
+language [64, 65]. Nicholas et al. [28] found that in a
+picture description task, AD patients repeated words
+and phrases more frequently than healthy controls
+and also more frequently than participants with ﬂuent
+aphasia. Tomoeda et al. [65] found also that AD
+patients were more likely to repeat ideas in a picture
+description task than healthy controls, and that the
+frequency of repetitions was not related to severity of
+dementia.
+
+Using a bag-of-words, we measure the cosine dis-
+tance between each pair of utterances in the session. We
+remove a short list of stopwords, after observing that
+utterances such as He is standing on the stool and He is
+holding the cookie could be considered relatively sim-
+ilar given the common occurrences of he, is, and the.
+A distance of zero between two utterances indicates
+that the two utterances are identical (in word counts,
+not necessarily order). We detect the occurrence of
+repetitive content by measuring average distance, and
+the proportion of utterance pairs that fall below some
+threshold.
+
+Acoustics
+
+Several acoustic features are extracted from the
+audio. We include a number of features which are
+indicative of pathological speech [2, 43, 62, 66]. We
+also include a set of features based on Mel-frequency
+cepstral coefﬁcients (MFCCs), which are nearly ubiq-
+uitously used in speech recognition research [67].
+MFCCs, in some sense, encode the ‘spectrum of the
+spectrum’ in that they are the discrete cosine trans-
+form of logarithms of spectral power; this separates the
+source of a signal (i.e., the energy of the lungs) from the
+‘ﬁlter’ of the signal (i.e., the upper vocal tract, in which
+phonemes are differentiated phonologically). The
+aforementioned spectrum is also mapped into the Mel
+scale, which approximates the sensitivity of the human
+ear. Individual coefﬁcients are strictly components of a
+de-convolution process, but they can be loosely associ-
+ated with articulatory phenomena in the sense that low
+indices correspond to lower resonances in the vocal
+tract. In order to compare differences across speak-
+ers, we consider the mean, variance, skewness, and
+kurtosis of the ﬁrst 42 MFCCs through time, and the
+kurtosis and skewness of the means across each MFCC
+dimension.
+
+K.C. Fraser et al. / Linguistic Features Identify Alzheimer’s
+
+413
+
+Identiﬁcation of AD by machine learning
+
+Machine learning is a subﬁeld of artiﬁcial intelli-
+gence in which statistical models are constructed from
+data automatically. Typically, this involves iterative
+reﬁnement of models with the aim of increasing their
+overall accuracy. We also perform multilinear logistic
+regression with nominal outputs, allowing for interac-
+tions between categories and coefﬁcients.
+
+Our evaluation criterion is accuracy, which is the
+ratio of true positives plus true negatives over all eval-
+uation examples. We have considered training models
+that identify AD based solely on textual or acoustic fea-
+tures, separately. However, as we have demonstrated
+in [69], allowing feature selection to choose from all
+available measures provides uniformly higher accu-
+racy than restricting the set to only textual or acoustic
+features. This may be anticipated, as it lessens the
+expected redundancy between selected features in any
+single modality. As discussed in the Results, those fea-
+tures are a fairly balanced set of textual and acoustic
+ones.
+
+We perform a 10-fold cross-validation procedure in
+which a unique 10% of the data (i.e., the ‘test set’) are
+used in each iteration for evaluation, and the remain-
+ing 90% (i.e., the ‘training set’) are used to select the
+most useful features (of the 370 available as described
+in “Features” above) and construct our models. The
+reported accuracy is an average across the 10 folds.
+In a given fold, data from any individual speaker can
+occur in the test set or the training set, but not both.
+In order to optimize the ratio of training examples
+to their dimensionality, we select the N features with
+the highest Pearson’s correlation coefﬁcients between
+each feature and the binary class. Since in each fold
+we are selecting features based only on a subset of
+the data, these features need not always be the same
+in each iteration, although we show in the Supplemen-
+tary Material that there is very little variability between
+folds for N < 100 (see the Supplementary Material for
+the full details).
+
+RESULTS
+
+Figure 1 shows the average accuracies (and s.d.) for
+the logistic regression method. The maximum aver-
+age accuracy (81.92%) in distinguishing between AD
+and controls is achieved with the 35 top-ranked fea-
+tures. The accuracy remains relatively constant until
+we choose a feature set of size 50 (accuracy = 78.72%),
+after which it drops off sharply. As a result, we use
+
+the top 50 features in our factor analysis. Those fea-
+tures, and their correlation with diagnosis, are shown in
+Table 2. Using all 370 features, the logistic regression
+method obtains 58.51% accuracy on average, which
+reinforces the need to do feature selection given high-
+dimensional feature space such as this.
+
+Factor analysis
+
+To help discover the underlying structure of the data,
+we conduct an exploratory factor analysis. Since our
+data do not satisfy the assumption of multivariate nor-
+mality, we use the method of principal axis factors
+(PAF), as recommended by Fabrigar et al. [70]. We
+include 50 features in the factor analysis, as discussed
+in the previous section.
+
+A screen test suggests that four factors are sufﬁcient
+to account for the majority of the variance. To interpret
+the factor structure, it is customary to perform a rota-
+tion. Although varimax is the most popular rotation
+algorithm, it is an orthogonal rotation and is there-
+fore guaranteed to produce uncorrelated factors. To
+fairly examine the degree of heterogeneity of linguistic
+impairments in patients with AD, we chose promax, an
+oblique rotation which allows factors to be correlated
+with each other [71].
+
+Feature loadings on the four factors are presented
+in Table 2. Factor signs were deliberately set such
+that higher factor scores reﬂect greater impairment. As
+is customary in exploratory factor analysis, we name
+and present a subjective interpretation of the factors,
+below.
+
+Factor 1: Semantic impairment
+
+All of the high loadings reﬂect characteristics of
+semantically impoverished language, similar to that
+seen in semantic dementia, a degenerative disorder
+speciﬁcally affecting the temporal lobe [72]. Indi-
+viduals scoring high on this factor produce many
+pronouns (+NP −→ PRP, +pronoun ratio) and few
+nouns (–nouns), and are biased toward shorter (–word
+length) and higher frequency words (+frequency, +verb
+frequency). They also use a less diverse vocabulary
+(–Honor´e’s statistic) and exhibit increased repetition
+of content (–cosine distance).
+
+Pronouns and high frequency words suggest empty,
+vague, or non-speciﬁc speech. A decrease in the pro-
+portion of nouns and an increase in the proportion of
+verbs is the same pattern as seen in semantic demen-
+tia [73, 74]. Individuals with a semantic impairment
+may have difﬁculty accessing more speciﬁc nouns and
+
+414
+
+K.C. Fraser et al. / Linguistic Features Identify Alzheimer’s
+
+Fig. 1. Accuracies and standard errors, across the number N of predictor features used.
+
+verbs, and as a result may replace them with generic,
+high-frequency substitutes (e.g., Meteyard et al. [75]).
+Negative Honor´e’s statistic suggests low lexical diver-
+sity, which has been observed in anomic aphasia [76],
+and negative cosine distance suggests high repetition,
+which bears similarity to the “stereotypic thematic
+perseverations” seen in semantic dementia [73].
+Examples of the adverbial construction (+ADVP −→
+RB) include “the little girl’s reaching up there” and “a
+tree coming up here”; that is, the adverb serves a deic-
+tic purpose, which is more common amongst aphasics
+with a semantic impairment [77].
+
+Factor 2: Acoustic abnormality
+
+All high loadings here relate to features derived from
+acoustic analysis. All but one of these refer to either the
+skewness or kurtosis of individual Mel-frequency cep-
+stral coefﬁcients, whose perceptual values may not be
+distinguishable to humans, and whose anatomical basis
+depends on treating the vocal tract within a source-
+ﬁlter model of convolution. The remaining feature,
+phonation rate, is the proportion of an utterance that
+is vocalized; low values here refer to more time being
+spent silently, as in a pause.
+
+Factor 3: Syntactic impairment
+
+This factor appears to reﬂect a syntactic deﬁcit
+somewhat reminiscent of such conditions as Broca’s
+
+aphasia and progressive nonﬂuent aphasia. High-
+scoring patients produced fewer verbs, which is typical
+of agrammatic patients (e.g., Saffran et al. [78], and
+Thompson et al. [79]). They also produced fewer
+auxiliary verbs, and fewer gerunds and participles.
+Patients with Broca’s aphasia often omit auxiliaries
+and use only the simplest verb tenses (e.g., he reach
+might be preferred over he is reaching, which requires
+an auxiliary and a participle) [80, 81]. Additionally,
+they produced more sentence fragments, and more
+words tagged as “not in dictionary,” which could
+include phonological paraphasias, distortions, and
+unrecognizable words (note that the automatic analy-
+sis cannot distinguish between these different language
+phenomena). We note that while these deﬁcits resem-
+ble Broca’s aphasia and progressive nonﬂuent aphasia
+(PNFA) in their form, they are less severe, seldom
+reaching the point of frank agrammatism or “tele-
+graphic” speech seen in those disorders. Presumably
+this reﬂects the fact that cortical damage to language
+centers in AD is less severe than in those conditions.
+
+Factor 4: Information impairment
+
+This factor primarily includes mention of key words
+and information units. Patients with high scores pro-
+duced relatively uninformative picture descriptions,
+failing to mention key concepts. This factor differs
+from Factor 1 in that the relevant features do not
+describe generic properties of the words, such as their
+
+K.C. Fraser et al. / Linguistic Features Identify Alzheimer’s
+
+415
+
+Table 2
+Correlations with diagnosis (ﬁrst column) and promax factor loadings. Loadings less than 0.1
+are excluded. Bold font indicates a loading greater than 0.3.
+
+r
+
+Fac. 1
+
+Fac. 2
+
+Fac. 4
+
+Comm.
+
+Pronoun:noun ratio
+NP -> PRP
+Frequency
+Adverbs
+ADVP -> RB
+Verb frequency
+Nouns
+Word length
+NP -> DT NN
+Honore’s statistic
+Inﬂected verbs
+Average cosine distance
+Skewness(MFCC 1)
+Skewness(MFCC 2)
+Kurtosis(MFCC 5)
+Kurtosis(VEL(MFCC 3))
+Phonation rate
+Skewness(MFCC 8)
+Not-in-dictionary
+ROOT -> FRAG
+Verbs
+VP rate
+VP -> AUX VP
+VP -> VBG
+Key word: window
+Info unit: window
+KEY WORD: sink
+KEY WORD: cookie
+PP proportion
+Key word: curtain
+PP rate
+Info unit: curtain
+Key word: counter
+Info unit: cookie
+Info unit: sink
+Info unit: girl
+Info unit: girl’s action
+Info unit: dish
+Key word: stool
+Key word: mother
+Info unit: stool
+Skewness(MFCC 12)
+Info unit: woman
+VP -> VBG PP
+VP -> IN S
+VP -> AUX ADJP
+VP -> AUX
+VP -> VBD NP
+Cosine cutoff: 0.5
+INTJ -> UH
+
+0.35
+0.37
+0.34
+0.31
+0.30
+0.21
+–0.27
+–0.41
+0.10
+–0.25
+–0.19
+–0.19
+0.22
+0.20
+0.19
+0.24
+–0.21
+–0.22
+0.38
+0.23
+–0.29
+–0.19
+–0.23
+–0.27
+–0.29
+–0.32
+–0.23
+–0.23
+–0.21
+–0.25
+–0.21
+–0.26
+–0.18
+–0.24
+–0.31
+–0.30
+–0.25
+–0.24
+–0.28
+–0.32
+–0.32
+–0.19
+–0.29
+–0.34
+–0.20
+–0.19
+0.20
+0.19
+0.19
+0.18
+
+1.01
+0.88
+0.74
+0.51
+0.44
+0.39
+–0.97
+–0.60
+–0.52
+–0.46
+–0.39
+–0.33
+
+–0.17
+0.16
+
+–0.14
+–0.15
+0.38
+0.37
+–0.16
+–0.28
+
+–0.12
+–0.15
+
+–0.29
+
+–0.19
+
+–0.11
+0.28
+
+0.25
+
+Fac. 3
+
+–0.32
+–0.24
+
+0.10
+0.13
+0.37
+–0.13
+
+0.19
+
+–0.19
+0.33
+
+–0.14
+
+–0.14
+
+–0.15
+
+0.13
+
+–0.14
+
+0.24
+–0.28
+–0.13
+0.26
+0.19
+0.20
+0.32
+0.18
+0.21
+–0.79
+–0.63
+–0.62
+–0.61
+–0.61
+–0.56
+–0.55
+–0.53
+–0.47
+–0.46
+–0.43
+–0.42
+–0.36
+–0.29
+–0.29
+–0.26
+–0.21
+–0.18
+–0.18
+–0.12
+–0.10
+
+0.95
+0.87
+0.78
+0.44
+–0.62
+–0.39
+
+0.13
+
+0.53
+0.36
+–1.05
+–0.95
+–0.56
+–0.34
+0.20
+0.12
+
+0.18
+
+0.19
+
+0.14
+
+0.13
+
+–0.12
+
+–0.27
+
+–0.16
+–0.30
+
+0.15
+
+0.14
+
+0.80
+0.59
+0.56
+0.39
+0.25
+0.21
+0.79
+0.39
+0.37
+0.21
+0.21
+0.14
+0.84
+0.68
+0.54
+0.34
+0.56
+0.23
+0.35
+0.18
+0.81
+0.70
+0.34
+0.21
+0.50
+0.36
+0.30
+0.29
+0.34
+0.25
+0.33
+0.27
+0.19
+0.24
+0.24
+0.20
+0.14
+0.16
+0.18
+0.17
+0.25
+0.06
+0.14
+0.23
+0.04
+0.02
+0.10
+0.03
+0.10
+0.08
+
+frequency or part-of-speech, but rather their appro-
+priateness and speciﬁc semantic relevance to the task
+at hand. These participants also lacked prepositional
+phrases, which reﬂects a lower level of detail in their
+descriptions. There may be some relation between
+the absence of certain information units and a reduc-
+
+tion in prepositional phrases. For example, both the
+information unit and key word features for “sink” are
+negatively weighted on this factor. When we exam-
+ined the control transcripts, we found that in 57% of
+cases, the word sink appeared as the object of a preposi-
+tional phrase (e.g., water’s overﬂowing in the sink, the
+
+416
+
+K.C. Fraser et al. / Linguistic Features Identify Alzheimer’s
+
+water is spilling out from the sink, the mother’s work-
+ing at the sink). This potential connection between the
+omission of certain content words and a reduction in
+prepositional phrases will require further investigation
+in future work.
+
+Relationships among factors
+
+Figure 2 shows pairwise scatterplots of individ-
+ual transcript scores on each factor. All four factors
+are signiﬁcantly different between groups, which is
+not surprising given that the features comprising the
+factors were pre-selected for their association with
+diagnosis. Of greater interest is the degree of corre-
+lation among the factors, which can be estimated by
+the oblique promax rotation, as opposed to orthogonal
+rotations such as varimax that guarantee uncorrelated
+factors. The correlation coefﬁcients among all sam-
+ples, and limited to AD and control subjects alone, are
+given in each plot.
+
+An intriguing result is the correlation between Fac-
+tor 1 (semantic impairment) and Factor 3 (syntactic
+impairment). These factors are moderately correlated
+in the control group (R = 0.42) but much less corre-
+lated in the AD group (R = 0.19). This suggests that
+in cognitively normal individuals, semantic and syn-
+tactic abilities are somewhat linked, but when these
+abilities decline in AD, there can be an asymmetry to
+the impairment. This may be attributable to damage
+speciﬁc to networks responsible for distinct aspects of
+linguistic competence (see discussion).
+
+Another pattern is seen when we consider Factor
+4 (information impairment). Factor 1 and Factor 4 are
+more highly correlated in the AD group (R = 0.49) than
+the control group (0.18). Similarly, Factor 3 and Factor
+4 are more highly correlated in the AD group (R = 0.31)
+than the control group (–0.097). Since information
+is expressed through both syntax and semantics, we
+hypothesize that difﬁculty in either Factor 1 or Factor
+3 would also imply impairment in conveying informa-
+tion. That a similar correlation is not seen in the control
+data might be due to the fact that the task is generally
+easy for controls, and our method for scoring infor-
+mation units is very simplistic. For example, when we
+look at individual transcripts, we ﬁnd a control par-
+ticipant who uses a number of pronouns and generic,
+high frequency words (thing, something). However,
+this semantic “impairment” does not prevent the partic-
+ipant from mentioning most of the relevant information
+units. Conversely, a control participant who uses more
+detailed language will not be able to increase their
+
+information score beyond what our simple keyword-
+spotting algorithm can detect.
+
+Factor 2 (acoustic abnormality) is uncorrelated with
+Factor 1 (semantic impairment) and Factor 3 (syntac-
+tic impairment) in both the AD and control groups.
+Factor 2 is moderately correlated with Factor 4 (infor-
+mation impairment) in the AD (R = 0.32) and control
+(R = 0.31) groups. This would suggest that participants
+who spoke slower (phonation rate) or had some other
+acoustic irregularity (MFCC features) also offered less
+information, regardless of their clinical diagnosis.
+
+DISCUSSION
+
+Although language impairment is a secondary cog-
+nitive symptom of AD, numerous studies have shown
+that language skills become abnormal relatively early
+in AD [82, 83] and can serve as a sensitive index of
+disease severity over time. The present study employs
+a combination of automated quantiﬁcation of language
+with a machine-learning classiﬁcation approach to
+accurately distinguish between healthy controls and
+patients with AD on the basis of short speech samples
+from a picture description task.
+
+The relatively short length (roughly 100 words) of
+the picture descriptions is one drawback of the current
+study. Other researchers have suggested that 150 words
+is an acceptable minimum length for language analysis
+[36, 78]. Our classiﬁcation results indicate that there
+is still valuable information to be found in the short
+samples, conﬁrming previous studies using picture
+descriptions to assess language in dementia [40, 42,
+74]; however, we expect that the accuracies of each
+feature value would increase as the length of the sam-
+ple increased. We also emphasize that our ﬁndings
+here do not necessarily generalize to other spoken lan-
+guage tasks. For example, Sajjadi et al. [36] found that
+the picture description was more sensitive to seman-
+tic impairment in AD, while an interview format was
+more sensitive to syntactic measures.
+
+Factor analysis reveals that our relatively large
+set of linguistic measures can be mapped to four
+latent variables, broadly representing syntax/ﬂuency,
+semantics, acoustic differences, and other information
+content. Each of these language domains has been
+reported separately to be altered in patients with
+AD/MCI [2, 84–86], but the relationships between
+separate domains of impairment have seldom been
+characterized. Many previous studies have relied
+upon labor-intensive manual analyses of language
+
+K.C. Fraser et al. / Linguistic Features Identify Alzheimer’s
+
+417
+
+Fig. 2. Promax scores for AD and control participants.
+
+samples, emphasizing particular aspects according to
+the research interests of the authors. The large het-
+erogeneity in language impairments reported across
+studies leaves open the question of whether there is a
+single quantiﬁable aspect of spoken language output
+that is particularly diagnostic of AD. The heterogene-
+ity of reported impairments is presumably attributable
+to two sources of variability: differences between
+individual patients, and differences in the methods and
+hypotheses employed by the authors of the studies.
+
+For the present study, we aimed to capture as broad
+a spectrum of linguistic variables as possible using
+fully automated analysis of transcripts and acoustic
+recordings, from a relatively large sample of picture
+descriptions. This approach, while potentially missing
+some useful variables that require manual analysis,
+can characterize the level of heterogeneity present
+across individual patients tested with a consistent
+protocol. Previous studies of cognitive decline in
+MCI/AD have highlighted considerable heterogeneity
+
+418
+
+K.C. Fraser et al. / Linguistic Features Identify Alzheimer’s
+
+among patients, but have tended to view language as
+a fairly unitary construct along with other cognitive
+domains including episodic memory and visuospatial
+cognition. Despite this heterogeneity,
+there seems
+to be a typical pattern of decline in AD particularly
+driven by impairments in episodic memory [87],
+with other domains affected in a more limited set
+of patients.
+
+Heterogeneity in the cognitive proﬁle of AD has
+been linked to different patterns of brain atrophy.
+Nearly all cases of AD include atrophy in the hip-
+pocampus and other parts of the medial temporal
+to underlie the episodic
+lobe, which is thought
+memory impairments. Involvement of the left parietal
+lobe has been linked to reduced speech output in
+the form of
+logopenic progressive aphasia (see
+below), while atrophy in the right parietal lobe and
+occipital cortex are associated with visuospatial
+impairments [9]. These cortical presentations of
+AD represent less common variants than the typical
+pattern of medial
+In contrast,
+semantic impairments are quite commonly reported
+in the later stages of AD, consistent with the fact
+that temporal lobe structures involved in semantic
+processing are among the most frequently affected
+in late-stage AD, whereas frontal-parietal regions
+involved in syntax and phonology are often relatively
+spared [88].
+
+temporal atrophy.
+
+Variability in the cognitive presentation of AD is to
+be expected, given that different patients have dam-
+age to different parts of the cortex. To date, little
+work has been done to characterize the relationship
+between impairments on speciﬁc subdomains of lan-
+guage and cortical atrophy in AD. This situation
+contrasts strongly with that of PPA, a less common
+form of dementia in which deterioration of language is
+the most notable symptom. A current consensus among
+researchers holds that PPA can be clearly divided into
+at least three subtypes characterized by impairments
+to distinct aspects of language [72]. In PNFA, syn-
+tax and grammar are greatly affected, while semantic
+knowledge is spared. PNFA is linked to pathology in
+the left frontal cortex, and somewhat resembles the
+syndrome of Broca’s aphasia, linked to stroke-induced
+damage in the same region. In semantic dementia, word
+knowledge is greatly reduced but grammar is largely
+spared. This syndrome is linked to degeneration of
+the anterior temporal lobes. In logopenic progressive
+aphasia, subtler syntactic deﬁcits are present (mainly
+a simpliﬁcation of spontaneous output, and reduced
+ﬂuency), and repetition may be impaired. Logopenic
+progressive aphasia is linked to damage to the left
+
+temporoparietal junction, and unlike the other two sub-
+types of PPA, it is considered to be an atypical presenta-
+tion of AD, as it shares the same underlying molecular
+pathology [12].
+
+The double dissociation of syntactic and semantic
+impairments in PPA highlights the fact that distinct
+brain networks make unique contributions to linguistic
+competence. Thus, even though the episodic mem-
+ory impairment dominates the cognitive proﬁle of
+AD/MCI patients, variability in cortical involvement
+across patients should differentially impact the same
+subdomains of language that are affected in PPA. How-
+ever, this variability in AD/MCI is likely to be more
+subtle than between PPA subtypes, as the patients do
+not fall into clearly distinguishable diagnostic cate-
+gories.
+
+In the present study, we characterized the hetero-
+geneity of language impairment using factor analysis.
+The choice of rotation method is critical here: the
+majority of exploratory factor analyses of cognitive
+impairment use varimax rotation (e.g., Duong et al.
+[39]; Monti et al. [89]), which is guaranteed to produce
+factors that are uncorrelated with each other. While this
+can be useful for discovering the underlying domains
+of impairment and interpreting them, the enforced lack
+of correlation among the factors may bias the reader
+to conclude that strong heterogeneity exists. We there-
+fore elected to use promax rotation, which allows the
+factors to be correlated.
+
+In fact,
+
+the results do point
+
+to a considerable
+degree of heterogeneity in linguistic deﬁcits, since
+the resulting factors are weakly correlated with each
+other, in general. These results do not support the exis-
+tence of a single severity factor underlying overall
+linguistic impairments. Rather, patients vary in their
+expression of linguistic impairment in different sub-
+domains. Based on existing knowledge of anatomical-
+behavioral relationships in PPA, we hypothesize that
+heterogeneity among AD patients may ultimately be
+accounted for by the variable spread of cortical involve-
+ment
+that
+in the disease. Speciﬁcally, we predict
+semantic impairment will be linked to atrophy of
+the anterior temporal lobes, and ﬂuency reductions
+(reduced speech rate and simpliﬁed syntax, as seen in
+logopenic progressive aphasia) will be linked to the left
+temporoparietal junction. Deﬁcits in information con-
+tent may ultimately be linked to memory impairments,
+while acoustic abnormalities are more likely to reﬂect
+damage in frontal premotor circuits involved in speech.
+Testing of these relationships will require the collection
+of large numbers of anatomical images accompanied
+by language samples. Although numerous large-scale
+
+K.C. Fraser et al. / Linguistic Features Identify Alzheimer’s
+
+419
+
+longitudinal studies are now underway worldwide
+incorporating anatomical imaging, the collection of
+spontaneous speech data from the same patients is
+still uncommon. Given that language impairments are
+potentially informative about the involvement of dis-
+tinct brain networks in neurodegenerative disease, we
+hope that collection of standardized language samples
+will become a more common component of neuropsy-
+chological batteries linked to longitudinal anatomical
+studies.
+
+Finally, although we have emphasized here the
+relationships between language impairments and
+structural degeneration in AD, functional impairment
+is related to factors beyond cortical atrophy, and may
+be amenable to intervention. Therefore, as new inter-
+ventions are developed for mitigating the symptoms
+of AD, sensitive instruments are needed to evaluate
+the effectiveness of such interventions on improving
+cognition. Although memory impairment may be the
+deﬁnitive symptom for the diagnosis of AD, it is not
+necessarily the most sensitive index of cognitive func-
+tion and response to intervention. Language function
+especially degrades as the disease progresses through
+moderate and severe stages [90, 91], and has been
+shown to improve in response to successful treatment
+with acetylcholinesterase inhibitors [92]. Therefore,
+computational analyses of naturalistic language may
+ultimately provide a means to monitor changes in
+cognitive status over the course of the disease, as well
+as responsiveness to interventions, and can thus serve
+as a useful clinical tool for purposes well beyond
+diagnosis.
+
+
+
+

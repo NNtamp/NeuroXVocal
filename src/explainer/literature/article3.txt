@@ -1,0 +1,1107 @@
+
+
+Objective: This study aims to document the nature and progression of
+the spontaneous writing impairment observed in patients with
+Alzheimer’s disease (AD) over a 12-month period using both a cross-
+sectional and prospective longitudinal design.
+Methods: Thirty-one minimal–moderate AD patients and 30 controls
+matched for age and socio-cultural background completed a simple and
+complex written description task at baseline. The AD patients then had
+follow-up assessments at 6 and 12 months.
+Results: Cross-sectional comparisons indicated that minimal–moderate
+AD patients produced more semantic paraphasias, phonological
+paraphasias, and empty and indeﬁnite phrases, whilst producing fewer
+pictorial themes, repairing fewer errors, and producing shorter and less
+complex sentences than controls. The two groups could not be
+distinguished on visual paraphasias. Longitudinal follow-up, however,
+suggested that visual processing deteriorates over time, where the
+prevalence of visual errors increased over 12 months.
+Discussion: The ﬁndings suggest that the deterioration of writing skills
+observed in the spontaneous writings of AD patients shows a pattern of
+impairment dominated by semantic errors with a secondary impairment
+in phonological processing, which is later joined by a disruption of
+visuospatial and graphomotor processing.
+
+
+
+Signiﬁcant outcomes
+
+> Use of a simple and complex written picture description task can reliably discriminate the performance
+
+of healthy elderly controls and minimal–moderate Alzheimer’s disease (AD) patients.
+
+> The ﬁndings indicate the need for a screening task that assesses multiple components of language.
+> The inclusion of lexico-semantic language measures in screening assessments would increase their initial
+sensitivity, whereas visuospatial and graphomotor measures would be useful in documenting the
+progression of the disease.
+
+Limitations
+
+> The longitudinal ﬁndings are limited by subject attrition; as a result, the analyses and conclusions drawn
+
+are based on a small sample, thus limiting the wider application of the ﬁndings.
+
+> Although the sample included minimal, mild and moderate AD patients, they could not be sub-grouped
+
+for disease severity owing to the small sample size.
+
+Introduction
+
+Alois Alzheimer’s ﬁrst case report described a
+woman of 51 years who ‘[w]hen writing repeated
+individual syllables several times, left out others and
+
+quickly became stranded’
+(1); however, most
+language research on Alzheimer’s disease (AD)
+has focused on oral language production.
+
+Mild to moderate AD patients have a typical
+writing pattern characterised by reduced quantitative
+
+246
+
+https://doi.org/10.1017/neu.2014.2 Published online by Cambridge University Press
+
+Charting the decline in spontaneous writing in Alzheimer’s disease
+
+production, defective narrative organisation, word
+(especially function words), multiple
+omissions
+they also
+intrusions and perseverations
+produce
+and less
+are
+sentences
+grammatically complex (3–4).
+
+(1–2);
+shorter
+
+that
+
+language dysfunction
+
+Numerous studies (5–6) have found that deﬁcits in
+written language are early and prominent ﬁndings in
+AD, and indeed may be more sensitive indicators
+of
+(7).
+Although there is relative preservation of motor
+output, phonology and syntax in spontaneous
+speech, multiple graphemic and orthographic errors
+are found in written descriptions
+(8), as are
+grammatical errors, implausible detail (9) and less
+information (10–11).
+
+than dysnomia
+
+implausible
+
+phonologically
+
+In a longitudinal spelling study on 22 AD patients
+(MMSE ranging from 10 to 26), Platel et al. (12)
+found agraphia to evolve through three phases
+related to disease severity. The initial damage to
+the semantic system caused an over-reliance on the
+phonological system; therefore, the initial stage was
+errors.
+dominated by phonologically plausible
+However, as the disease progressed into the second
+stage, the phonological system was also impaired
+and
+errors were
+dominant. Finally, in the third stage, output was
+extremely limited and most errors were caused by
+impaired
+skills. Pestell, Shanks,
+Warrington and Venneri (13), and Forbes et al. (8),
+however, failed to differentiate mild–moderate AD
+type. Although the
+patients in terms of error
+prevalence of phonological errors increased with
+disease severity,
+in error type
+(plausible/implausible); both the patient groups
+produced a large number of phonologically plausible
+errors, but phonologically implausible errors were also
+evident, even among mild AD patients.
+
+there was no shift
+
+graphomotor
+
+Numerous longitudinal studies have documented a
+decline in narrative language performance among
+AD patients, including deterioration in idea density
+of written language (14–15), verbal ﬂuency (16),
+semantic skills and sophistication of vocabulary in
+writing (17–18), despite the relative preservation of
+overall structure and syntax. In a case study by the
+talented and accomplished writer, Iris Murdoch,
+Garrard et al. (17) observed signs of deterioration in
+her writing before her diagnosis of AD, especially in
+semantic skills and sophistication of vocabulary.
+More recent analyses across her
+literary opus
+revealed that subtle abnormalities in her writing
+with impoverished vocabulary and syntax detectable
+even in middle age, almost
+two decades before
+clinical diagnosis (18).
+
+To date, no longitudinal assessment has been
+carried out on the spontaneous narrative writing
+skills of AD patients.
+
+https://doi.org/10.1017/neu.2014.2 Published online by Cambridge University Press
+
+Aims of the study
+
+The main aim of this study was to document the
+progressive nature of the spontaneous writing impair-
+ments occurring in minimal–moderate AD patients
+using a standardised measure. In particular, this study
+aimed to build up a proﬁle of the deterioration in
+performance, on a simple and complex narrative
+description task, over a period of 12 months.
+
+If the writing impairment experienced by AD
+patients is due to a primary breakdown in semantic
+processing and secondary breakdown in phonological
+processing, deﬁcits should be most evident on
+those aspects of spontaneous writing that deal with
+lexical semantic processing. Furthermore,
+the
+initial breakdown in lexical processing is followed
+by a subsequent breakdown in visuospatial and
+graphomotor skills,
+the latter
+measures should increase over time.
+
+the sensitivity of
+
+if
+
+Method
+
+Participants
+
+imaging,
+
+Study 1 – cross-sectional study. The participants
+comprised 30 healthy elderly individuals and
+31 probable AD patients. All patients underwent
+clinical
+and/or
+structural
+dynamic
+assessment
+testing. All
+and neuropsychological
+probable AD patients spoke English as their ﬁrst
+the NINCDS–ADRDA clinical
+language, and met
+criteria for a diagnosis of probable dementia of the
+Alzheimer type (19). Those patients who were in the
+minimal dementia severity range were re-examined
+at 6-month intervals and clinical diagnosis was
+conﬁrmed. Informed consent was obtained from all
+patients, as speciﬁed by the Grampian Health Board
+and the University of Aberdeen Joint Ethics
+Committee. Before administering the written picture
+description task, a brief
+interview was carried
+out with each patient and their relative/guardian.
+Only those patients who were able to give consent
+were tested.
+
+The 30 healthy controls (18 men and 12 women)
+were recruited from the University of Aberdeen
+Participation Panel. All these participants had been
+part of this panel for a number of years and were
+regularly attending cognitive testing sessions and
+in a range of projects. Longitudinal
+taking part
+evidence of normal
+functioning was
+therefore available. All controls spoke English as
+their ﬁrst language, were literate, met the exclusion
+criteria of WMS III and WAIS III standardisation
+samples (20), and had visual acuity sufﬁcient
+to
+read newsprint. They were aged between 71 and
+89 years (mean 78.25, SD 4.64), with a mean of
+
+cognitive
+
+247
+
+Forbes-Mckay et al.
+
+Table 1. Mean (SD) age, education, MMSE for AD patients and healthy controls
+
+Cross sectional study
+
+Longitudinal study
+
+Controls (n 5 30)
+
+AD patients (n 5 31)
+
+AD patients (n 5 15)
+
+Age
+Education
+
+78.25 (4.64)
+10.20 (2.14)
+
+76.03 (8.56)
+11.71 (3.01)
+
+76.45 (7.94)
+10.60 (2.06)
+
+AD, Alzheimer’s disease.
+
+10.20 (SD 2.14) years of education (see Table 1).
+As an additional precaution to ensure normal
+cognitive functioning at the time of assessment for
+this study, all controls over the age of 80 were also
+assessed with the MMSE. None of the participants
+scored below 27/30.
+
+The 31 patients (19 men and 12 women) were
+aged between 53 and 90 years (mean 76.03, SD
+8.56), with a mean of 11.71 (SD 3.01) years of
+education (see Table 1). The patient group had a
+mean MMSE of 22.29 (SD 4.11), with a minimum
+of 16 and a maximum of 29. According to the cut-
+off scores established by Folstein (21), 16 patients
+fell within the minimal range (24–30), 9 within the
+mild range (19–24) and 6 within the moderate range
+(12–18) of dementia severity.
+
+To ensure that
+
+the patients and controls were
+matched in terms of age and education, a one-way
+ANOVA was carried out with age and education
+factors. Results indicated that
+as the dependent
+there was
+age
+difference
+[F(3,60) 5 2.32, NS] or education [F(3,60) 5 2.45,
+NS]. As there was no signiﬁcant difference between
+any of the groups in terms of age or education, all
+analyses were carried out using the raw scores.
+
+signiﬁcant
+
+for
+
+no
+
+Neuropsychological assessment. All patients and
+controls were assessed at the time of entering the
+study using a comprehensive battery of neuro-
+psychological tests including: the Paired Associate
+Learning test (20), a forward and backward digit
+span task (20), a semantic and phonemic word
+ﬂuency task (22), a 20-item naming task,
+the
+shortened version of the Token Test (23), a digit
+cancellation task (24) and the Coloured Progressive
+Matrices (25).
+
+As
+
+indicated in Table 2,
+
+the AD patients
+performed within the normal range on the Token
+task, the digit span and the measure of phonemic
+ﬂuency;
+on
+confrontation naming,
+semantic ﬂuency, paired
+associate learning, digit cancellation and coloured
+progressive matrices.
+
+deﬁcits were
+
+however,
+
+evident
+
+Study 2 – longitudinal study. For various reasons,
+such as, illness, departure from the area, loss of
+
+248
+
+https://doi.org/10.1017/neu.2014.2 Published online by Cambridge University Press
+
+Table 2. Mean and SD scores on the neuropsychological battery for AD patients
+and healthy controls
+
+AD patients
+
+Controls
+
+Test/group
+
+Ravens (PM 47)
+Digit cancellation
+Digit span forward
+Digit span backward
+Paired learning easy
+Paired learning hard
+Token Test
+Phonemic ﬂuency
+Semantic ﬂuency
+Confrontational naming
+
+Mean
+
+16.09*
+49.32*
+6.39
+3.87
+5.65*
+1.00*
+30.68
+27.82
+22.4*
+17.04*
+
+SD
+
+Mean
+
+SD
+
+8.44
+6.85
+0.98
+0.69
+3.38
+2.50
+3.62
+17.03
+14.46
+2.72
+
+30.70
+56.50
+5.13
+4.46
+11.30
+8.04
+34.50
+41.80
+57.20
+19.20
+
+3.92
+3.04
+1.03
+1.25
+1.37
+2.87
+1.59
+11.30
+9.81
+0.51
+
+AD, Alzheimer’s disease.
+*Performance fell two standard deviations below the mean of controls.
+
+those
+
+completed
+
+contact or inability to complete the task, the full
+12-month assessment of spontaneous writing was
+not possible for 16 (52%) of the original 31 AD
+samples. The 15 patients who were reassessed had
+a mean age of 76.45 (SD 7.94), with a mean of
+10.60 (SD 2.06) years of education (see Table 1).
+Of the 15 participants who were reassessed, ﬁve
+patients fell within the minimal range (24–30), six
+within the mild range (19–24) and four within the
+moderate range (12–18) of dementia severity at the
+time of
+the baseline assessment. Mean MMSE
+annual decline was 0.27 (SD 1.33). To determine
+the
+patients who
+whether
+longitudinal assessment differed from those who
+dropped out
+in terms of initial MMSE, age or
+education, a one-way ANOVA was carried out with
+age, education and initial MMSE as the dependent
+factors. Results indicated that there was no signiﬁcant
+effect for age [F(1,29) 5 2.46, NS], but there was a
+education [F(1,29) 5 4.38,
+signiﬁcant
+p , 0.05] and MMSE [F(1,29) 5 4.95, p , 0.05].
+The subgroup of ‘survivors’ had signiﬁcantly less
+years of education (mean 10.60, SD 2.06) and
+lower initial MMSE scores (mean 21.13, SD 2.79)
+than those who dropped out (years of education –
+mean 12.75, SD 2.06; MMSE mean 24.12,
+SD 4.44). The two groups, however, did not differ
+in terms of
+the
+neuropsychological measures
+psychometric
+carried out at baseline.
+
+their performance on any of
+or
+
+effect
+
+for
+
+Materials
+
+Spontaneous writing was assessed using a narrative
+description task comprising two simple line drawings
+that depict a domestic scene, namely, ‘The Cookie
+(26) and ‘The Tripping Woman
+Theft Picture’
+
+Charting the decline in spontaneous writing in Alzheimer’s disease
+
+Picture’ (27) and two complex line drawings that
+depict a trafﬁc scene, ‘The Trafﬁc Chaos Picture’ and
+the ‘The Bus Stop Picture’ (see Forbes–McKay and
+Venneri
+further details on complexity,
+for
+scoring, validity and reliability).
+
+(28)
+
+Procedure
+
+Study 1 – cross-sectional study. Before administering
+the task,
+there was a brief discussion with each
+patient and their relative/guardian, and only those
+able to consent were tested. Each individual was
+instructed to describe in writing everything that
+they could see happening in one simple and one
+complex picture. The descriptions were transcribed
+and later analysed on a writing analysis scale,
+which comprised eight 7-point Likert-type scales
+including: Goodglass and Kaplan’s (26) measures
+for phrase
+a
+modiﬁed version of their measure for paraphasias,
+in which semantic (words related to the target in
+terms of meaning), visual (words related to the
+target visually) and phonological (words that share
+some similar sounds, initial phoneme or number
+target) paraphasias were
+of
+measured separately; and three additional scales
+measuring areas of writing known to deteriorate in
+information content, error
+AD patients, namely,
+monitoring and the number of pictorial
+themes
+described in each picture.
+
+length and grammatical
+
+syllables
+
+to the
+
+form;
+
+phrases
+
+Each measure was scored on a 7-point Likert-
+type scale ranging from 1 (severely impaired
+functioning) to 7 (no abnormality) (see Forbes,
+Venneri and Shanks (29)). For example, the scales
+for paraphasias ranged from 1 (paraphasia present
+in every sentence) to 7 (paraphasias absent) with
+intervening scores representative of the proportion
+of sentences containing a paraphasia. The scale for
+ranged from 1 (indeﬁnite,
+information content,
+present
+irrelevant
+redundant
+in
+and
+every sentence)
+redundant and
+to 7 (indeﬁnite,
+irrelevant phrases absent) with intervening scores
+sentences
+representative of
+containing indeﬁnite,
+and irrelevant
+phrases. The error monitoring scale ranged from
+1 (no errors corrected) to 7 (all errors corrected)
+with intervening scores
+the
+proportion of errors corrected. In terms of pictorial
+the total number of actions observable
+themes,
+the scale ranged
+in each picture was calculated,
+from ‘1’ to ‘7’ representative of the number of
+observations made. Ratings were carried out by
+KFM, who devised the rating scales and has
+extensive experience of using them (see Forbes
+et al. (29–30)). As demonstrated by Forbes-McKay
+
+the proportion of
+redundant
+
+representative of
+
+https://doi.org/10.1017/neu.2014.2 Published online by Cambridge University Press
+
+the scales have high validity;
+and Venneri (28),
+interrater, parallel forms and test–retest reliability
+among healthy individuals and AD patients.
+
+Study 2 – longitudinal assessment. The procedure
+for study 2 was the same as study 1; however, to
+document the language deterioration suffered over
+time, writing was reassessed after a period of
+6 months and 12 months. To control for practice
+effects the stimuli were rotated every 6 months; for
+example,
+if presented with the ‘Bus Stop’ and
+‘Cookie Theft’ pictures at baseline, patients were
+and the
+‘Trafﬁc Chaos’
+presented with the
+‘Tripping Woman’ pictures at 6 months.
+
+Statistical analysis
+
+Baseline cross-sectional assessment. To examine
+the effects of group (healthy controls and AD
+patients), on the performance score of each speech
+variable, a one-way ANOVA was carried out for
+each writing measure.
+
+Longitudinal assessment. To examine the effects
+of time (baseline, 6 months and 12 months) on the
+performance score of each writing variable, a one-
+way repeated ANOVA was carried out for each
+writing measure across all patients.
+
+Results
+
+Study 1 – cross-sectional analysis
+
+of
+
+on
+
+of:
+
+and
+
+phrase
+
+number
+
+p 5 0.002;
+
+the measures
+
+Simple task. Results from a series of one-way
+ANOVAs indicated that group had a signiﬁcant
+length
+effect
+[F(1,60) 5 11.34, p 5 0.001; h2 5 0.16], grammatical
+(h2 5 0.15],
+form [F(1,60) 5 10.39,
+[F(1,60) 5 39.56, p , 0.001;
+information content
+(h2 5 0.40]
+themes
+pictorial
+[F(1,60) 5 19.03, p , 0.001; (h2 5 0.24]. Group had
+no signiﬁcant effect on phonological paraphasias
+[F(1,60) 5 3.28, p 5 0.12],
+semantic paraphasias
+[F(1,60) 5 4.12,
+p 5 0.05],
+paraphasias
+[F(1,60) 5 5.27, p 5 0.03] or
+error monitoring
+[F(1,60) 5 5.57, p 5 0.02]. Tests were conducted
+using Bonferroni-adjusted a levels of 0.006 per
+test
+(0.05/8). Table 3 shows a summary of
+mean scores for the control and patient groups on
+this task.
+
+visual
+
+Complex task. Results from a series of one-way
+ANOVAs indicated that group had a signiﬁcant
+
+249
+
+Forbes-Mckay et al.
+
+on
+
+of:
+
+phrase
+
+semantic
+
+p , 0.001;
+
+paraphasias
+
+h2 5 0.20],
+
+the measures
+
+length
+effect
+[F(1,60) 5 14.50, p , 0.001; (h2 5 0.19], grammatical
+(h2 5 0.23],
+form [F(1,60) 5 17.99,
+[F(1,60) 5 15.23,
+phonological
+p , 0.001;
+paraphasias
+[F(1,60) 5 8.64, p 5 0.005; h2 5 0.12], information
+[F(1,60) 5 27.10, p , 0.001; h2 5 0.31],
+content
+p , 0.001;
+[F(1,60) 5 19.47,
+error monitoring
+h2 5 0.34]
+themes
+of
+[F(1,60) 5 63.46, p , 0.001; h2 5 0.52]. Group had
+no
+paraphasias
+[F(1,60) 5 4.02, p 5 0.05]. Tests were carried out
+using Bonferroni-adjusted a levels of 0.006 per test
+(0.05/8). Table 3 shows a summary of mean scores
+for the control and patient groups on this task.
+
+signiﬁcant
+
+pictorial
+
+number
+
+visual
+
+effect
+
+and
+
+on
+
+[F(2,28) 5 0.53,
+
+signiﬁcantly more visual paraphasias at 12 months
+than at baseline or 6 months (p , 0.05). There
+was no signiﬁcant effect of time on the measures
+form [F(2,28) 5 0.25, p 5 0.78],
+of grammatical
+[F(2,28) 5 4.29, p 5 0.02],
+information content
+phrase length [F(2,28) 5 0.62, p 5 0.54], pictorial
+semantic
+themes
+paraphasias
+or
+phonological paraphasias [F(2,28) 5 1.26, p 5 0.29].
+the patients performed at ﬂoor on the
+measure of error monitoring, ANOVA was not
+calculated on this measure. Tests were completed
+using Bonferroni-adjusted a levels of 0.007 per test
+(0.05/7). Table 4 summarises the mean score for
+each writing variable in the patient group.
+
+[F(2,28) 5 2.97,
+
+p 5 0.59],
+
+p 5 0.07]
+
+As
+
+Longitudinal analysis
+
+task. Results
+
+Simple
+from a within-subjects
+ANOVA demonstrated a signiﬁcant main effect of
+time on visual paraphasias [F(2,28) 5 8.93, p 5 0.001;
+h2 5 0.39]. Further analysis using Bonferroni pairwise
+the patients produced
+comparisons indicated that
+
+Table 3. Mean (SD) scores on the simple and complex task for AD patients and
+healthy controls
+
+Simple
+
+Complex
+
+Language component
+
+Controls
+
+Patients
+
+Controls
+
+Patients
+
+Phrase length
+Grammatical form
+Phonological paraphasias
+Semantic paraphasias
+Visual paraphasias
+Information content
+Error monitoring
+Pictorial themes
+
+7.00 (0.00)
+6.10 (1.09)
+6.53 (0.51)
+6.90 (0.30)
+7.00 (0.00)
+6.83 (0.38)
+2.80 (2.82)
+4.86 (1.19)
+
+5.94 (1.73)*
+5.00 (1.52)*
+6.09 (1.44)
+6.58 (0.80)
+6.70 (0.69)
+4.97 (1.58)*
+1.37 (1.21)
+3.41 (1.38)*
+
+7.00 (0.00)
+6.20 (1.06)
+6.86 (0.35)
+7.00 (0.00)
+7.00 (0.00)
+6.76 (0.43)
+3.20 (2.39)
+5.13 (1.04)
+
+6.00 (1.43)*
+4.87 (1.36)*
+5.61 (1.72)*
+6.29 (1.32)*
+6.77 (0.62)
+5.22 (1.57)*
+1.08 (0.28)*
+2.77 (1.26)*
+
+AD, Alzheimer’s disease.
+*Signiﬁcant main effect of group, p , 0.006 tests were conducted using
+Bonferroni-adjusted a levels of .006 per test (0.05/8).
+
+information
+
+task. Results
+
+from a within-subjects
+Complex
+ANOVA demonstrated no signiﬁcant effect of time
+on the measures of grammatical form [F(2,28) 5 0.70,
+p 5 0.50],
+[F(2,28) 5 4.20,
+p 5 0.03], phrase length [F(2,28) 5 0.45, p 5 0.64],
+pictorial themes [F(2,28) 5 0.22, p 5 0.80], semantic
+paraphasias
+visual
+paraphasias [F(2,28) 5 4.06, p 5 0.03] or phonological
+paraphasias [F(2,28) 5 0.49, p 5 0.61].
+
+[F(2,28) 5 0.61,
+
+p 5 0.54],
+
+content
+
+As
+
+the patients performed at ﬂoor on the
+measure of error monitoring, ANOVA was not
+calculated on these measures. Tests were carried
+out using Bonferroni-adjusted a levels of 0.007 per
+test (0.05/7). Table 4 summarises the mean score
+for each writing variable in the patient group.
+
+Discussion
+
+This study found that impairments at the level of
+the semantic system were present early in the
+course of the disease. In addition to a breakdown
+the
+in grammatical
+minimal–moderate AD patients produced writing
+that contained signiﬁcantly more phonological and
+
+form and phrase
+
+length,
+
+Table 4. Mean (SD) scores on the simple and complex task at baseline, 6 months and 12 months in the patient group
+
+Simple
+
+Complex
+
+Language component
+
+Baseline
+
+6 months
+
+12 months
+
+Baseline
+
+6 months
+
+12 months
+
+Phrase length
+Grammatical Form
+Phonological paraphasias
+Semantic paraphasias
+Visual paraphasias
+Information content
+Error monitoring
+Pictorial themes
+
+5.86 (1.86)
+4.60 (1.72)
+5.73 (0.25)
+6.46 (0.74)
+6.53 (0.92)
+4.80 (1.20)
+1.08 (0.27)
+3.07 (1.16)
+
+6.13 (1.40)
+4.26 (1.44)
+6.20 (0.41)
+6.20 (0.94)
+6.60 (0.91)
+4.46 (0.83)
+1.07 (0.27)
+3.20 (1.08)
+
+5.53 (1.80)
+4.46 (1.72)
+5.46 (0.74)
+5.80 (0.94)
+5.86 (1.12)*
+4.00 (0.92)
+1.07 (0.27)
+2.80 (1.20)
+
+5.86 (1.50)
+4.66 (1.63)
+5.06 (2.05)
+6.40 (0.74)
+6.53 (0.83)
+4.73 (1.38)
+1.42 (1.60)
+2.66 (0.81)
+
+5.46 (1.84)
+4.13 (1.30)
+5.33 (1.54)
+6.00 (0.53)
+6.33 (0.98)
+4.20 (0.86)
+1.00 (0.00)
+2.86 (0.64)
+
+5.60 (1.68)
+4.40 (1.76)
+4.73 (1.22)
+5.67 (0.82)
+5.86 (1.12)
+4.00 (1.00)
+1.07 (0.27)
+2.80 (1.26)
+
+*Signiﬁcant main effect of time, p , 0.007. Tests were conducted using Bonferroni-adjusted a levels of .007 per test (0.05/7).
+
+250
+
+https://doi.org/10.1017/neu.2014.2 Published online by Cambridge University Press
+
+Charting the decline in spontaneous writing in Alzheimer’s disease
+
+semantic paraphasias, more empty and indeﬁnite
+phrases, fewer repaired errors, and were able to
+abstract and describe fewer pictorial themes than the
+healthy elderly controls. Therefore,
+the ﬁndings
+from the cross-sectional study are consistent with
+previous research (123, 7–8, 10, 14, 17–18).
+
+visual
+
+produced
+
+semantic,
+
+the impairment
+
+it seems more likely that
+
+As the disease progressed,
+
+in
+grammatical complexity and phrase length,
+the
+number of indeﬁnite and empty phrases, semantic
+and phonological paraphasias, and unresolved errors
+did not increase. Performance levelled off and these
+measures were no longer sensitive in monitoring
+decline. However, the measure of visual paraphasias
+did demonstrate a signiﬁcant decline over 12 months.
+There is a view that language production in AD
+degenerates progressively from a lexico-semantic
+to a more widespread dysfunction
+impairment
+and motor
+visual
+phonological,
+including
+processing (12). The patients in the present study,
+however,
+and
+phonological paraphasias at baseline, 6 months and
+12 months, that is, at all points in the assessment,
+although with an increased quantity of all error
+the
+types. Therefore,
+writing disorder in AD is multi-componential
+in
+nature even among those patients in the early stages
+of the disease. The disorder of spontaneous written
+language seems to reﬂect impairments at the lexico-
+semantic level,
+level and the
+the visuospatial
+phonological level at all levels of dementia severity.
+With the exception of minor word-retrieval
+problems and a simpliﬁcation of grammatical form,
+language abilities tend to be well maintained in later
+life (31). Impairments evident in the healthy elderly
+appear linked to a more general decline in other
+cognitive functions such as memory, attention and
+executive function. Although the current control
+sample showed impairments in error monitoring,
+they
+form and pictorial
+grammatical
+produced very few indeﬁnite terms or semantic
+paraphasias and no visual paraphasias. When
+controls did fail to produce the target word, errors
+were typically phonological in nature. Considering
+the qualitative and quantitative differences shown
+between the two groups, the writing impairment in
+AD cannot reﬂect age-associated factors.
+
+themes,
+
+In line with the ﬁndings of Hodges et al. (32),
+Forbes-McKay, Shanks and Venneri
+the
+proportion of phonologically and visually related
+errors produced by the AD patients increased as the
+disease progressed.
+
+(33),
+
+Although in the longitudinal study the group
+the results
+could not be stratiﬁed by severity,
+of
+the majority
+the current study indicate that
+of minimal–moderate AD patients experience a
+primary impairment in semantic knowledge, with a
+
+https://doi.org/10.1017/neu.2014.2 Published online by Cambridge University Press
+
+in visuoperceptual
+
+and
+secondary impairment
+phonological processing. Therefore, despite the
+heterogeneity of AD, there is a relatively common
+pattern of impairments shown across the current
+sample. Although the conclusions drawn are limited
+by a small sample that limits the wider application of
+these are consistent with previous
+the ﬁndings,
+studies. Analysis of
+the patients’ biographical
+characteristics and neuropsychological performance
+also indicates that there was very little difference
+between those who survived and those who dropped
+out. Although the speed of deterioration may vary, the
+pattern of impairment appears relatively consistent.
+
+show a
+
+Furthermore, in line with the ﬁndings of Ehlrich
+et al. (34), the need to integrate more information
+and identify more pictorial themes in the complex
+task increases
+the narrative
+the sensitivity of
+description task in the cross-sectional study.
+In conclusion, as AD progresses over
+
+time,
+patients
+quantitative
+qualitative
+deterioration in language production. Despite the
+heterogeneity of patients, the current results show a
+pattern of impairment dominated by semantic errors,
+with a secondary impairment to the phonological
+and visual aspects of writing. By the ﬁnal stages of
+the assessment, the patients show a global language
+problem, characterised by indeﬁnite and empty
+phrases, short grammatically simple sentences, word
+ﬁnding difﬁculties, visual, phonological and semantic
+errors, and an inability to repair such errors.

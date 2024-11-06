@@ -1,0 +1,734 @@
+
+
+Abstract
+
+Reductions in spoken language complexity have been associated with the onset of various 
+neurological disorders. The objective of this study is to analyze whether similar trends are found in 
+professional football players who are at risk for chronic traumatic encephalopathy. We compare 
+changes in linguistic complexity (as indexed by the type-to-token ratio and lexical density) 
+measured from the interview transcripts of players in the National Football League (NFL) to those 
+measured from interview transcripts of coaches and/or front-office NFL executives who have 
+never played professional football. A multilevel mixed model analysis reveals that exposure to the 
+high-impact sport (vs no exposure) was associated with an overall decline in language complexity 
+scores over time. This trend persists even after controlling for age as a potential confound. The 
+results set the stage for a prospective study to test the hypothesis that language complexity decline 
+is a harbinger of chronic traumatic encephalopathy.
+
+Keywords
+
+chronic traumatic encephalopathy; linguistic complexity; natural language processing; type-to-
+token ratio; lexical density
+
+Corresponding author: Visar Berisha, PhD, Department of Speech and Hearing Science, School of Electrical Computer and Energy 
+Engineering, Arizona State University, Tempe, AZ 85284, Phone: (480) 727 – 6455, Fax: (480) 965 – 8516, visar@asu.edu. 
+Publisher's Disclaimer: This is a PDF file of an unedited manuscript that has been accepted for publication. As a service to our 
+customers we are providing this early version of the manuscript. The manuscript will undergo copyediting, typesetting, and review of 
+the resulting proof before it is published in its final citable form. Please note that during the production process errors may be 
+discovered which could affect the content, and all legal disclaimers that apply to the journal pertain.
+
+
+Repeated mild traumatic brain injury (mTBI), as experienced by professional athletes in 
+high-impact sports, has been associated with an increased risk of developing chronic 
+traumatic encephalopathy (CTE) [1]. CTE is a progressive degeneration of brain tissue 
+characterized by abnormal buildup of tau protein in neurons and glial cells [2]. A conclusive 
+diagnosis of CTE can be made only through post-mortem evaluation of p-tau deposits in the 
+brain since behavioral manifestations of the disease overlap with other neurodegenerative 
+disorders, such as Alzheimer’s disease [2, 3].
+
+The clinical presentation of CTE is diffuse and variable, but commonly includes disruptions 
+in mood or behavior, cognitive decline, and/or motor impairments (see [3], for a review). In 
+a review of 51 confirmed cases of CTE in athletes, McKee et al. find that one-third of the 
+individuals were symptomatic when they retired from their sport and one-half showed signs 
+of CTE within 4 years of retirement [2]. Early and mild manifestations of these symptoms 
+may exist unrecognized for years, masked by compensatory strategies or attributed to other 
+etiologies or general personality traits. Yet early identification of probable CTE is critical for 
+the development and testing of neuroprotective interventions. Fortunately, these subtle 
+deficits can be revealed when pressure is exerted on cognitive resources.
+
+The production of language, in the form of conversation or spontaneous written narrative, is 
+a form of pressure on cognitive resources. It requires identifying words to express an idea, 
+arranging these words in an order allowed by the language, all before initiating the 
+articulatory muscles to even produce the speech, or fine motor control to write. As a result, a 
+number of studies have demonstrated reductions in linguistic complexity of spoken and 
+written discourse in patient populations with cognitive impairment and dementia [4–7]. Our 
+study is an extension of this work to a pre-symptomatic population at risk for CTE: players 
+in the National Football League (NFL). We have compiled an extensive corpus of over 
+10,000 interviews with 10 NFL players (P), 9 of whom were on active rosters in the NFL as 
+of the start of the 2016 season, and 18 NFL front office executives and coaches (C) who 
+have never played professional football. This provides a rich and unique opportunity to 
+evaluate longitudinal changes in language use for both groups (players and coaches/front-
+office executives) and to explore whether lexical complexity measures, derived 
+automatically from interview transcripts and tracked longitudinally, exhibit any decline.
+
+There are a number of measures to estimate language complexity in the literature. These 
+have been used to track second-language learning [13], child language development [26], 
+and neurological health [4–10, 22–25]. Because this is an observational study, we focus on 
+two simple, but robust, lexical complexity measures that have been established in other 
+studies as potential markers of cognitive decline [10, 14, 21]: 1) lexical density (LD) – the 
+ratio of the number of content words (verbs, nouns, adjectives, adverbs) to the total number 
+of words in the text [13]; 2) type-to-token ratio (TTR) - a ratio of the number of unique 
+words in a text to the total number of words in the text. Qualitatively, the LD captures the 
+density of ideas in a text and the TTR is a proxy measure for an individual’s working 
+vocabulary. Snowdon et al. related idea density in writing with cognitive health later in life 
+[7]. Roark et al. showed that the Content Density (a measure very similar to the LD used 
+
+
+
+here) was a strong predictor of mild cognitive impairment [4]. Similarly, the TTR has been 
+used extensively by researchers as an analysis measure in a variety of clinical populations, 
+including to assess linguistic differences between people with dementia associated with 
+Alzheimer’s and healthy controls [22], to measure lexical diversity in aphasics [24], to 
+assess the extent of lesions on speech production [25], and as a measure of linguistic 
+diversity in preschool age children with language impairments [26]. In our study we analyze 
+longitudinal change in TTR and LD separately and compared between groups (players and 
+coaches/front-office executives) using a multilevel mixed model approach.
+
+Results
+
+In Table 1 we provide a list of individuals included in the study and summary statistics: the 
+age (as of the date of the first interview), the number of years of college education, and, for 
+the players, their position on the field, the number of years in the NFL (as of the date of the 
+first interview), and the average number of times sacked per game (for the quarterbacks). An 
+independent-samples t-test was conducted to evaluate differences in college education levels 
+and in age between the two groups. There was no significant difference in college education 
+between the two groups; t(26)=1.30, p=0.21. However, the C group mean age was 
+significantly higher than that of the P group; t(26)=6.53, p<0.0001. For the C group, there 
+was a positive correlation for LD with age [r=0.104, p<0.001]. For the P group, there was a 
+negative correlation for TTR with age [r=−0.425, p<.001] and with number of years played 
+[r=−0.310, p<0.001].
+
+In Table 2, we show the results of the mixed effects model. The analysis indicate that, 
+compared to the coach/executive group, player status was associated with an overall decline 
+in the TTR and LD scores over time. For TTR, there was a statistically significant decline 
+over time [beta (SE): −0.016 (±0.002) points; punadj=0.012]. The effect size increased 
+[−0.027 (±0.003) points] after (padj<0.001) adjusting for a potential confound (age at the 
+time of first transcript). For LD, the decrease [−0.004 (±0.002) points] over time was 
+statistically significant after controlling for age (p=0.012) but not prior to [0.002 (±0.001); 
+p=0.166].
+
+In Figure 1, we show the slopes of the unadjusted model for the two complexity parameters 
+plotted by group. Note that these measures represent the change in the complexity 
+parameters over time and not their absolute values. A positive value indicates an increase in 
+language complexity over time, whereas a negative value indicates a decrease in complexity 
+over time. It is clear from the plot that there is a distinct difference in the trend exhibited by 
+the two groups. For the P group, 70% of the individuals exhibited either a decline in LD or 
+in TTR, and 40% exhibited a decline in both. For the C group, 44% of the individuals 
+exhibited a decline in either parameter with 28% exhibiting a decline in both. As these 
+figures show, this effect is more pronounced when only considering large negative changes 
+in the language parameters (e.g. slopes < −0.0001).
+
+To visualize data from individual subjects, Figure 2 shows the TTR and LD plotted over 
+time for two individuals – a coach and a player from the same team during the same period. 
+We also show the line of best fit with 95% confidence bounds for each figure. The line was 
+fit by converting the date to the number of days passed since 1/1/2005. These plots serve as 
+exemplars indicative of the larger trend exhibited by the data. As the figure shows, both 
+measures for the player exhibit a subtle decline over time; for the coach, the same 
+parameters are increasing over time. While there are clear longitudinal trends in the plots, 
+there is also a great deal of local variability. This is to be expected. Extensive work in the 
+variables influencing intra-speaker variation suggest that any level of language, be it 
+phonological, phonetics, syntax, morphology, may be subject to both conscious/explicit and 
+completely unconscious/subtle variation within a speaker, as conditioned by pragmatics, 
+style-shifting, or register shifting [27, 28].
+
+In Figure 3, we plot the LD slopes against the number of sacks/game [r=−0.740, p=0.057] 
+and the TTR slopes against the number of sacks/game [r=−0.630, p=0.131] for the 
+quarterbacks in the study. Neither result reached statistical significance, and additional data 
+are required to determine whether the inverse trend between sacks/game and language 
+decline holds.
+
+Discussion
+
+Despite the limitations inherent in a retrospective observational study, the finding of lexical 
+complexity decline in these NFL players is remarkable. Numerous studies have shown that 
+throughout adulthood, lexical complexity measures in neurologically healthy people remain 
+stable or even increase with age [11, 12]. For instance, it has been demonstrated that 
+vocabulary increases over the lifespan [29]. Kemper and Sumner have demonstrated that 
+diversity and sophistication of lexical use increases with age [30]. Another study identifies 
+age-related increases in lexical complexity and vocabulary at the discourse level [31]. This 
+means that, while the mean age of the P group was significantly lower than the C group at 
+the time of the first interview, there is no reason to expect a decline in linguistic complexity 
+for healthy younger controls.
+
+It is only with advanced age or neurological disease or injury that we would expect 
+decreases in the diversity and complexity of language when the cognitive-linguistic system 
+is taxed [8–12]. Reductions in the lexical complexity of spoken and written discourse have 
+been demonstrated in numerous studies of cognitive impairment and dementia [5–7]. This 
+work dates back to Snowdon’s et al. “Nun Study”, which revealed that idea density and 
+grammatical complexity in writings early in life were related to cognitive health later in life 
+[7]. Other studies have reported other forms of simplification, such as an over-reliance on 
+the use of common phrases, non-specific indefinite nouns (e.g., thing), and high frequency/
+low-imageability verbs, and smaller vocabulary size [8–10]. Against this backdrop, a finding 
+of reduced lexical complexity in the P group warrants follow-up for cause.
+
+There is reason to suspect that the changes we observe are due to exposure to the high-
+impact sport. The lexical complexity reductions for the majority of the NFL players sampled 
+here is in keeping with results of other studies that have evaluated cognitive-linguistic 
+function following mTBI. Relevant to the results of the current analyses, higher order 
+linguistic processes such as lexical access, verbal fluency, verbal memory, as well as non-
+literal expression, and complex auditory comprehension have all been shown to be adversely 
+
+
+
+affected by the occurrence of mTBI [8, 9, 32]. Additionally, it has been shown that discourse 
+and narrative abilities [16, 17], pragmatic ability [19], and performance in naming tasks [20] 
+decline in the event of mTBI. Supportive cognitive abilities such as memory are also 
+adversely affected by mTBI and tasks requiring recall, organization, making inferences, and 
+perception/discrimination all are shown to be affected [17, 18]. In addition, auxiliary 
+analysis in our study reveals a relationship between the magnitude of change in TTR and LD 
+and the number of hits a player experiences per game. To study this relationship, we focus 
+on the 7 quarterbacks in our study. For this sub-group, we can approximate the frequency of 
+hits they experience by estimating the average number of times per game that they are 
+sacked by the opposing team. In Figure 3, we show how the LD and TTR slopes vary with 
+the number of sacks/game for the quarterbacks in the study. While this analysis does not 
+yield statistically significant results, there seems to be an inverse trend between lexical 
+complexity and the number of sacks per game: QBs with fewer sacks per game exhibit less 
+pronounced decline. These negative correlations are at least partially driven by the QB with 
+an especially high sacks/game measure and additional data from more subjects are required 
+before a relationship between these variables is confirmed. However, taken together, these 
+results and the existing knowledge base set the stage for a prospective study to test the 
+hypothesis that language complexity decline is a harbinger of CTE.
+
+A prospective study to test this hypothesis would allow for control over variables that may 
+have influenced the present results. It would be preferable to compare P to an age-matched 
+control group for longitudinal comparison in order to establish the healthy gradient for 
+increased linguistic complexity over time in this population. Cognitive and functional 
+impairments due to drug use (elicit abuse or prescriptions to manage known injuries or 
+conditions) may be a possible confound in the subject group; as such, the study should 
+attempt to account for these variables. Furthermore, such a study should match baseline 
+language scores to ensure similar linguistic starting points across individuals. Ideally, we 
+would establish baselines for an incoming rookie class and follow them longitudinally over 
+many years. A prospective study in these populations should use question sets that are 
+designed to elicit high complexity responses. Such questions would offer the additional 
+advantage of placing greater cognitive-linguistic pressure on the participants to reveal 
+smaller and/or earlier declines and would not be influenced by any prior media training. 
+Furthermore, for all participants in the P group, the study should quantify the severity and 
+frequency of hits in practice and during games. Finally, a careful power analysis should be 
+conducted to determine the sample size prior to conducting the study. For the current study, 
+a post-hoc power analysis using a repeated measures study design indicated that the detected 
+effect size for TTR had greater than 80% power whereas there was suboptimal power to 
+detect a statistically significant effect size for the LD score. Our reported effect size for LD 
+was much smaller than that for TTR; for small differences, a larger sample size is necessary 
+to achieve statistical significance.
+
+Without an in vivo marker of CTE, no study can conclude a causal relationship between the 
+neural degeneration and clinical presentation during life. However, the data reveal trends for 
+players that deserve causal explanation through prospective research designs. If it is found 
+that declines in linguistic complexity are a marker of CTE, or track with other markers of 
+CTE, this method offers a non-invasive and low cost solution. While the acquisition of 
+
+
+
+longitudinal spontaneous speech samples is difficult retrospectively, prospective collection is 
+a trivial matter with the proliferation of mobile devices and smartphones. Longitudinal 
+behavioral studies aiming to identify early biomarkers of CTE or to distinguish between 
+CTE and other tauopathies should also consider linguistic complexity as a sensitive 
+component.
+
+Methods
+
+Data
+
+Our study leveraged existing data, in the form of press conference transcripts, to 
+quantitatively assess longitudinal changes in linguistic complexity in active NFL players. A 
+subset of NFL teams makes publicly available interview transcripts from players and other 
+team personnel (see the list teams in the Appendix). We collected these transcripts from 10 
+players and 18 coaches or front-office executives who have never played in the NFL.
+
+Two aspects of these press conference transcripts are critical for the present analysis. First, 
+the interviews are available over an extended period, allowing us to detect subtle within-
+person longitudinal changes in lexical complexity measures should they occur. Second, the 
+interview format is non-scripted and spontaneous. This places the interviewee in the 
+challenging position of needing to generate verbal responses that are appropriate and timely. 
+With cognitive resources taxed, we would expect to see lexical complexity reductions to 
+meet the interview timing demands, in the context of pathology or other mitigating 
+circumstances [10]. Thus, the press conference transcripts provided the opportunity to track 
+the longitudinal lexical complexity of NFL players at risk for CTE. We compare these 
+changes against other individuals in the same setting but who have never played professional 
+football, namely a group of NFL coaches and executives, for whom we were able to collect 
+similar data.
+
+We sampled a database of over 10,000 transcripts from press conference interviews, dating 
+from 2007 to 2015. Each interview is date-stamped and consists of a spontaneous interaction 
+between members of the press and each player (P) or executive or coach (C). The nature of 
+the interviews is similar since the vast majority (>90%) come from either pre-game or post-
+game interviews. Thus, there is a great deal of overlap in the types of questions asked by the 
+media. For the analysis, we focused only on the responses to the interviewer questions and 
+generated a date-stamped concatenated longitudinal database of responses for each 
+individual P or C. The details of the processing can be found in the data description in the 
+Appendix.
+
+Lexical Complexity Measures
+
+From this merged data source, we analyzed two lexical complexity measures that have been 
+shown to robustly change with cognitive decline [10, 14, 21]: 1) the type-to-token ratio 
+(TTR) - a ratio of the number of unique words in a text to the total number of words in the 
+text; 2) lexical density (LD) – the ratio of the number of content words (verbs, nouns, 
+adjectives, adverbs) to the total number of words in the text [13]. The lexical complexity 
+measures are dependent on the length of the analyzed transcripts [14]; as a result, we 
+
+
+
+adopted a fixed window length of 1000 words. From the concatenated transcripts of each 
+person, we swept this 1000-word analysis window through the entire transcript and extracted 
+the TTR and the LD [22]. This yielded a date-stamped list of lexical complexity measures. 
+Prior to analysis, variability in the data was reduced by averaging LD and TTR parameters 
+with the same date stamp.
+
+Other variables
+
+For every individual in the study, we used a combination of sources on the Internet to 
+calculate their age. We did the same to find information regarding education levels. The 
+number of years played in the NFL was calculated by comparing the date of the first 
+transcript to the date they were drafted. The number of sacks per game was estimated as the 
+total number of sacks1 divided by the number of games played.
+
+Statistical Analysis
+
+Linear regression analysis used a multilevel mixed model approach to examine the effect of 
+exposure to high impact (player) [versus no exposure (coach/executives)] on the outcome 
+TTR and LD scores. The model relied upon an autoregressive correlation structure and 
+robust estimation of variance. For TTR and LD, separate models were constructed with the 
+fixed effects of group (player vs front-office personnel), transcript number (time variable), 
+and group-by-transcript number interaction and subject; and intercept as the random effect. 
+The variable transcript number was centered on its mean. The working correlation structure 
+for the within-subject repeated measurements was selected based on the lowest Akaike’s 
+Information Criteria. The regression estimates were adjusted for potential confounders: 
+subject age at the time of the first transcript (all subjects). The slope estimates, interpreted as 
+the average effect of high impact sports (players) on TTR and LD over time, are presented as 
+the beta with standard error (±SE). The Pearson correlation coefficient between model 
+slopes and the number of sacks/game was calculated for the quarterbacks in the study. For 
+all analysis, statistical significance was defined as alpha of 0.05. Analyses were performed 
+with STATA 13.1 (College Station, Tx).
+
+
+are similarly laid out, not all teams provide Question-Answer style transcripts for download. 
+For this analysis, we focus on data from 11 NFL teams for which we could locate transcripts 
+from interviews, each in a similar format. The table below lists the teams used in this study.
+
+
+All data acquisition and natural language processing is done in Python. We downloaded all 
+transcript data from the websites for each of the 11 teams, including the name of the 
+interviewee, the date of the interview, and all questions and answers. The Hypertext Markup 
+Language (HTML) in webpages was processed to extract the information corresponding to 
+the interview. The resulting information was stored in text files for later processing. The 
+output of this process is a series of text files, each containing the transcript of an interview 
+on a date with an individual. The name of the file serves as an identifier for the individual 
+and the date. The downloaded files were manually inspected by three volunteers to ensure 
+that the content of the articles matched the identifier in the file name.
+
+Data pre-processing
+
+The first step in data pre-processing is removing extraneous information from each 
+downloaded transcript. The original downloaded data contains both the questions asked and 
+the answers provided by the interviewee. Occasionally, there are also opening statements 
+from the interviewee before the Q&A session begins. We automatically pre-process the data 
+to remove all questions and any opening statements so that only answers after questions are 
+included in the processed text data for analysis. This was done to ensure that we capture 
+only responses formed in real-time rather than prepared statements the individuals may have 
+formulated prior to a press conference. Additionally, annotations in the transcripts (e.g. 
+laughter) are removed from the analysis to focus only on the words of the interviewee. After 
+pre-processing each transcript, what remains is a date-stamped stream of text spoken by the 
+interviewee in response to specific questions asked by the media.
+
+This initial processing results in a large set of transcripts for everyone in our database. The 
+transcripts are of varying lengths; however, for each person in our database, we concatenate 
+his transcripts into a single text stream, while preserving the date information for each 
+portion of the stream that corresponds to a different transcript. We apply a sliding analysis 
+window to the connected stream of texts for each person included in the analysis, selecting 
+1000 words at a time with a 30% overlap between two adjacent windows. A window of 1000 
+words has been used in other studies analyzing lexical complexity measures in dementia and 
+Alzheimer’s disease [22, 23]. Each window may contain data from only a single transcript or 
+can include data from multiple (shorter) transcripts. As a rule, we assign the date associated 
+with the most recent transcript to each analysis window. The output of this step is a series of 
+fixed-length, time-stamped windows from which we will extract the relevant lexical 
+complexity measures.
+
+We set two inclusion criteria for subjects in the study: The first criterion is that each player 
+should have spoken at least 30,000 words. This ensures that we have at least 35 longitudinal 
+samples for each individual for our analysis. The second criterion is that executives and 
+coaches should have never played professional football during their career. After filtering 
+based on these criteria, our database consists of data from 28 individuals: 10 players and 18 
+NFL coaches and executives personnel who have never played in NFL. Together they 
+represent 11 out of the 32 NFL teams. After pre-processing, the language sample from each 
+individual is greater than 2.1 hours of continuous speech based on average speaking rate of 
+150 words per minute. Age and education (number of years in college) information for each 
+individual is obtained from various online data sources, including the NFL team websites 
+and the personal Wikipedia pages of each individual. The number of years played in the 
+NFL was calculated by comparing the date of the first transcript to the date that they were 
+drafted. The number of sacks per game was estimated as the total number of sacks (obtained 
+from http://www.pro-football-reference.com) divided by the total number of games played.
+
+
+We analyze linguistic complexity in NFL athletes at risk for CTE
+
+Type-to-token ratio (TTR) and lexical density (LD) are used to characterize 
+linguistic complexity
+
+TTR and LD are tracked longitudinally for two groups: NFL athletes and 
+coaches/executives
+
+A multilevel mixed model analysis reveals that exposure to the high-impact 
+sport (vs no exposure) was associated with an overall decline in language 
+complexity scores over time
+
+
+Table 1.
+
+The table summarizes all players (top) and non-player personnel (bottom) that are included in the present 
+study based on inclusion criterion described in the methods session. For the non-player personnel, we provide 
+their age (as of the first transcript), and the number of years of secondary education (college + postgraduate). 
+For the players, we additionally include the number of years in the NFL, their position on the field, and the 
+average number of sacks per game (if Quarterback).
+
+ID
+
+P1
+
+P2
+
+P3
+
+P4
+
+P5
+
+P6
+
+P7
+
+P8
+
+P9
+
+P10
+
+Age
+
+29.8
+
+26.1
+
+28.6
+
+23.7
+
+24.8
+
+26.1
+
+23.9
+
+29.7
+
+23.8
+
+23.3
+
+PLAYERS (P)
+
+Education
+
+Years in NFL
+
+Position
+
+Sacks/game
+
+4
+
+3
+
+4
+
+4
+
+4
+
+3
+
+4
+
+4
+
+3
+
+3
+
+7.1
+
+3.7
+
+5.3
+
+Quarterback
+
+1.79
+
+Nose Tackle
+
+Quarterback
+
+0.27
+
+Quarterback
+
+1.7
+
+4.3
+
+0.4
+
+6.4
+
+1.3
+
+1.1
+
+Cornerback
+
+Wide Receiver
+
+Quarterback
+
+Quarterback
+
+Quarterback
+
+Quarterback
+
+1.64
+
+2.51
+
+1.95
+
+1.81
+
+2.05
+
+2.74
+
+Avg (St. dev.)
+
+26.0 (2.6)
+
+3.6 (0.5)
+
+3.2 (2.5)
+
+2.1 (0.4)
+
+COACHES + FRONT-OFFICE EXECUTIVES (C)
+
+ID
+
+C1
+
+C2
+
+C3
+
+C4
+
+C5
+
+C6
+
+C7
+
+C8
+
+C9
+
+C10
+
+C11
+
+C12
+
+C13
+
+C14
+
+C15
+
+C16
+
+C17
+
+C18
+
+Age
+
+55.1
+
+57.9
+
+33.6
+
+36.1
+
+31.3
+
+63.0
+
+60.9
+
+50.0
+
+47.7
+
+42.8
+
+36.4
+
+63.6
+
+47.3
+
+52.8
+
+45.8
+
+58.7
+
+44.2
+
+36.9
+
+Education
+
+4
+
+4
+
+4
+
+4
+
+3
+
+4
+
+4
+
+5
+
+6
+
+6
+
+4
+
+2
+
+4
+
+4
+
+4
+
+5
+
+2
+
+4
+
+Avg (St. dev.)
+
+48.0 (10.4)
+
+4.1 (1.0)
+
+
+
+Effect of exposure to high impact sports (player) on language complexity scores over time, compared to front-
+office personnel with no exposure
+
+Table 2.
+
+Unadjusted
+
+Adjusted
+
+‡
+
+Beta
+
+SE
+
+p-value
+
+Beta
+
+SE
+
+p-value
+
+TTR
+
+† −0.016
+
+Player
+
+0.002
+
+0.012
+
+−0.027
+
+0.003
+
+<0.001
+
+Intercept
+
+0.291
+
+0.002
+
+-
+
+0.326
+
+0.007
+
+-
+
+LD
+
+†
+
+Player
+
+0.002
+
+0.001
+
+0.166
+
+−0.004
+
+0.002
+
+0.012
+
+Intercept
+
+0.445
+
+0.002
+
+-
+
+0.466
+
+0.005
+
+†
+
+Main effect of exposure to high impact compared to no exposure among coaches/executives
+
+‡
+
+Adjusted for subject age at first transcript
