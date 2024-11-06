@@ -97,17 +97,11 @@ train
 
     4. *Forbes-McKay, K. E., Shanks, M. F., & Venneri, A. (2013). Charting the decline in spontaneous writing in Alzheimer's disease: a longitudinal study. Acta Neuropsychiatrica, 25(6), 320-327.*
 
-    5. *Berisha, V., Wang, S., LaCross, A., & Liss, J. (2015). Longitudinal Changes in Linguistic Complexity in Mild Cognitive Impairment and Alzheimer's Disease. Alzheimer’s & Dementia, 11(3), 237-243.*
+    5. *Taler, V., & Phillips, N. A. (2008). Language performance in Alzheimer’s disease and mild cognitive impairment: A comparative review. Journal of Clinical and Experimental Neuropsychology, 30(5), 501–556.*
 
-    6. *López-de-Ipiña, K., Alonso, J. B., Travieso, C. M., Solé-Casals, J., Egiraun, H., Faundez-Zanuy, M., & Martínez-Lorea, J. (2018). On Automatic Diagnosis of Alzheimer’s Disease Based on Spontaneous Speech Analysis and Emotional Temperature. Cognitive Computation, 10(5), 920-934.*
+    6. *König, A., Satt, A., Sorin, A., Hoory, R., Toledo-Ronen, O., Derreumaux, A., & Robert, P. H. (2018). Automatic Speech Analysis for the Assessment of Alzheimer's Disease: A Review. Journal of Alzheimer's Disease Reports, 2(1), 1-15.*
 
-    7. *Taler, V., & Phillips, N. A. (2008). Language performance in Alzheimer’s disease and mild cognitive impairment: A comparative review. Journal of Clinical and Experimental Neuropsychology, 30(5), 501–556.*
-
-    8. *König, A., Satt, A., Sorin, A., Hoory, R., Toledo-Ronen, O., Derreumaux, A., & Robert, P. H. (2018). Automatic Speech Analysis for the Assessment of Alzheimer's Disease: A Review. Journal of Alzheimer's Disease Reports, 2(1), 1-15.*
-
-    9. *Perez-Toro, P. A., Arias-Vergara, T., Braun, F., Honig, F., Tobon-Quintero, C. A., Aguillon, D., Lopera, F., Hincapie-Henao, L., Schuster, M., Riedhammer, K., Maier, A., Noth, E., & Orozco-Arroyave, J. R. (2023). Automatic Assessment of Alzheimer’s across Three Languages Using Speech and Language Features. Proceedings of INTERSPEECH 2023, 20-24 August, Dublin, Ireland.*
-
-    10. *Ding, K., Chetty, M., Noori Hoshyar, A. et al. Speech based detection of Alzheimer’s disease: a survey of AI techniques, datasets and challenges. Artif Intell Rev 57, 325 (2024).*
+    7. *Ding, K., Chetty, M., Noori Hoshyar, A. et al. Speech based detection of Alzheimer’s disease: a survey of AI techniques, datasets and challenges. Artif Intell Rev 57, 325 (2024).*
 
 ### II. Path Configuration
 
