@@ -108,8 +108,8 @@ train
 Before running the system, ensure that the paths in the following Python files are correctly set to match your local environment:
 
 ```
-1. data_loader.py
-2. main.py
+1. src/explainer/data_loader.py
+2. src/explainer/main.py
 ```
 
 ### III. Explanation Generation
