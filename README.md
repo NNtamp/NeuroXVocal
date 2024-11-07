@@ -63,7 +63,7 @@ python src/train/main.py
 
 ### IV. Neuro Inference
 
-After saving the trained model in the results folder, fix the paths in *src/inference/single_inference.py* and try the inference for a single patient:
+After saving the trained model in the results folder, fix the paths in *src/inference/single_inference.py* and try the inference for a single patient based on patient's **processed** files:
 
 ```
 python src/inference/single_inference.py
