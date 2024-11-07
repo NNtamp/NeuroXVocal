@@ -128,8 +128,6 @@ The system will process the specified patient's data and generate an explanation
 Using device: gpu/cpu
 Found N literature files in src/explainer/literature
 Loaded N literature documents.
-Total chunks created: Y
-FAISS index created with dimension: X and Y embeddings.
 Explanation for Patient {patient_id}:
 --------------------------------------------------------------------------------
 The patient is probably an Alzheimer sample.
