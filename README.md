@@ -1,6 +1,6 @@
 # 🔊🎙️NeuroXVocal🖥️🩺
 
-## 🧠⚙️[A] Classifier Training
+## 🧠⚙️[A] Neuro Training & Inference
 
 First of all install all the necessary requirements:
 ```
@@ -61,7 +61,7 @@ After setting up the values in src/train/config.py run:
 python src/train/main.py  
 ```
 
-## [B] 🔍💬 RAG-Enhanced LLM Explainer
+## [B] 🔍💬 XVocal RAG-Enhanced LLM Explainer Built
 
 First of all, on top of *requirements_cls.txt* install all the necessary requirements:
 ```
@@ -133,7 +133,3 @@ Explanation for Patient {patient_id}:
 The patient is probably an Alzheimer sample.
 Based on the elevated speech pause ratio and increased number of pauses, it is indicative of cognitive decline commonly associated with Alzheimer's disease. The reduced articulation and speaking rates further support this diagnosis, aligning with findings from recent studies that link these speech patterns to AD progression. Additionally, the pitch and intensity variations observed may reflect underlying neurological impairments characteristic of Alzheimer's patients.
 ```
-
-
-
-
