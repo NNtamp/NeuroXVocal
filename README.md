@@ -141,3 +141,10 @@ Explanation for Patient {patient_id}:
 The patient is probably an Alzheimer sample.
 Based on the elevated speech pause ratio and increased number of pauses, it is indicative of cognitive decline commonly associated with Alzheimer's disease. The reduced articulation and speaking rates further support this diagnosis, aligning with findings from recent studies that link these speech patterns to AD progression. Additionally, the pitch and intensity variations observed may reflect underlying neurological impairments characteristic of Alzheimer's patients.
 ```
+
+## [C] 📦🚀 NeuroXVocal App deployment
+
+First of all, on top of *requirements_cls.txt* and *requirements_exp.txt* install all the necessary requirements:
+```
+pip install -r requirements_app.txt
+```
