@@ -114,7 +114,7 @@ Before running the system, ensure that the paths in the following Python files a
 
 ### III. Explanation Generation
 
-Execute the main script with the desired `patient_id` to generate explanations:
+Execute the main script with the desired `patient_id` to generate explanations based on our data folder structure:
 
 ```bash
 python src/explainer/main.py --patient_id {patient_id}

@@ -1,14 +1,9 @@
 import streamlit as st
-import sounddevice as sd
-import soundfile as sf
-import numpy as np
 from pathlib import Path
 import os
-from PIL import Image
-import time
-from datetime import datetime
+from utils import *
 
-# Set up the base recordings directory
+# Set up recordings directory
 RECORDINGS_PATH = Path("C:/Users/30697/Desktop/Personal Projects/NeuroXVocal/app/recordings")
 RECORDINGS_PATH.mkdir(exist_ok=True)
 
@@ -21,7 +16,10 @@ if 'audio_data' not in st.session_state:
     st.session_state.audio_data = None
 if 'record_start_time' not in st.session_state:
     st.session_state.record_start_time = None
-
+if 'recording_completed' not in st.session_state:
+    st.session_state.recording_completed = False
+if 'current_audio_path' not in st.session_state:
+    st.session_state.current_audio_path = None
 
 st.set_page_config(page_title="NeuroXVocal Machine", layout="centered")
 
@@ -49,7 +47,7 @@ st.markdown(
     .instruction .start-word {
         font-size: 24px;
         font-weight: bold;
-        color: white; /* Change START/STOP color to white */
+        color: white;
     }
     .reference {
         font-size: 12px;
@@ -58,11 +56,15 @@ st.markdown(
         text-align: center;
         font-style: italic;
     }
+    .stButton>button {
+        width: 100%;
+        margin: 5px 0;
+        height: 3em;
+    }
     </style>
     """,
     unsafe_allow_html=True
 )
-
 
 st.markdown('<div class="title">NeuroXVocal Machine</div>', unsafe_allow_html=True)
 st.markdown(
@@ -70,21 +72,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
 IMAGE_PATH = "image/cookie_theft.jpg"
-
-def load_image(image_path):
-    if os.path.exists(image_path):
-        try:
-            image = Image.open(image_path)
-            st.image(image, use_column_width=True)
-            return True
-        except:
-            st.error("Error loading image.")
-            return False
-    else:
-        st.error("Image not found at the specified path.")
-        return False
+SAMPLE_RATE = 16000  # Hz
 
 image_loaded = load_image(IMAGE_PATH)
 
@@ -95,46 +84,46 @@ else:
     st.info("Please ensure the image path is correct.")
 
 
-SAMPLE_RATE = 16000  # Hz
-
-def create_patient_folder():
-    """Create a unique folder for each recording session with a timestamp."""
-    # timestamp in the format YYYYMMDD_HHMMSS
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    patient_folder = RECORDINGS_PATH / f"patient_{timestamp}"
-    patient_folder.mkdir(exist_ok=True)
-    st.session_state.current_folder = patient_folder
-    return patient_folder
-
-def start_recording():
-    """Starts recording audio."""
-    st.session_state.is_recording = True
-    st.session_state.record_start_time = time.time()  
-
-    duration = 3600  # maximum duration 1 hour
-    st.session_state.audio_data = sd.rec(int(duration * SAMPLE_RATE), samplerate=SAMPLE_RATE, channels=1, dtype='float32')
-    st.info("Recording in progress... Press START/STOP to end.")
-
-def stop_recording():
-    """Stops audio recording, trims, and saves the data to a file."""
-    sd.stop()
-    st.session_state.is_recording = False
-    end_time = time.time()
-    recorded_duration = end_time - st.session_state.record_start_time
-    num_frames = int(recorded_duration * SAMPLE_RATE)
-    audio_data = st.session_state.audio_data[:num_frames]
-    patient_folder = create_patient_folder()
-    file_path = patient_folder / "description.wav"
-    sf.write(file_path, audio_data, SAMPLE_RATE)
-    st.success("Recording saved successfully!")
-    st.session_state.record_start_time = None
 col1, col2, col3 = st.columns([1, 6, 1])
 with col2:
-    if st.button("START/STOP", use_container_width=True):
+    if st.button("START/STOP", use_container_width=True, key="record_button"):
         if st.session_state.is_recording:
-            stop_recording()
+            stop_recording(RECORDINGS_PATH, SAMPLE_RATE)
         else:
-            start_recording()
+            start_recording(SAMPLE_RATE)
+    
+    if st.session_state.recording_completed:
+        if st.button("START ANALYSIS", use_container_width=True, key="analysis_button", type="secondary"):
+            analyze_audio()
+
+if st.session_state.get('current_audio_path'):
+    audio_folder = os.path.dirname(st.session_state.current_audio_path)
+    text_path = os.path.join(audio_folder, 'description_processed.txt')
+    audio_features_path = os.path.join(audio_folder, 'audio_features_processed.csv')
+    embeddings_path = os.path.join(audio_folder, 'audio_embeddings_processed.csv')
+    
+    if all(os.path.exists(f) for f in [text_path, audio_features_path, embeddings_path]):
+        st.markdown("---")
+        st.markdown("### AI Analysis Results")
+        
+        chat_container = st.container()
+        
+        with chat_container:
+            with st.spinner("Analyzing speech patterns and generating assessment..."):
+                predicted_class, confidence_score = get_prediction(
+                    text_path, audio_features_path, embeddings_path
+                )
+                
+                if predicted_class is not None:
+                    message = generate_prediction_message(predicted_class, confidence_score)
+                    st.markdown(
+                        """
+                        <div style='background-color: #1E1E1E; padding: 20px; border-radius: 10px; margin: 10px 0;'>
+                            <p style='color: #FFFFFF; margin: 0;'>""" + message.replace('\n', '<br>') + """</p>
+                        </div>
+                        """, 
+                        unsafe_allow_html=True
+                    )
 
 st.markdown(
     """
