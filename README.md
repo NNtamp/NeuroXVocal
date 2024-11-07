@@ -53,12 +53,20 @@ python src/data_processing/preprocess_audio_features.py --path/to/audio_features
 ```
 python src/data_processing/preprocess_audio_emb.py --path/to/audio_embeddings.csv --scaler_path src/inference/scaler_params_audio_emb.pkl --path/to/save/processed/audio_embeddings.csv
 ```
-### III. NeuroXVocal Training
+### III. Neuro Training
 
 After setting up the values in src/train/config.py run:
 
 ```
 python src/train/main.py  
+```
+
+### IV. Neuro Inference
+
+After saving the trained model in the results folder, fix the paths in *src/inference/single_inference.py* and try the inference for a single patient:
+
+```
+python src/inference/single_inference.py
 ```
 
 ## [B] 🔍💬 XVocal RAG-Enhanced LLM Explainer Built
@@ -112,7 +120,7 @@ Before running the system, ensure that the paths in the following Python files a
 2. src/explainer/main.py
 ```
 
-### III. Explanation Generation
+### III. XVocal Explanation Generation
 
 Execute the main script with the desired `patient_id` to generate explanations based on our data folder structure:
 
