@@ -111,6 +111,12 @@ train
 
     7. *Ding, K., Chetty, M., Noori Hoshyar, A. et al. Speech based detection of Alzheimer’s disease: a survey of AI techniques, datasets and challenges. Artif Intell Rev 57, 325 (2024).*
 
+    8. *Qi, X., Zhou, Q., Dong, J., & Bao, W. (2023). Noninvasive automatic detection of Alzheimer's disease from spontaneous speech: a review. Frontiers in Aging Neuroscience, 15.*
+
+    9. *Chen J, Ye J, Tang F, Zhou J. Automatic Detection of Alzheimer's Disease Using Spontaneous Speech Only. Interspeech. 2021 Aug-Sep;2021:3830-3834. doi: 10.21437/interspeech.2021-2002. PMID: 35493062; PMCID: PMC9056005.*
+    
+    10. *Agbavor F, Liang H (2022) Predicting dementia from spontaneous speech using large language models. PLOS Digital Health 1(12): e0000168.*
+
 ### II. Path Configuration
 
 Before running the system, ensure that the paths in the following Python files are correctly set to match your local environment:

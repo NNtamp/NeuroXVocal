@@ -1,0 +1,2909 @@
+
+Abstract
+Alzheimer’s disease (AD) is a growing global concern, exacerbated by an aging popula-
+tion and the high costs associated with traditional detection methods. Recent research has 
+identified speech data as valuable clinical information for AD detection, given its associa-
+tion with the progressive degeneration of brain cells and subsequent impacts on memory, 
+cognition, and language abilities. The ongoing demographic shift toward an aging global 
+population  underscores  the  critical  need  for  affordable  and  easily  available  methods  for 
+early AD detection and intervention. To address this major challenge, substantial research 
+has  recently  focused  on  investigating  speech  data,  aiming  to  develop  efficient  and  af-
+fordable  diagnostic  tools  that  align  with  the  demands  of  our  aging  society.  This  paper 
+presents an in-depth review of studies from 2018–2023 utilizing speech for AD detection. 
+Following the PRISMA protocol and a two-stage selection process, we identified 85 pub-
+lications for analysis. In contrast to previous literature reviews, this paper places a strong 
+emphasis on conducting a rigorous comparative analysis of various Artificial Intelligence 
+(AI)  based  techniques,  categorizing  them  meticulously  based  on  underlying  algorithms. 
+We  perform  an  exhaustive  evaluation  of  research  papers  leveraging  common  benchmark 
+datasets,  specifically ADReSS  and ADReSSo,  to  assess  their  performance.  In  contrast  to 
+previous literature reviews, this work makes a significant contribution by overcoming the 
+limitations posed by the absence of standardized tasks and commonly accepted benchmark 
+datasets for comparing different studies. The analysis reveals the dominance of deep learn-
+ing models, particularly those leveraging pre-trained models like BERT, in AD detection. 
+The  integration  of  acoustic  and  linguistic  features  often  achieves  accuracies  above  85%. 
+Despite  these  advancements,  challenges  persist  in  data  scarcity,  standardization,  privacy, 
+and  model  interpretability.  Future  directions  include  improving  multilingual  recognition, 
+exploring emerging multimodal approaches, and enhancing ASR systems for AD patients. 
+By identifying these key challenges and suggesting future research directions, our review 
+serves  as  a  valuable  resource  for  advancing AD  detection  techniques  and  their  practical 
+implementation.
+
+Keywords  Dementia · Alzheimer’s disease · Classification · Regression · Speech data · 
+Machine learning · Deep learning
+
+Extended author information available on the last page of the article
+
+1 3
+
+  325 
+
+  Page 2 of 43
+
+1  Introduction
+
+While dementia is an overarching term that refers to a range of symptoms affecting cog-
+nitive abilities, Alzheimer’s disease (AD) is a specific type of dementia characterized by 
+changes  in  the  brain,  including  the  accumulation  of  amyloid  β   plaques  and  neurofibril-
+lary  tangles  (Scheltens  et  al.  2021). When  this  happens,  neurons  and  neural  connections 
+are  damaged,  impacting  the  person’s  capacity  to  remember,  think,  and  eventually  create 
+obvious functional impacts on daily life (Scheltens et al. 2021). There are other types of 
+dementia,  each  with  its  own  distinct  causes  and  characteristics  (Alzheimer’s Association 
+2023). In this survey, we focused on AD which is also one of the most common types of 
+dementia today, accounting for more than 60–80% of cases (Alzheimer’s Association 2023). 
+Driven primarily by aging populations, the number of people living with dementia globally 
+was estimated to be 55 million in 2019, and this number is expected to rise to 139 million 
+in 2050, according to the most recent report from the World Health Organization (WHO) 
+(2021). Dementia is associated not only with a substantial personal cost to individuals and 
+their families but also with enormous healthcare burdens and costs to the whole society. The 
+total cost of health care, long-term care, and hospital services for people aged 65 and older 
+with  dementia  is  projected  to  be  $345  billion  in  the  United  States  in  2023  (Alzheimer’s 
+Association 2023). However, the situation in developing countries is even worse, based on 
+the World Alzheimer Report (2022), which estimates that 75% of people with dementia are 
+not diagnosed globally, with that rate believed to rise as high as 90% in some lower- and 
+middle-income countries. Furthermore, the progression of Alzheimer’s disease, from initial 
+brain changes that are unnoticeable by the affected individual to changes that cause memory 
+problems and eventually lead to physical disability, is referred to as the AD continuum in 
+Fig. 1.
+
+Pharmacological interventions for AD are limited to managing symptomatic manifesta-
+tions, without providing curative or preventive effects for the underlying disease process 
+(Breijyeh  and  Karaman  2020). Although  memory  loss  and  cognitive  decline  are  among 
+the primary indicators of AD, it is worth noting that language impairment is another preva-
+
+Fig. 1  Alzheimer’s disease continuum (Alzheimer’s Association 2023)
+
+K. Ding et al.1 3 
+Page 3 of 43 
+
+  325 
+
+Fig. 2  Article selection process for literature review
+
+lent symptom that can assist in diagnosing the condition and assessing its severity. This is 
+because  speech  can  provide  insights  into  an  individual’s  cognitive  state  and  reveal  addi-
+tional aspects of brain damage. Several advantages of using speech as a biomarker for AD 
+have been highlighted by prior research (de la Fuente Garcia et al. 2020; Hajjar et al. 2023), 
+including the following: 
+
+1.  Speech can be recorded and monitored over time, helping to reduce stress or anxiety in 
+
+the clinical setting.
+
+2.  Noninvasive and cost-effective compared to other assessments, such as brain magnetic 
+
+resonance imaging (MRI).
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3 
+  325 
+
+  Page 4 of 43
+
+3.  The  technologies  for  speech  analysis  have  significantly  improved  over  the  past  ten 
+
+years, supported by advancements in deep learning.
+
+4.  Speech impairments occur at various phases of the disease, demonstrating the signifi-
+cance of speech in distinguishing the stage of AD and forecasting the progression of the 
+disease.
+
+Currently,  AD  is  diagnosed  by  a  specialist  physician  who  performs  a  series  of  clinical 
+assessments: obtaining a personal and informant history of cognitive symptoms, a physical 
+examination, cognitive tests on paper, blood tests to rule out other conditions that can mimic 
+AD (such as low vitamin B12 levels), and brain scans to look for localized brain atrophy 
+(Li et al. 2022b). The entire diagnostic procedure is time-consuming, expensive, invasive, 
+and somewhat subjective because it is mainly based on the interpretation of the clinician. 
+Therefore, it is necessary to have objective and cost-effective biomarkers to detect AD at 
+an early stage.
+
+Recent advancements in AI, particularly in the domains of speech recognition and Natu-
+ral Language Processing (NLP), present promising prospects for diagnosing AD (Chen et 
+al. 2023b; Dong et al. 2024). Extensive research surveys have been conducted in this area. 
+Voleti et al. (2019) provided a comprehensive review of existing speech and language fea-
+tures  to  evaluate  cognitive  and  thought  disorders. Thaler  and  Gewald  (2021)  focused  on 
+identifying acoustic, linguistic, and demographic characteristics of AD themselves instead 
+of comparing any machine learning algorithms. Boletsis (2020) discussed intelligent vir-
+tual agents in interaction aspects of speech-based dementia screening. Javeed et al. (2023) 
+focused on all types of modalities such as neuroimaging, clinical feature-based data, and 
+voice data more broadly rather than trying to recognize AD through speech or transcript 
+data only. Although previous studies have proposed diverse signal processing and machine 
+learning techniques to address this issue, the lack of balanced and standardized datasets for 
+systematic comparisons of these different approaches remains a significant challenge within 
+the field. This issue has been highlighted in prior systematic reviews (de la Fuente Garcia 
+et al. 2020).
+
+However, in the past three years, notable advancements have been made in the field of 
+AD research, particularly in addressing this inadequate standardization. It has been achieved 
+through the introduction of benchmarks such as ADReSS (Alzheimer’s Dementia Recogni-
+tion through Spontaneous Speech) (Luz et al. 2020) and ADReSSo (Alzheimer’s Demen-
+tia  Recognition  through  Spontaneous  Speech  Only)  (Luz  et  al.  2021).  These  benchmark 
+challenges have played a pivotal role in overcoming the existing obstacles that impede the 
+translation of research findings into clinical practice.
+
+This  study  distinguishes  itself  from  previous  research  efforts  by  providing  a  system-
+atic overview of the current methodologies used in the recognition of AD based on differ-
+ent methods. Additionally, it aims to enhance the comparability of algorithms by ensuring 
+uniform evaluation conditions and requirements, as exemplified by the ADReSS challenge 
+(Luz et al. 2020). Therefore, this review encompasses three main objectives: 
+
+(1)  Summarizing  and  critically  evaluating  existing  diagnostic  approaches  for  AD  that 
+leverage  speech  data.  These  methods  are  categorized  based  on  the  various  machine 
+learning techniques they employ.
+
+K. Ding et al.1 3Page 5 of 43 
+
+  325 
+
+(2)  Tackling the current challenges present in this field by employing a consistent bench-
+
+mark dataset for meaningful comparisons among all studies.
+
+(3)  Delving  into  additional  ongoing  challenges  and  investigates  potential  directions  for 
+future research.The remainder of this paper is structured as follows. Section 2 elabo-
+rates on the methodology used to retrieve prior research articles. In Sect. 3, an over-
+view of the public dataset and data type are presented. Section 4 presents an overview 
+of the current methods based on various machine learning techniques. In Sect. 5, an 
+overview of the benchmark comparison is presented. Section 6 presents a discussion of 
+aggregated findings from various studies to provide a comprehensive view. In Sect. 7, 
+the  current  challenges  regarding  dataset,  privacy  and  interpretability  are  discussed. 
+Section 8 presents the future research directions and finally the paper is concluded in 
+Sect. 9.
+
+2  Systematic literature review methodology
+
+This section presents the methodology used to retrieve and select research articles for this 
+systematic  literature  review  on  artificial  intelligence  methods  in  detecting  AD  through 
+speech analysis.
+
+2.1  Source of the study
+
+Between July and August 2023, we searched the following five electronic search engine: 
+ACM,  IEEE,  PsycINFO,  PubMed  and  Web  of  Science.  We  also  included  relevant  titles 
+found through ’forward citation tracking’ with Google Scholar, selection articles references, 
+and research portal suggestions.
+
+2.2  Search criteria
+
+The search queries were tailored to each search engine. An example query for PubMed is 
+as follows:
+
+ ● (speech AND (dementia OR “cognitive decline” OR (cognit* AND impair*) OR Alz-
+heimer) AND (“machine learning” OR “deep learning” OR “natural language process-
+ing” OR “signal processing”))
+
+ ● Filters applied: 01/01/2018–31/07/2023
+
+2.3  Study inclusion and exclusion criteria
+
+We  applied  predefined  inclusion  and  exclusion  criteria  to  select  relevant  articles  for  our 
+review.
+
+Inclusion criteria:
+
+ ● The articles describing artificial intelligence applications to aid in the detection of de-
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 6 of 43
+
+mentia/Alzheimer’s disease through speech.
+
+ ● The  articles  clearly  describe  results  of  classifying  normal  cognition,  mild  cognitive 
+impairment, and dementia/Alzheimer’s disease, while providing specific performance 
+metrics such as accuracy, precision, recall, F1-score, or other relevant indicators.
+
+ ● The articles were peer-reviewed.
+ ● The articles were written in English.Exclusion criteria:
+
+ ● The articles did not have clearly specified classification results.
+ ● The articles were review papers instead of original works.
+ ● The  articles  using  transitional  statistics  in  the  analysis  instead  of  machine  learning 
+
+methods.
+
+ ● The articles that did not relate to speech or dementia.
+
+2.4  Selection process
+
+The selection process followed the Preferred Reporting Items for Systematic Reviews and 
+Meta-Analyses (PRISMA) 2020 guidelines (Page et al. 2021), ensuring a rigorous and unbi-
+ased approach. The process was conducted in two phases: 
+
+1. 
+
+Initial screening:
+
+ ● Titles and abstracts were screened against the exclusion criteria using Zotero.
+ ● Duplicate articles were removed using the duplicate detection feature in Zotero.
+
+2.  Full-text screening:
+
+ ● Articles  that  could  not  be  definitively  included  or  excluded  based  on  titles  and 
+abstracts  were  subjected  to  a  full-text  review.The  final  set  of  articles  included  in 
+this review totaled 85. The study flow and different phases of article selection are 
+illustrated using the PRISMA 2020 diagram (Fig. 2).
+
+2.5  Data collection process
+
+A standardized approach was utilized to extract data from the selected studies. This process 
+aimed  to  capture  comprehensive  information  regarding  each  study’s  objectives,  dataset, 
+methodologies, major findings, and contributions to speech-based detection of AD. For each 
+study included in the review, we extracted the following key information:
+
+ ● The primary objectives of the study.
+ ● Detailed descriptions of the machine learning and deep learning techniques applied.
+ ● Preprocessing and feature extraction methods are used in speech analysis.
+ ● The dataset used in the study.
+
+K. Ding et al.1 3 ● Performance metrics such as accuracy or F1-score, were used in this study.
+ ● Any challenges or limitations identified in the study, particularly those related to feature 
+
+extraction and model performance.
+
+ ● Proposed directions for future research and potential improvements in methodology.
+
+Page 7 of 43 
+
+  325 
+
+3  Dataset
+
+3.1  Public dataset
+
+The  quality  of  a  dataset  is  important  in  the  machine  learning  process,  as  it  significantly 
+influences model performance. However, compared to other modalities such as neuroimag-
+ing, publicly accessible speech data is relatively limited. Table 1 presents several available 
+datasets utilized in this field. Section 5 will provide a comprehensive analysis of the most 
+commonly used dataset benchmarking.
+
+Table 1  Summary of commonly used speech and text datasets
+Dataset
+
+Modalities
+
+Pitt Corpus (Becker et al. 1994)
+
+Audio, text
+
+Population size/
+samples size
+HC: 104, AD: 
+208/552
+
+ADReSS (Luz et al. 2020)
+ADReSSo (Luz et al. 2021)
+
+HC: 78, AD: 78/156 Audio, text
+HC: 115, AD: 
+122/237
+HC: 143, AD: 
+148/291
+TAUKADIAL (Garcia et al. 2024) 169/507
+
+ADReSS-M (Luz et al. 2023)
+
+Audio
+
+Audio
+
+Audio
+
+Language
+
+English
+
+Avail-
+ability
+OA
+
+Task 
+type
+PD, 
+VF, 
+SR, SC
+PD
+PD
+
+PD
+
+PD
+
+VC
+
+English
+English
+
+English, 
+Greek
+English, 
+Chinese
+English
+
+VAS Corpus (Kurtz et al. 2023)
+
+Delaware corpus (Lanzi et al. 
+2023)
+Dem@Care (Karakostas et al. 
+2016)
+Audio datasets of Framingham 
+heart study (Xue et al. 2021)
+
+HC: 36, MCI: 35, 
+AD: 30/–
+HC: 24, MCI: 46 
+(ongoing)/–
+–/32
+
+HC: 291, MCI: 309, 
+AD: 223/1264
+
+Carolina conversations collections 
+(Pope and Davis 2011)
+Dementia Blog Corpus (Masrani 
+et al. 2017)
+Multimodal Dementia Corpus 
+(Gkoumas et al. 2024)
+
+HC: 125, AD: 
+125/600
+HC: 3, AD: 3/2805 
+posts
+HC: 10, AD: 12/816 
+sessions
+
+Audio
+
+Audio, text
+
+PD, SR English
+
+Audio, video, 
+sensors
+Audio
+
+Audio
+
+PD, R, 
+SR
+PD, 
+VF, 
+SR, 
+MF
+C
+
+Greek
+
+English
+
+English
+
+Text
+
+Posts
+
+English
+
+C
+
+English
+
+Audio, text, 
+keyboard, 
+pen
+
+OA
+OA
+
+OA
+
+OA
+
+OA
+
+OA
+
+CA
+
+RA
+
+CA
+
+OA
+
+RA
+
+HC health control, MCI mild cognitive impairment, AD Alzheimer’s disease, PD picture description, VF 
+verbal fluency, SR story recall, SC sentence construction, R repetition, MF math fluency, C conversation, 
+OA open access, CA conditional access, RA restricted access
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 8 of 43
+
+Table 2  Summary of machine learning methods used for AD detection (Part 1)
+Category
+Traditional 
+learning
+
+Subcategory
+Supervised 
+learning
+
+Method
+Support vec-
+tor machine 
+(SVM)
+
+Study
+Parsapoor et al. (2023), Mei et al. (2023), Shah et al. 
+(2023), Chen et al. (2023b), Vats et al. (2022), Luz et al. 
+(2020), Luz et al. (2021), MohamedShreif and Lawgali 
+(2022), Liang et al. (2022), Horigome et al. (2022), 
+Woszczyk et al. (2022), Deng et al. (2022), Ablimit et al. 
+(2022), Vats et al. (2021), Valsaraj et al. (2021), Triapthi 
+et al. (2021), Syed et al. (2021), Searle et al. (2020)
+Luz et al. (2020), Luz et al. (2021), Valsaraj et al. (2021)
+
+Shah et al. (2023), Burke et al. (2023), Horigome et al. 
+(2022), Triapthi et al. (2021), Roshanzamir et al. (2021)
+Parsapoor et al. (2023), Vats et al. (2022), Luz et al. 
+(2020), Luz et al. (2021), Liang et al. (2022), Vats et al. 
+(2021)
+Vats et al. (2022), Horigome et al. (2022), Triapthi et al. 
+(2021)
+Parsapoor et al. (2023), Luz et al. (2020), Luz et al. 
+(2021), Ablimit et al. (2022), Vats et al. (2021)
+
+Parsapoor et al. (2023), Luz et al. (2020), Luz et al. 
+(2021), Vats et al. (2021)
+
+Ablimit et al. (2022)
+
+Igarashi et al. (2023), Chatzianastasis et al. (2023), Qian 
+et al. (2022), Pandey et al. (2021), Lin et al. (2022), 
+Meghanani et al. (2021)
+Zheng et al. (2022), Nambiar et al. (2022), Bouazizi et 
+al. (2022), Meerza et al. (2022), Meghanani et al. (2021)
+
+Nambiar et al. (2022)
+
+Yadav et al. (2022), Bertini et al. (2022a), Meerza et al. 
+(2022)
+
+Vetráb et al. (2022), Bertini et al. (2022a)
+
+Wen et al. (2023), Zheng et al. (2022), Lin et al. (2022), 
+Ilias et al. (2022)
+
+Unsupervised 
+learning
+
+Deep 
+learning
+
+Linear 
+regression
+Logistic 
+regression
+Decision tree 
+(DT)
+
+Naive Bayes 
+(NB)
+Linear discrim-
+inant analysis 
+(LDA)
+K-nearest 
+Neighbours 
+(KNN)
+Gaussian 
+mixture models 
+(GMM)
+Convolution 
+neural network 
+(CNN)
+Long-short 
+term memory 
+(LSTM)
+Gated recurrent 
+unit (GRU)
+Multilayer 
+Perceptron 
+(MLP)
+Autoencoders 
+(AE)
+Attention-based 
+model
+
+K. Ding et al.1 3Page 9 of 43 
+
+  325 
+
+Study
+Priyadarshinee et al. (2023), Pan et al. (2021), Ilias et 
+al. (2023), Chen et al. (2023b), Chatzianastasis et al. 
+(2023), Zhu et al. (2021b), Vats et al. (2022), Pérez-
+Toro et al. (2022), Pandey et al. (2021), Nambiar et al. 
+(2022), Matošević and Jović (2022), Li et al. (2022a), 
+Ilias et al. (2022), Ilias and Askounis (2022b), Horigome 
+et al. (2022), Woszczyk et al. (2022), Deng et al. (2022)
+Agbavor and Liang (2022), Zhu et al. (2021a), Vats 
+et al. (2021), Valsaraj et al. (2021), Roshanzamir et 
+al. (2021), Pappagari et al. (2021), Balagopalan et al. 
+(2021), Pappagari et al. (2020)
+Priyadarshinee et al. (2023), Pan et al. (2023), Pan et al. 
+(2021), Mei et al. (2023), Chen et al. (2023b), Chen et 
+al. (2023a), Zhu et al. (2021b), Pérez-Toro et al. (2022), 
+Pandey et al. (2021), Zhu et al. (2021a), Chlasta and 
+Wołk (2021)
+
+Table 2  (continued)
+
+Category
+Transfer 
+learning
+
+Subcategory
+Text-based 
+models
+
+Method
+BERT, GPT, 
+XLNet
+
+Audio-based 
+models
+
+Wav2Vec2, 
+VGGish, Whis-
+per, HuBERT, 
+XLSR-53, 
+Mockingjay, 
+YAMNet
+
+3.1.1  Pitt corpus
+
+This dataset was collected as a part of a project named TalkBank, which has been done as 
+a part of the Alzheimer Research Program at the University of Pittsburgh. The main corpus 
+in the DementiaBank (DB) is the Pitt corpus, which was collected longitudinally, between 
+1983 and 1988, every year from approximately 200 patients with AD and 100 healthy con-
+trols (Becker et al. 1994). This is one of most used dataset which has been made available 
+to the wider research community via DementiaBank.
+
+3.1.2  ADReSS
+
+The Alzheimer’s  Dementia  Recognition  through  Spontaneous  Speech  (ADReSS)  dataset 
+was developed as a refined subset of the Pitt corpus. This dataset provides a balanced dis-
+tribution across classes, age, and gender, addressing some of the limitations present in its 
+predecessor. The ADReSS dataset comprises audio recordings and corresponding transcrip-
+tions from 156 participants: 78 individuals diagnosed with AD and 78 HC subjects (Luz 
+et al. 2020). While the ADReSS dataset represents a significant improvement in data bal-
+ance,  it  is  important  to  note  a  potential  limitation.  Because AD  participants  tend  to  use 
+fewer words in their descriptions of the Cookie Theft picture compared to HC participants. 
+This disparity in text volume could potentially introduce bias in models that rely solely on 
+transcript analysis. Therefore, researchers should exercise caution when developing models 
+based exclusively on transcription data and consider incorporating acoustic features or other 
+modalities to mitigate this potential bias.
+
+3.1.3  ADReSSo
+
+Alzheimer’s  Dementia  Recognition  through  Spontaneous  Speech  only  (ADReSSo)  pro-
+vides  more  challenging  and  improved  spontaneous  speech  recording  compared  with  last 
+year’s ADReSS,  requiring  the  creation  of  models  straight  from  speech,  without  manual 
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3 
+  325 
+
+  Page 10 of 43
+
+Table 3  Summary of machine 
+learning methods used for AD 
+detection (Part 2)
+
+Category
+Transfer 
+learning 
+(continued)
+
+Subcategory
+Image-based 
+models
+
+Ensemble 
+learning
+
+Method
+ResNet, 
+vision trans-
+former (ViT), 
+MobileNet
+
+Random for-
+est (RF)
+
+Tree bagger 
+(TB)
+AdaBoost
+Gradient 
+boost
+Extreme 
+gradient 
+boosting 
+(XGBoost)
+Majority 
+voting
+
+Multimodal 
+Learning
+
+Fusion strategy Feature/ten-
+
+sor fusion
+Averaging/
+score fusion
+
+Add/con-
+catenation 
+fusion
+
+Study
+Ilias et al. (2023), 
+Nishikawa et al. 
+(2022), Ilias and 
+Askounis (2022b), 
+Zhu et al. (2021a)
+Parsapoor et al. 
+(2023), Burke et al. 
+(2023), Vats et al. 
+(2022), Luz et al. 
+(2020), Luz et al. 
+(2021), Liang et al. 
+(2022), Kumar et al. 
+(2022), Vats et al. 
+(2021), Valsaraj et 
+al. (2021), Triapthi 
+et al. (2021), Mar-
+tinc et al. (2021)
+Pan et al. (2023); 
+Luz et al. (2021)
+Shah et al. (2021)
+Nishikawa et al. 
+(2022)
+Mei et al. (2023), 
+Qian et al. (2022), 
+Horigome et al. 
+(2022)
+Mei et al. (2023), 
+Chen et al. (2023b), 
+Qian et al. (2022), 
+Woszczyk et al. 
+(2022), Deng et al. 
+(2022)
+Pandey et al. (2021), 
+Ilias et al. (2022)
+Mei et al. (2023), 
+Chen et al. (2023b), 
+Pandey et al. (2021), 
+Deng et al. (2022), 
+Pappagari et al. 
+(2021), Pappagari et 
+al. (2020)
+Zhu et al. (2021a)
+
+transcription,  although  automatic  transcription  is  also  encouraged  (Luz  et  al.  2021). The 
+ADReSSo dataset consists of 237 audio samples, with 115 samples from healthy controls 
+and 122 from individuals with Alzheimer’s disease. The audio recordings are in English and 
+are openly accessible to researchers. However, same with ADReSS dataset, this dataset also 
+focuses solely on the picture description task, which may not capture the full spectrum of 
+cognitive impairments associated with Alzheimer’s disease.
+
+K. Ding et al.1 3 
+Page 11 of 43 
+
+  325 
+
+3.1.4  ADReSS-M
+
+The ADReSS-M dataset, designed for the Multilingual Alzheimer’s Dementia Recognition 
+through Spontaneous Speech challenge at ICASSP 2023, represents a significant advance-
+ment in multilingual speech-based Alzheimer’s detection. This dataset consists of 291 spon-
+taneous  speech  samples,  divided  into  245  samples  for  training  (237  in  English  and  8  in 
+Greek)  and  46  samples  for  testing  (all  in  Greek)  (Luz  et  al.  2023).  Key  features  of  the 
+ADReSS-M dataset include: 
+
+1.  Balanced demographics: the dataset is carefully balanced for age and gender to mitigate 
+
+potential biases in the analysis.
+
+2.  Standard labeling: each sample is labeled with cognitive status (Control or ProbableAD) 
+and includes Mini-Mental State Examination (MMSE) scores, providing a standardized 
+measure of cognitive function.
+
+3.  Dual-task challenge: the dataset supports two primary tasks: (a) Binary classification of 
+speech samples as healthy or AD (b) Regression task to predict MMSE scores.The mul-
+tilingual nature of ADReSS-M is particularly noteworthy, as it aims to identify acoustic 
+features that generalize across languages for AD detection. This approach is crucial for 
+developing robust, language-independent tools for cognitive health monitoring. How-
+ever, limitations of this dataset is the relatively small number of Greek samples in the 
+training set, which may challenge the development of truly language-agnostic models.
+
+3.1.5  TAUKADIAL
+
+The  2024  TAUKADIAL  Challenge  dataset  represents  another  step  forward  to  multilin-
+gual speech analysis in cognitive impairment detection. This dataset contains 507 speech 
+samples (261 in Chinese and 246 in English), collected during cognitive-linguistic battery 
+assessments in clinical settings. The total duration of these samples is 528 min, providing a 
+substantial corpus for analysis. With a ratio of just over 3:1, the dataset provides sufficient 
+training  data  while  retaining  a  significant  portion  for  testing.  The  dataset  has  also  been 
+made available to the wider research community via DementiaBank, facilitating collabora-
+tive research efforts (Garcia et al. 2024).
+
+3.1.6  VAS corpus
+
+The Voice-Assistant Systems (VAS) dataset offers a unique perspective on cognitive impair-
+ment  detection  through  the  lens  of  voice  assistant  interactions. This  corpus  includes  101 
+participants divided into three groups: 36 healthy controls, 35 with mild cognitive impair-
+ment, and 30 with dementia (Kurtz et al. 2023). Key features of the VAS Corpus include: 
+
+1.  Authentic interaction scenario: participants engage with an Alexa Echo device, imitat-
+ing real-life interaction rather than performing a picture description task in a clinical 
+environment.
+
+2.  Diverse  command  set:  each  participant  was  given  30  popular Alexa  commands  plus 
+
+four additional basic commands, totaling 34 commands per participant.
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 12 of 43
+
+3. 
+
+Inclusion of MCI group: unlike Some datasets that focus only on healthy controls and 
+AD patients, the VAS Corpus includes an MCI group, allowing for the study of early-
+stage cognitive decline.
+
+4.  Open  access:  the  dataset  is  also  available  to  the  research  community  via  Dementia-
+Bank,  promoting  collaborative  research  efforts.However,  the  VAS  Corpus  has  some 
+limitations: 
+
+1.  Command-based  interaction:  the  reliance  on  pre-defined  voice  commands  might  not 
+
+capture the full extent of language impairment, especially in free speech.
+
+2.  Advanced dementia limitations: as noted in the study, one dementia patient failed to 
+produce commands due to advanced dementia, indicating that this approach might not 
+be suitable for very severe cases.
+
+3.  Potential bias: the use of a specific voice assistant (Alexa) might introduce biases related 
+to familiarity with the technology.Despite these limitations, the VAS Corpus provides 
+valuable insights into how individuals with varying levels of cognitive function interact 
+with voice-based technologies, which could inform both clinical assessment tools and 
+the design of accessible voice interfaces.
+
+3.1.7  Delaware corpus
+
+The Delaware corpus (Lanzi et al. 2023), as part of the expanded DementiaBank, is an ongo-
+ing project aimed at providing a comprehensive dataset for analyzing language patterns in 
+older adults at risk for dementia due to possible Alzheimer’s disease. Key features of the 
+Delaware corpus include: 
+
+1.  Diverse  participant  pool:  currently  comprising  70  participants,  including  individuals 
+
+without cognitive impairments and those with MCI.
+
+2.  Comprehensive protocol: the corpus includes four distinct types of language tasks: (a) 
+Picture Descriptions: Cookie Theft, Cat Rescue, “Going and Coming” (Norman Rock-
+well) (b) Story Narrative: Cinderella (c) Procedural Narrative: Peanut Butter and Jelly 
+Sandwich (d) Personal Narrative: Hometown
+
+3.  Focus on early detection: the inclusion of MCI participants makes this corpus particu-
+larly valuable for studying early linguistic markers of cognitive decline.Limitations of 
+the Delaware corpus may include: 
+
+1.  Limited sample size: with only 70 participants at present, the dataset might have insuf-
+
+ficient statistical power for conducting machine learning analyses.
+
+2.  Lack of severe AD cases: the focus on MCI and healthy controls means the corpus may 
+
+not represent the full spectrum of Alzheimer’s disease progression.
+
+K. Ding et al.1 3Page 13 of 43 
+
+  325 
+
+3.1.8  Dem@Care
+
+The Dem@Care dataset offers a comprehensive, multi-modal approach to studying demen-
+tia  in  both  controlled  and  naturalistic  settings  (Karakostas  et  al.  2016).  Key  features  of 
+Dem@Care include: 
+
+1.  Diverse data collection settings: data gathered from both lab experiments at the Greek 
+Alzheimer’s Association and participants’ homes, providing a range of controlled and 
+real-world contexts.
+
+2.  Multi-modal data: the dataset encompasses video and audio recordings, physiological 
+
+sensor data, sleep sensor data, motion sensor data, and plug sensor data.
+
+3.  Controlled  access:  available  to  the  research  community  under  specific  terms  of  use, 
+ensuring  ethical  use  of  sensitive  data.A  potential  limitation  is  cultural  specificity,  as 
+the data gathered mainly in Greece might not be broadly applicable to other cultural 
+environments.
+
+3.1.9  Audio datasets of Framingham heart study
+
+This dataset represents a significant resource for studying cognitive decline through speech 
+analysis, leveraging the renowned Framingham Heart Study (FHS) (Xue et al. 2021). Key 
+features include: 
+
+1.  Large  sample  size:  1264  digital  voice  recordings,  providing  substantial  statistical 
+
+power.
+
+2.  Diverse cognitive status: includes 483 healthy controls, 451 with mild cognitive impair-
+
+ment, and 330 with dementia.
+
+3.  Longitudinal  design:  as  part  of  the  FHS,  this  dataset  potentially  allows  for  tracking 
+
+cognitive changes over time.
+
+4.  Naturalistic recordings: average duration of 73 min per recording, capturing extended 
+
+interactions between participants and clinicians.
+
+5.  Multiple  cognitive 
+
+tasks: 
+
+includes  recordings  of  various  neuropsychological 
+examinations.One  significant  limitation  is  the  access  restrictions.  Local  ethical  com-
+mittee regulations prevent this dataset from being publicly shared. It might be acces-
+sible  to  researchers  upon  request,  thus  restricting its  use  within  the  broader  research 
+community.
+
+3.1.10  Carolina conversations collections
+
+The Carolina Conversations Collection (CCC) (Pope and Davis 2011) is a comprehensive, 
+password-protected digital archive of transcribed audio and video recordings focusing on 
+health-related  conversations  with  older  adults.  This  unique  corpus  consists  of  two  main 
+cohorts: 
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 14 of 43
+
+1.  A set of over 200 consented conversations with 125 older men and women from diverse 
+ethnic  backgrounds,  each  with  at  least  one  of  12  chronic  medical  conditions.  These 
+participants are recorded twice a year.
+
+2.  A longitudinal set of over 400 naturally occurring conversations with 125 persons with 
+Alzheimer’s disease, recorded at least twice annually.Key features of the CCC include: 
+
+1.  Diverse participant pool: the collection includes speakers from various racial, ethnic, 
+
+and linguistic groups in North and South Carolina.
+
+2.  Privacy measures: aliases are used for all participants, and a strict protocol is followed 
+
+for de-identification of personal information.
+
+3.  Accessibility: the corpus is housed at the Medical University of South Carolina (MUSC) 
+Library  and  is  accessible  online  to  approved  researchers  under  a  restricted  data-use 
+agreement.Limitations of the CCC include: 
+
+1.  Limited  geographic  scope:  the  corpus  is  focused  on  speakers  from  North  and  South 
+
+Carolina, potentially limiting its generalizability to other regions or countries.
+
+2.  Potential selection bias: participants are volunteers, which may not represent the full 
+
+spectrum of older adults or those with specific health conditions.
+
+3.  Lack of standardized tasks: while valuable for naturalistic language study, the absence 
+of fully standardized tasks across all interviews may make certain comparative analyses 
+challenging.
+
+3.1.11  Dementia blog corpus
+
+The Dementia Blog Corpus (Masrani et al. 2017) offers a unique perspective on the written 
+language of individuals with dementia and their caregivers, captured through the medium of 
+public blogs. Key features includes: 
+
+1.  Naturalistic  data:  2805  blog  posts  provide  genuine,  unprompted  written  language 
+
+samples.
+
+2.  Longitudinal aspect: blog posts over time potentially capture progression of language 
+
+changes.
+
+3.  Varied dementia types: includes Alzheimer’s Disease and Dementia with Lewy Bod-
+ies,  allowing  for  comparison  between  different  types  of  dementia.Limitations  of  the 
+Dementia Blog Corpus include: 
+
+1.  Small sample size: only 6 blogs (3 with dementia, 3 controls) limit generalizability.
+2.  Selection bias: bloggers may not be representative of the broader dementia population, 
+
+as they are likely to be higher functioning and more technologically savvy.
+
+K. Ding et al.1 33.  Potential for edited content: blog posts may be edited or curated, potentially masking 
+
+some language deficits.
+
+4.  Data loss: some blogs have become inaccessible or changed due to website updates, and 
+
+the author only provided a web script rather than structured text data.
+
+Page 15 of 43 
+
+  325 
+
+3.1.12  Multimodal dementia corpus
+
+This longitudinal, multi-modal corpus represents a comprehensive approach to monitoring 
+dementia through various forms of language production. Some key features include (Gkou-
+mas et al. 2024): 
+
+1.  Longitudinal  design:  data  collected  over  time,  allowing  for  tracking  of  disease 
+
+progression.
+
+2.  Multi-modal approach: incorporates speech (490 sessions), typed text (271 sessions), 
+
+and hand-written text (104 sessions).
+
+3.  Balanced groups: includes 12 participants with dementia and 10 healthy controls.
+4.  Extensive data: 816 sessions in total, including 101:26 h of speech data.
+5.  Detailed transcriptions: a subset of speech data (51 sessions from 8 participants) has 
+
+been manually transcribed by professionals.
+
+6.  Natural language use: uses reminiscence material in a non-clinical setting, aiming to 
+capture  more  naturalistic  language  use.However,  this  Multimodal  Dementia  Corpus 
+still has several limitations: 
+
+1.  Small cohort size: with only 22 participants, generalizability may be limited.
+2.  Potential task bias: while aiming for natural language use, the reminiscence tasks may 
+
+still not fully reflect daily conversation and writing.
+
+3.  Access  restrictions:  raw  data  is  not  publicly  available,  though  it  may  be  accessed 
+
+through an NDA agreement.
+
+3.2  Data type
+
+Speech data in the context of Alzheimer’s disease and cognitive impairment research can 
+be categorized into several types based on different language tasks, as illustrated in Table 1. 
+The  first  category  is  spontaneous  speech,  with  the  Cookie Theft  picture  description  task 
+from the Boston Diagnostic Aphasia Examination (Goodglass et al. 2001) being the most 
+recognized task within this group. This task aims to evaluate the semantic knowledge and 
+narrative abilities of subjects by asking them to describe a complex image. The Pitt Corpus, 
+ADReSS, ADReSSo,  and ADReSS-M  datasets  all  incorporate  this  type  of  task. Another 
+form  of  spontaneous  speech  is  free  conversation,  as  used  in  the  Carolina  Conversations 
+Collections.  Horigome  et  al.  (2022)  argued  that  free  conversation  without  specific  task 
+requirements might be more suitable for clinical settings due to its naturalistic nature. This 
+approach allows for the analysis of language use in a more relaxed, everyday context. The 
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 16 of 43
+
+second category is verbal fluency tasks, which include both phonemic and semantic fluency 
+assessments. Phonemic fluency tasks involve generating words that start with a specific let-
+ter (e.g., “F” or “S”) within a limited time frame. Semantic fluency tasks require participants 
+to produce words belonging to a particular category (e.g., “animals” or “fruits”). The Pitt 
+Corpus and the Audio Datasets of the Framingham Heart Study incorporate verbal fluency 
+tasks. The final category is comprised of various specialized tasks, including story recall and 
+voice assistant commands, as illustrated by the Delaware and VAS Corpora, respectively. 
+This study primarily focuses on spontaneous speech data, particularly in the context of the 
+picture description task. This task has been widely employed in AD detection research due 
+to its ability to collect complex language data in a standardized setting. Datasets such as 
+ADReSS and ADReSSo have been specifically designed around this task, providing rich 
+resources  for  developing  and  testing AD  detection  models  based  on  spontaneous  speech 
+analysis.
+
+4  Machine learning based methods for AD detection
+
+Several  machine  learning  methods  are  currently  being  employed  for AD  detection  using 
+speech-based data. These methods can be broadly categorized into traditional learning, deep 
+learning,  transfer  learning,  ensemble  learning,  and  multimodal  learning,  as  illustrated  in 
+Tables  2  and  3.  In  some  studies  (Luz  et  al.  2020,  2021;  Vats  et  al.  2021;  Triapthi  et  al. 
+2021), machine learning classifiers such as Support Vector Machines, Decision Trees, Naive 
+Bayes, Random Forest, Multi Layer Perceptron, and 1-Nearest Neighbors have been com-
+monly employed for comparative analyses subsequent to feature extraction from both voice 
+recordings and textual transcripts. Therefore, these studies are not individually mentioned 
+in each category of the machine learning method given below. It is essential to note that in 
+many research studies, authors often employ a combination of these methods to construct a 
+more comprehensive hybrid model.
+
+Each of these categories encompasses a range of specific techniques, each with its own 
+strengths and applications in AD detection. Traditional models, including Support Vector 
+Machines  and  Logistic  Regression,  demonstrate  efficiency  when  applied  to  well-crafted 
+features extracted from both voice recordings and textual transcripts. Deep learning models, 
+including  Convolutional  Neural  Networks,  have  shown  effectiveness  in  acoustic  feature 
+extraction  from  audio  data.  Transfer  learning  approaches  leverage  pre-trained  language 
+models like BERT to obtain linguistic features from transcripts. Ensemble learning meth-
+ods,  such  as  those  based  on  voting  and  stacking,  combine  multiple  models  to  enhance 
+performance  and  produce  more  robust  results.  Multimodal  learning  techniques  integrate 
+various data types, allowing machine learning models to leverage complementary informa-
+tion from linguistic patterns, acoustic features, and visual representations of speech signals. 
+In  the  following  subsections,  we  will  examine  the  various  methods  within  each  of  these 
+categories in detail.
+
+4.1  Traditional learning
+
+Traditional machine learning models, often referred as classical or conventional machine 
+learning models, excel in scenarios with well-defined features in relatively small to medium-
+
+K. Ding et al.1 3Page 17 of 43 
+
+  325 
+
+sized  datasets. They  are  more  interpretable  compared  with  other  deep  learning  methods, 
+making it easier to understand and explain their decision-making processes, which is crucial 
+in healthcare domains where transparency and accountability are essential. However, unlike 
+deep learning techniques, these conventional models may require the generation of domain-
+specific features or deep embedding features from other methods before being applied to 
+each task.
+
+Support vector machines (SVM): SVMs, introduced by Cortes and Vapnik (1995), are 
+supervised learning models used for classification and regression tasks. SVMs find an opti-
+mal  hyperplane  that  maximizes  the  margin  between  different  classes.  Shah  et  al.  (2023) 
+investigated language-agnostic speech features such as word-level duration, pause rate, and 
+speech  intelligibility.  They  used  Principal  Component  Analysis  (PCA)  for  dimensional-
+ity  reduction  and  logistic  regression  for  classification,  achieving  69%  accuracy.  For  the 
+MMSE  score  prediction,  they  employed  Support  Vector  Regression  (SVR),  achieving  a 
+Root Mean Squared Error (RMSE) of 4.8 on the ADReSS-M dataset. Notably, the study 
+did not directly use transcripts or translations but found word-level features from the Whis-
+per  model  highly  valuable.  Chen  et  al.  (2023b)  presented  a  cross-lingual  AD  detection 
+method using features extracted from openSmile, XLSR-53, and RoBERTa. They applied 
+SVM with a connected layer, achieving 69.6% accuracy and an RMSE of 4.788. This work 
+demonstrated SVM’s applicability in cross-lingual settings. MohamedShreif and Lawgali 
+(2022) utilized linguistic features, including silence rate, to detect AD using an SVM clas-
+sifier, achieving 88% accuracy on the DementiaBank dataset. This study showcased SVM’s 
+high  accuracy  with  linguistic  features,  although  it  lacked  detailed  discussion  on  feature 
+engineering. Syed et al. (2021) developed a multimodal AD detection system combining 
+handcrafted and deep embeddings for acoustic and linguistic data. They achieved 91.67% 
+accuracy on the ADReSS dataset using logistic regression, SVM, and majority voting. They 
+found out that deep embeddings, especially from environmental sounds and music, outper-
+formed handcrafted features in both audio and text modalities, highlighting their efficacy in 
+speech-related applications. Shah et al. (2021) explored various algorithms and dimension 
+reduction techniques on the ADReSS dataset, achieving 85.4% classification accuracy and 
+an RMSE of 5.62. They combined logistic regression, random forest, SVM, and XGBoost in 
+a weighted majority-vote ensemble, demonstrating SVM’s effectiveness in ensemble meth-
+ods. Searle et al. (2020) analyzed textual transcripts from the ADReSS dataset to classify 
+AD. They employed various models, including SVM and Transformer-based models. The 
+top-performing  models  were  a  Term  Frequency-Inverse  Document  Frequency  (TF-IDF) 
+vectorizer input into an SVM model and a pre-trained DistilBERT model used as an embed-
+ding  layer  in  simple  linear  models.  These  models  achieved  classification  scores  of  0.82 
+and an RMSE of 4.58, effectively capturing keyword frequency correlations despite perfor-
+mance variations across different datasets.
+
+The strengths of SVM in AD detection include its effective handling of high-dimensional 
+data  and  its  suitability  for  both  regression  and  classification  tasks,  while  its  weaknesses 
+involve the need for careful feature extraction, challenges with large datasets, and sensitiv-
+ity to noisy data and outliers.
+
+Logistic regression (LR): LR determines the optimal coefficients for the linear combina-
+tion of features that maximize the likelihood of the observed data, typically using optimiza-
+tion techniques such as gradient descent. While effective for linearly separable data, LR may 
+struggle with complex, nonlinear relationships. Shah et al. (2023) applied logistic regres-
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 18 of 43
+
+sion with L2 regularization to the top 10 principal components derived from meta-features, 
+word-level duration, pause rate, and speech intelligibility. This approach achieved an accu-
+racy of 69.57% on the Greek samples in ADReSS-M dataset. Burke et al. (2023) utilized 
+logistic  regression  on  Ostrand  and  Gunstad’s  lexical-semantic  features,  alongside  newly 
+developed  lexical-semantic  features,  achieving  a  classification  accuracy  of  78.4%  on  the 
+Pitt Corpus dataset. Roshanzamir et al. (2021) proposed transformer-based deep neural net-
+work language models trained on the Pitt corpus dataset. They explored various pretrained 
+embedder  layers  (BERT,  XLNet,  XLM,  GloVe)  and  classifier  layers  (logistic  regression, 
+neural networks, LSTM, CNN). Notably, using sentence-level BERT-Large with a logistic 
+regression classifier resulted in accuracy and F1 scores of 88.08 and 87.23%, respectively.
+
+Decision tree (DT): It is a versatile and interpretable machine learning approach used for 
+both classification and regression tasks. It partitions input data into subsets based on feature 
+values, forming a tree-like structure where each internal node represents a decision based 
+on a feature, and each leaf node represents the prediction or outcome. Li and Huang (2021) 
+proposed a task-oriented feature representation method for classifying AD based on spon-
+taneous  speech.  The  method  incorporates  classification  task  information  into  the  feature 
+representation  learning  process,  improving  classification  accuracy  compared  to  content-
+independent models that only use acoustic features. Experimental results on the ADReSS 
+dataset  demonstrated  that  DT  model,  utilizing  the  1dCNN-triplet  feature,  surpassed  lin-
+guistic features and achieved an accuracy of 83.3%. Parsapoor et al. (2023) conducted an 
+empirical investigation to evaluate the impact of various language tasks, recording media, 
+and modalities on machine learning classifiers for dementia assessment, including Decision 
+Trees,  Extra Trees,  k-Nearest  Neighbors,  Support Vector  Machines,  Logistic  Regression, 
+and Random Forests. Their study revealed that classifiers trained on the picture description 
+language task exhibited superior performance compared to those trained on the story recall 
+language task. Additionally, phone-based recordings yielded more favorable outcomes com-
+pared to web-based recordings.
+
+K-nearest neighbors (KNN): It is a simple and intuitive machine-learning algorithm that 
+is used for both classification and regression tasks. KNN makes predictions based on the 
+similarity between new data points and existing data points in a labeled dataset. Vats et al. 
+(2021) focused on AD detection using BERT and eight different acoustic features plus a set 
+of  ComParE  features  (Eyben  et  al.  2013)  (includes  energy,  spectral,  MFCC,  and  voicing 
+related  low-level  descriptors)  to  identify  the  attributes  affected  by AD  in  human  speech 
+production. Authors demonstrated the complementary nature of acoustic features to linguis-
+tic features in AD classification, showing an improvement of 6.1% classification accuracy 
+when  combining  the  acoustic  model,  the  BERT  model,  and  score  fusion  with  the  KNN 
+algorithm. The final accuracy on the ADReSS test dataset is 85.2%.
+
+Gaussian mixture models (GMMs): It is a probabilistic model used in machine learning 
+for representing and modeling data that can be best described as a combination of multiple 
+Gaussian (normal) distributions. GMMs are particularly useful when dealing with complex 
+data that cannot be easily represented by a single Gaussian distribution. Ablimit et al. (2022) 
+used two distinct corpora, the Interdisciplinary Longitudinal Study on Adult Development 
+and Aging (ILSE) and the ADReSS challenge datasets. The speech and language features 
+extracted from these two corpora were analyzed. For the ADReSS dataset, a GMM classi-
+fier achieved 66.7% accuracy using only ECAPA-TDNN acoustic features. ECAPA-TDNN 
+embeddings  are  deep  neural  network-based  embeddings  that  achieve  state-of-the-art  per-
+
+K. Ding et al.1 3Page 19 of 43 
+
+  325 
+
+formance  in  speaker  recognition,  were  extracted  by  author  using  the  model  made  avail-
+able by SpeechBrain. In contrast, for the ILSE dataset, the GMM classifier achieved 83.8% 
+accuracy using Part-of-Speech (PoS) linguistic features. This disparity highlights that the 
+best classifiers and feature sets for one dataset do not necessarily match the best for another 
+dataset, raising questions about the transferability of methods to new domains, languages, 
+tasks, and recording conditions.
+
+4.2  Deep learning
+
+Due to the ability to model complex patterns and relationships in data, deep learning meth-
+ods have been used in various fields. These methods are characterized by the use of artificial 
+neural networks, particularly deep neural networks with multiple layers to extract and learn 
+hierarchical features from raw audio and transcript data directly.
+
+Convolution neural network (CNN): CNNs are specialized neural networks designed for 
+processing  grid-like  data,  such  as  images.  In  the  context  of AD  detection,  many  authors 
+used convolution layers to automatically learn and detect hierarchical features from input 
+Mel Frequency Cepstral Coefficients (MFCC) or Mel-spectrogram data which is the rep-
+resentation of the short-term power spectrum of a audio signal. Igarashi et al. (2023) used 
+CNN to classify 29 participants (7 males and 22 females) aged 72–91 years with moderate 
+or  mild  dementia  and  mild  cognitive  impairment.  They  found  out  that  Mel-spectrogram 
+generally outperformed Mel Frequency Cepstral Coefficients in terms of accuracy, preci-
+sion, recall, and F1-score in all classification tasks. Chatzianastasis et al. (2023) used Neu-
+ral Architecture Search (NAS) method—DARTS to automatically find a high performing 
+CNN architecture based on log-Mel spectrograms, then they exploit several fusion methods, 
+including  Multimodal  Factorized  Bilinear  Pooling  and Tucker  Decomposition  to  capture 
+inter-modal interactions. The overall performance on the ADReSS dataset achieved 92.08% 
+in accuracy. Lin et al. (2022) used a combination of Transformer and CNN architecture for 
+feature extraction from Mel-spectrogram. On their own 120 participants dataset with a bal-
+anced distribution of individuals with normal aging, mild cognitive impairment (MCI), and 
+AD patients, their trials obtained an accuracy of 91 and 79% for identifying groups of AD 
+and MCI from those with normal ageing, respectively. Chlasta and Wołk (2021) focused on 
+using computer-based automated screening of dementia through spontaneous speech only. 
+Two  feature  extraction  methods  were  proposed: VGGish,  a  deep,  pre-trained Tensorflow 
+model, and DemCNN, a custom raw waveform-based convolutional neural network model. 
+The VGGish model achieved an accuracy of 59.1%, while the DemCNN model achieved an 
+accuracy of 63.6% on the ADReSS dataset.
+
+Long-short term memory (LSTM): It is widely used in AD detection tasks due to its effec-
+tiveness in modeling sequential and time series data such as audio transcript. Zheng et al. 
+(2022) made use of Howard and Ruder’s pre-trained language mode—Averaged Stochastic 
+Gradient  Descent Weight-Dropped  LSTM  (AWD-LSTM)  which  trained  using Wikipedia 
+articles  with  about  103  million  different  words. They  fine-tune  this  pre-trained  language 
+model by using the dementia data set in hand and adjust the language model for classifica-
+tion by using (ReLU) activation and softmax activation to substitute the last softmax layer in 
+the original network. The overall accuracy on the Pitt Corpus dataset is 76.16%. Bouazizi et 
+al. (2022) also utilized the AWD-LSTM method to detect dementia. However, they focused 
+on context words as well as stop words with patterns of part-of-speech sequences as fea-
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 20 of 43
+
+tures. Their experiments demonstrate the importance of both grammar and vocabulary in 
+accurately identifying dementia and achieved 81.54% accuracy on the Pitt Corpus dataset. 
+Rohanian et al. (2021) presented two multimodal fusion-based deep learning models for AD 
+recognition using acoustic, lexical, disfluency, and speech pause features. The best modal, 
+BiLSTM with highway layers, achieved an accuracy of 84% and RSME error prediction of 
+4.26 on MMSE cognitive scores for ADReSSo Dataset, showing improvement over word-
+only models. The models effectively deal with noisy inputs from acoustic features and ASR 
+hypotheses.
+
+Gated recurrent unit (GRU): It is an enhanced interpretation of the traditional recurrent 
+neural network. The GRU is just like a long short-term memory; however, it doesn’t have 
+an output gate, so it has fewer parameters. Nambiar et al. (2022) extracted vector representa-
+tions using RoBERTa from Pitt Corpus dataset and this word embedding feed into GRU for 
+Dementia detection. The overall accuracy is 80% slightly less than the BERT + BiLSTM 
+model which achieved 81% accuracy in the experiment.
+
+Autoencoders (AE): Autoencoders have a long history in machine learning, dating back 
+long  before  deep  networks. The  basic  idea  is  to  encode  the  input  into  a  compressed  and 
+meaningful representation and then decode it back such that the reconstructed input is as 
+similar as possible to the original one (Bank et al. 2023). This compressed bottleneck layer 
+can be used as features in a potential classification step. Vetráb et al. (2022) extracted Mel-
+scale spectrograms from raw waveforms and fed into autoencoder feature extractor models 
+which used 2 recurrent layers, each one consisting of 128 GRU cells, and a bidirectional 
+decoder. The autoencoder-based features are then used by a linear SVM for classification 
+tasks and achieve an accuracy of around 72%. Bertini et al. (2022a) used the spectrogram 
+of the audio signal as the feature for training the autoencoder network. They utilized a spe-
+cific  data  augmentation  approach  called  SpecAugment  that  avoids  distorting  the  original 
+samples, This proposed method achieves an accuracy of 93.30% and an F1 score of 88.50% 
+when evaluated on the Pitt Corpus dataset. However, this paper did not explore the potential 
+of using other types of features, such as acoustic, syntactic, and semantic features, which 
+could enhance the classification performance and interpretability of the model.
+
+4.3  Transfer learning
+
+Transfer learning techniques leverage pre-trained models, often on large datasets, and fine-
+tune  them  for  specific  tasks.  This  approach  has  been  particularly  effective  in  scenarios 
+where labeled data is scarce such as healthcare. Here is a review of some commonly used 
+pre-trained models for AD detection.
+
+BERT:  The  text  transcriptions  were  used  to  generate  feature  embedding  vectors  from 
+the  pre-trained  BERT  (Bidirectional  Encoder  Representations  from Transformers)  model 
+(Devlin et al. 2018). BERT is used for pretraining a language representation over a large 
+amount  of  unlabeled  textual  data  and  employs  an  attention  mechanism  (an  encoder  that 
+reads the text and a decoder that predicts), resulting in a deeper sense of language contextual 
+relationships between words in a text. Valsaraj et al. (2021) focused on AD detection using 
+acoustic and linguistic features, as well as a pre-trained BERT model. Three models were 
+used for classification: Model 1 used acoustic features, Model 2 used linguistic features, and 
+Model 3 used the auto-generated transcripts directly with a pre-trained BERT and TF-IDF. 
+Their result in line with the previous studies where Deep Learning based linguistic models 
+
+K. Ding et al.1 3Page 21 of 43 
+
+  325 
+
+outperform basic ML-based models and acoustic models. However, their result is not good 
+enough compared with other BERT in the ADReSS benchmark dataset. Balagopalan et al. 
+(2020) compared hand-crafted features and BERT-based models for AD detection, showing 
+that fine-tuned BERT models perform well and outperform feature-based approaches. The 
+fine-tuned BERT-based models achieve the highest AD detection accuracy of 83.3% on the 
+ADReSS test set, outperforming the best feature-based classification model (SVM) with an 
+accuracy of 81.3%. The authors also suggested that future work should combine BERT and 
+hand-crafted features for improved performance.
+
+RoBERTa:  RoBERTa  (a  Robustly  optimized  BERT  approach)  (Liu  et  al.  2021a)  uses 
+dynamic masking (unlike BERT’s static masking) which increases the data variability (by 
+augmentation) and helps in yielding more robust features. Matošević and Jović (2022) used 
+of speech transcripts from Pitt corpus only can lead to dementia detection rates above 90% 
+for  the  RoBERTa  model,  which  outperformed  the  baseline  BERT  model  by  4  percent  in 
+accuracy.  Priyadarshinee  et  al.  (2023)  systematically  compare  various  modalities,  granu-
+larities, and machine learning models for automated Alzheimer’s Dementia detection. They 
+tested sixteen features across audio and text modalities, analyzing the data at two levels: 
+frame-level (granular or frame-by-frame descriptors) and file-level (across the entire inter-
+view recording). Their findings reveal that text-based classification utilizing RoBERTa out-
+performed  audio-based  classification,  achieving  an  accuracy  of  88.7%  on  the ADReSSo 
+dataset.
+
+DistilBERT: DistilBERT is a cheaper, smaller version of BERT (Sanh et al. 2019), which 
+is 60% faster and 40% smaller, while retaining 97% of its performance. Pandey et al. (2021) 
+utilized a pre-trained DistillBert on the transcripts generated from speech signals using the 
+Wav2vec2 model combined with CNN-based audio embeddings model which is employed 
+to extract AD-related features from speakers’ speech utterances. The BERT embedding and 
+CNN-based audio embeddings are then used in score-level fusion to generate an average 
+probability for AD classification. The accuracy on the test partition of the ADReSSo chal-
+lenge dataset is 73.68%. Liu et al. (2022a) presented a transfer learning method for detect-
+ing AD based on DistilBERT embedding with a logistic regression classifier. This proposed 
+model achieves an accuracy of 0.88, which is a considerable improvement over the baseline 
+established by the challenge organizers.
+
+GPT: Li et al. (2022a) proposed a novel method by using GPT-D, an artificially degraded 
+version  of  GPT-2,  which  showed  generalizability  across  different  datasets,  including 
+ADReSS, DB, and CCC, with competitive performance compared to fine-tuning on BERT 
+and DistilBERT models. Agbavor and Liang (2022) utilized GPT-3 text embeddings, which 
+are vector representations of transcribed speech that capture the semantic meaning of the 
+input.  By  combination  with  SVM,  the  GPT-3  text  embeddings  considerably  outperform 
+conventional acoustic feature-based approaches and even compete with fine-tuned models. 
+Performance on ADReSSo achieved 80.3% in accuracy and 6.25 in RMSE. However the 
+author did not explore other potential approaches or combinations of these features.
+
+XLNet: It employs a Permutation Language Modeling (PLM) objective during pre-train-
+ing. This approach involves shuffling sentence permutations and predicting the next word 
+in each, exposing the model to diverse word orders and contexts (Yang et al. 2019). This 
+comprehensive training strategy enhances XLNet’s ability to understand intricate relation-
+ships within text. It used by (Priyadarshinee et al. 2023; Ilias and Askounis 2022a) to extract 
+embedding from transcript to perform comparison evaluation.
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 22 of 43
+
+Audio Models: Both HuBERT and Wav2Vec represent significant advancements in pro-
+cessing  raw  audio  waveforms  for  speech  recognition  and  analysis.  Unlike  previous  lan-
+guage models such as BERT and XLNet, which focus on textual data, HuBERT adapts the 
+Transformer architecture to handle the sequential nature of speech (Hsu et al. 2021), work-
+ing directly with raw audio waveforms to extract pre-trained speech embeddings as acoustic 
+features. This approach has been utilized by researchers such as Mei et al. (2023) and Chen 
+et al. (2023a). Similarly, Wav2Vec employs self-supervised methods to transform raw audio 
+into encoded representations for speech recognition systems (Baevski et al. 2020). Studies 
+like Pandey et al. (2021) and Agbavor and Liang (2022) have used Wav2Vec2 to generate 
+transcripts, demonstrating its efficacy in diverse applications.
+
+In addition to the pretrained models discussed above, Zhu et al. (2021a) employ state-of-
+the-art deep transfer learning models from image, audio, speech, and language domains such 
+as MobileNet, YAMNet, Mockingjay, and BERT. The authors compared the performance of 
+different transfer learning models on ADReSS challenge dataset and show using text data 
+significantly better performance than those using audio data. Multi-modal transfer learning 
+introduces a slight improvement in accuracy which achieved 89.58% on ADReSS dataset. 
+Yang et al. (2022) propose an augmented adversarial self-supervised learning approach for 
+early-stage Alzheimer’s speech detection. Unlike previous studies using public pre-trained 
+models, authors develop their own pre-training method utilizing a large corpus of normal 
+speech  (AISHELL)  alongside  limited AD  speech  data.  They  employ  contrastive  predic-
+tive coding, adversarial training, and data augmentation techniques to capture AD-like pat-
+terns. The pre-trained model serves as a feature extractor for a downstream AD detection 
+task. This approach significantly improves AD detection performance, especially for the AD 
+class, achieving an F1-score of 83.73% on the 2021 NCMMSC Alzheimer’s Disease Recog-
+nition Challenge, outperforming both baseline and wav2vec2.0-based models.
+
+4.4  Ensemble learning
+
+Ensemble learning is a machine learning technique that combines the predictions of mul-
+tiple  individual  models  to  produce  a  more  robust  and  accurate  final  prediction. The  idea 
+behind ensemble learning is that by aggregating the predictions of multiple models, the col-
+lective intelligence of the ensemble can often outperform any single model. Several papers 
+have used ensemble methods for AD detection. Nishikawa et al. (2022) used LightGBM, 
+a machine learning method for Gradient Boosting to calculate the Logloss between Mild 
+Cognitive  Impairment  and  Normal  Controls  through  acoustic  features.  They  also  utilise 
+the ViTb16, which is the Encoder part of the Vision Transformer (ViT) to analyse the Log-
+melspectrogram. Their experimental results show that the ensemble model of LightGBM 
+and ViTb16  performs  the  best  which  has  90.7%  accuracy.  Qian  et  al.  (2022)  proposed  a 
+two-stage  metric  learning  approach  to  detect  subjects  with AD,  HC,  and  MCI.  Because 
+they think universal acoustic feature set as “silver bullet” to characterize all three groups 
+does  not  exist.  Each  stage  takes  distinct  acoustic  features  as  input  to  a  specific  convolu-
+tion neural network to get feature vector which then feed into XGboost classifier to group 
+into AD or Non-AD and HC or MCI. Kumar et al. (2022) explored the use of standalone 
+speech features to recognize dementia. They utilized speech samples from the Pitt corpus 
+in DementiaBank and proposes a critical speech feature set of prosodic, voice quality, and 
+cepstral features for the task. Random forest has been applied to these features and achieved 
+
+K. Ding et al.1 3Page 23 of 43 
+
+  325 
+
+87.6% in accuracy. Hason and Krishnan (2022) proposed models which achieved accuracy 
+rates of 82.2% for AD prediction and 71.5% for AD stages classification using a Random 
+Forest  classifier  which  is  based  on  acoustic  features  extracted  from ADReSSo  challenge 
+dataset. Nonetheless, the research has not explicitly demonstrated the methodology behind 
+the  extraction  of  these  acoustic  features.  Martinc  et  al.  (2021)  employ  a  combination  of 
+acoustic, textual, and semantic bag-of-n-grams features for AD diagnosis based on spon-
+taneous  speech  by  using  a  random  forest  algorithm  with  50  trees  of  maximum  depth  5. 
+This  proposed  approach  achieves  an  accuracy  of  93.75%  on  the ADReSS  dataset. Alke-
+nani et al. (2021) introduced a novel approach, fusion-based stacked generalization, aimed 
+at  enhancing  the  overall  generalizability  and  robustness  of  machine  learning  models  for 
+AD diagnosis. This method leverages the strengths of multiple base learning algorithms to 
+construct heterogeneous stacked fusion models. These fusion models are trained using two 
+distinct datasets, one derived from written language (Dementia Blog Corpus) and the other 
+from spoken language (DementiaBank). Notably, the stacked fusion models demonstrated 
+remarkable performance, achieving area under the curve (AUC) values of 98.1 and 99.47% 
+for the spoken and written-based datasets, respectively, while the hybrid model, trained on 
+linked data, achieved optimal performance with an impressive AUC of 99.2%.
+
+4.5  Multimodal learning
+
+Multimodal Learning differs from ensemble learning in that it involves combining infor-
+mation  from  multiple  modalities,  such  as  text,  images,  and  audio  to  make  a  decision. A 
+prime  example  of  Multimodal  Learning  is  in  Alzheimer’s  disease  detection  via  speech 
+analysis, where speech samples can be represented in multiple modalities, including text 
+(transcripts),  audio  (raw  recordings),  and  images  (log-Mel  spectrograms).  By  combining 
+these  modalities,  Machine  learning  models  can  leverage  the  complementary  information 
+they  provide,  such  as  linguistic  patterns,  acoustic  features,  and  visual  representations  of 
+speech signals, to improve the accuracy of Alzheimer’s detection. Normally, in Multimodal 
+Learning, various fusion techniques are used to integrate the information from these three 
+different modalities. For example, Score Fusion involves averaging prediction probabilities 
+across different modalities for classifying sample into AD or Non-AD categories. Pappagari 
+et al. (2021) enhanced this by using model output scores as inputs for a logistic regression 
+classifier.  They  employed  speech  embedding  techniques,  such  as  x-vectors  and  prosody 
+features,  and  used  automatic  speech  recognition  to  obtain  transcriptions  for  fine-tuning 
+BERT models. Their results showed that score fusion from multiple acoustic and linguistic 
+models  provided  the  best  detection  results,  with  linguistic  models  generally  outperform-
+ing acoustic models unless ASR errors impacted performance. Embedding Feature Fusion 
+integrates audio and text features at a later stage, combining separately processed features 
+from each modality for final classification (Pandey et al. 2021). Ilias et al. (2022) proposed 
+Tensor Fusion, a method for detecting Alzheimer’s disease from spontaneous speech. This 
+approach uses deep neural networks to process audio, image, and text data, capturing inter-
+modal interactions through a tensor fusion layer. The method converts audio to multi-chan-
+nel images, processes transcripts with BERT, and extracts acoustic features. By addressing 
+limitations of earlier fusion methods, Tensor Fusion achieved 86.25% accuracy and 85.48% 
+F1-score on the ADReSS dataset. Add Fusion, proposed by Zhu et al. (2021a), combines 
+outputs from fully connected layers of two specific models: Text BERT and Speech BERT. 
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 24 of 43
+
+It selects the model with higher classification confidence and merges its features with the 
+other model. This technique can enhance confidence in consistent classifications or favour 
+the more confident model in cases of disagreement. Concatenation Fusion, also introduced 
+by  Zhu  et  al.  (2021a),  merges  features  from  both Text  BERT  and  Speech  BERT  models 
+to  create  a  hybrid  representation.  By  combining  outputs  of  fully  connected  layers  from 
+these two models, it leverages complementary information from text and speech modalities. 
+Ilias  and Askounis  (2023)  proposed  novel  multimodal  approaches  by  utilizing  BERT  for 
+transcript  and  DeiT  for  audio  spectrograms  image.  By  incorporating  context-based  self-
+attention, optimal transport domain adaptation, and label smoothing to improve both perfor-
+mance and model calibration, they achieved 91.25% accuracy and 91.06% F1-score based 
+on ADReSS benchmark datasets.
+
+5  Benchmarking
+
+Benchmarking plays a crucial role in advancing AD recognition by providing standardized 
+datasets,  tasks,  and  evaluation  metrics  for  comparative  analysis. This  section  delves  into 
+prominent datasets commonly used in AD recognition research, as discussed in Sect. 3, with 
+a particular focus on the ADReSS and ADReSSo datasets as benchmarks. These datasets 
+enable researchers to consistently assess the performance of various machine learning and 
+deep learning models.
+
+5.1  Pitt corpus
+
+The Pitt Corpus dataset is a widely used resource in AD recognition research. However, not 
+all studies utilize the whole dataset due to the inherent issue of dataset imbalance within the 
+entire corpus. This imbalance can lead models to focus on individual patient characteristics 
+rather than general dementia-related features. A summary of research utilizing the Pitt Cor-
+pus dataset is provided in Table 4, which shows various machine learning and deep learning 
+models along with their performance metrics.
+
+5.2  ADReSS
+
+The ADReSS dataset has been extensively used in AD recognition research. The ADReSS 
+Challenge comprises two main tasks:
+
+ ● AD Classification Task: developing a model to predict whether a speech session is AD 
+
+or non-AD using speech data, manual transcript language data, or both.
+
+ ● MMSE Regression Task: creating a model to infer the subject’s Mini-Mental State Ex-
+amination  score  based  on  speech  and/or  transcript  language.The ADReSS  Challenge 
+baseline, established by Luz et al. (2020), provided an initial benchmark with 75% ac-
+curacy, enabling subsequent studies to demonstrate significant improvements. Table 5 
+summarizes various models with their performance metrics.
+
+K. Ding et al.1 3Table 4  Comparisons of research on Pitt corpus
+ML/DL models
+Publication
+Wen et al. (2023)
+CNN-Attention-Feature Network
+Begam et al. (2023) Stacking ensemble learning (RF, 
+
+Accuracy
+92.2%
+78%
+
+Precision
+93.5%
+–
+
+F1
+
+Recall
+97.1% 95.5%
+–
+
+47%
+
+Page 25 of 43 
+
+  325 
+
+Pan et al. (2023)
+Chen et al. (2023a)
+Burke et al. (2023)
+
+SVM, NB, KNN)
+Tree bagger (TB)
+Speechformer++
+Logistic regression and random 
+forest
+
+BERT + BiLSTM
+
+Support vector machine
+
+Zheng et al. (2022) Attention-based models
+Nambiar et al. 
+(2022)
+MohamedShreif and 
+Lawgali (2022)
+Matošević and Jović 
+(2022)
+Kumar et al. (2022) Random forest
+Bouazizi et al. 
+(2022)
+
+RoBERTa
+
+Liu et al. (2022b)
+
+Averaged stochastic gradient 
+descent weight-dropped LSTM 
+(AWDLSTM)
+Transformer + Feature purification 
+network
+
+79.04%
+81.3%
+78.4%
+
+81.54%
+81%
+
+–
+–
+–
+
+–
+79%
+
+78.91%
+80.8%
+
+–
+–
+85.7% –
+
+–
+79%
+
+–
+79%
+
+88%
+
+–
+
+–
+
+–
+
+90.16%
+
+92.81%
+
+88.60% 90.28%
+
+87.6%
+81.54%
+
+91.2%
+87.34%
+
+82.2% 86.5%
+83.13% 85.19%
+
+93.50%
+
+94%
+
+89%
+
+91.19%
+
+Triapthi et al. (2021) BayesNet fuse with posterior two-
+
+–
+
+85.9%
+
+85.9% 85.7%
+
+Roshanzamir et al. 
+(2021)
+
+class classifiers
+BERTLarge  + Logistic regression 
+(NLP)
+
+88.08%
+
+90.5%
+
+84.34% 87.23%
+
+5.3  ADReSSo
+
+The ADReSSo dataset emphasizes creating models that work directly from speech without 
+manual transcription,  aligning closely  with  real-world  applications. The ADReSSo Chal-
+lenge includes the following tasks:
+
+ ● AD Classification Task: developing a model to predict the label (AD or non-AD) for a 
+speech session using either acoustic features or linguistic features extracted from auto-
+matically generated transcripts.
+
+ ● MMSE Regression Task: creating a model to infer the subject’s MMSE score based on 
+
+speech data.
+
+ ● Cognitive Decline Inference Task: predicting changes in cognitive status over time for 
+a  given  speaker  based  on  speech  data  collected  at  baseline.The ADReSSo  Challenge 
+baseline,  established  by  Luz  et  al.  (2021),  set  an  initial  benchmark  with  78.87%  ac-
+curacy. This benchmark has allowed subsequent studies to demonstrate significant im-
+provements. Table 6 summarizes various models and their performance metrics.
+
+The  introduction  of  standardized  benchmarks,  particularly  the  ADReSS  and  ADReSSo 
+datasets,  has  significantly  impacted  the  field  of AD  recognition  through  speech  analysis. 
+These benchmarks have driven progress in several keyways: 
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 26 of 43
+
+Table 5  Comparisons of research on ADReSS dataset
+Publication
+ML/DL models
+LDA and decision tree
+Luz et al. 
+(2020) Baseline
+Ilias and Askou-
+nis (2023)
+
+Accuracy
+75%
+
+91.25%
+
+Precision
+83%
+
+Recall
+62%
+
+F1
+71%
+
+RMSE
+5.2
+
+93.08%
+
+89.17% 91.06% –
+
+82.64%
+
+–
+
+–
+
+82.63% –
+
+70%
+88.33%
+
+–
+86.13%
+
+–
+–
+–
+91.67% 88.69% –
+
+92.08%
+
+94.09%
+
+91.66% 91.94% –
+
+–
+
+–
+
+–
+
+–
+
+3.9
+
+88%
+
+88%
+
+88%
+
+87%
+
+–
+
+87.5%
+
+87.19%
+
+81.66% 86.73% –
+
+86.25%
+
+90.88%
+
+80.83% 85.48% –
+
+90.00%
+
+90.87%
+
+89.17% 89.94% 3.61
+
+86%
+
+–
+
+–
+
+–
+
+–
+
+87.50%
+
+88.57%
+
+87.5% 87.41% –
+
+89.1%
+
+93.5%
+
+92.3% –
+
+77.1%
+
+78.6%
+
+85.4%
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+4.56
+
+82.92%
+
+83.04%
+
+83.33% 82.92% 4.06
+
+85.2%
+
+–
+
+–
+
+–
+
+–
+
+BERT + DeiT + Optimal 
+transport + attention-based 
+fusion (deep context) + label 
+smoothing
+wav2vec2.0 + Tree bagger 
+(TB)
+
+BERT + ViT + Crossmodal 
+attention
+DARTS + BERT + BLOCK
+
+Pan et al. 
+(2023)
+Liu et al. (2023) Tree bagger (TB)
+Ilias et al. 
+(2023)
+Chatzianastasis 
+et al. (2023)
+Aryal et al. 
+(2022)
+Liu et al. 
+(2022a)
+Ilias and Askou-
+nis (2022a)
+Ilias et al. 
+(2022)
+Ilias and Askou-
+nis (2022b)
+Woszczyk et al. 
+(2022)
+
+Stochastic gradient descent 
+optimized model
+DistilBert + Logistic regres-
+sion with grid search
+BERT + Global average pool-
+ing layer + two dense layers
+BERT + Swin transformer + 
+Tensor fusion
+BERT +ViT + Gated 
+self-attention
+Audio spectrogram 
+transformer(AST) + SVM + 
+BERT + Majority vote
+SVM + multi-head-self-
+attention (MHSA)-CNN + 
+Majority vote
+LSTM + MLP
+
+GMM, LDA, SVM
+
+Transformer + Feature purifi-
+cation Network
+BERT + Support vector 
+machine and random forest 
+BERT + Gradient boosting 
+regression
+YAMNet + BERT base + 
+Concat/joint feature
+BERT + KNN + Score fusion
+
+Deng et al. 
+(2022)
+
+Meerza et al. 
+(2022)
+Ablimit et al. 
+(2022)
+Liu et al. 
+(2022b)
+Haulcy and 
+Glass (2021)
+
+Zhu et al. 
+(2021a)
+Vats et al. 
+(2021)
+Valsaraj et al. 
+(2021)
+Syed et al. 
+(2021)
+
+Meghanani et 
+al. (2021)
+Martinc et al. 
+(2021)
+
+BERT model + TF-IDF
+
+76.06%
+
+80%
+
+73.68% 76.71% –
+
+LR + SVM (majority voting) 
+classification SVM + PLSR 
+(averaging) regression
+CNN-LSTM + 
+pBLSTM-CNN
+ADR audio/textual features + 
+top three classifiers late fusion
+
+91.67%
+
+–
+
+91.67% –
+
+3.74
+
+64.58%
+
+82%
+
+38%
+
+51%
+
+5.9
+
+93.75%
+
+–
+
+–
+
+–
+
+–
+
+K. Ding et al.1 3Table 5  (continued)
+
+Page 27 of 43 
+
+  325 
+
+ML/DL models
+Bi-modal model (GRU + CNN 
++ Bi-LSTM + attention Layer)
+1dCNN-triplet + DT
+
+Accuracy
+72.92%
+
+Precision
+78.94%
+
+Recall
+F1
+62.5% 69.76% –
+
+RMSE
+
+83.3%
+
+88%
+
+84%
+
+85%
+
+–
+
+BERT, Ridge
+
+83.3%
+
+83.8%
+
+83.3% 83.3% 4.56
+
+Publication
+Mahajan and 
+Baths (2021)
+Li and Huang 
+(2021)
+Balagopalan et 
+al. (2021)
+Chlasta and 
+Wołk (2021)
+Shah et al. 
+(2021)
+Searle et al. 
+(2020)
+Pappagari et al. 
+(2020)
+
+Syed et al. 
+(2020)
+Sarawgi et al. 
+(2020)
+Pompili et al. 
+(2020b)
+
+Koo et al. 
+(2020)
+Cummins et al. 
+(2020)
+
+VGGish + 128 PCA + 
+DemCNN
+Majority vote (NLP + Acous-
+tic); Random forest (NLP)
+DistilBERT
+
+x-vector + Probabilistic linear 
+discriminant analysis (PLDA) 
++ SVR
+BERT + Score fusion
+label fusion from the top-10 
+performing models BEERT
+MLP + ensemble
+
+i-vectors, x-vectors + BERT + 
+LSTM-RNNs with attention 
++ Fusion
+VGGish, Pre-trained language 
+model features + CRNN
+BoAW-MFCC + bi-LSTM 
+with attention + Fusion major-
+ity vote
+FastText + LDA 
+(ComPareE2016)
+Early fusion + grid search + 
+SVM
+LSTM with gating (acoustic + 
+Lexical + Dis)
+ERNIE + Pause feature
+
+62.5%
+
+62.5%
+
+62.5% 62.5% –
+
+81%
+
+81%
+
+75%
+
+84%
+
+80%
+
+70%
+
+81%
+
+81%
+
+6.43
+
+83%
+
+82%
+
+4.58
+
+88%
+
+78%
+
+5.37
+
+85.42%
+
+–
+
+–
+
+–
+
+83%
+
+83%
+
+83%
+
+83%
+
+4.3
+
+4.6
+
+81.25%
+
+94.12%
+
+66.67% 78.05% –
+
+81.25%
+
+89.47%
+
+70.83% 79.07% 3.7
+
+85.2%
+
+–
+
+–
+
+85.4% 4.65
+
+–
+
+75%
+
+77.08%
+
+79.17%
+
+81.82%
+
+78.26% –
+
+Edwards et al. 
+(2020)
+Martinc and 
+Pollak (2020)
+Rohanian et al. 
+(2020)
+Yuan et al. 
+(2020)
+Balagopalan et 
+al. (2020)
+Luz et al. (2020) described the ADReSS Challenge in detail and presented a baseline for comprehensive 
+methodological comparisons
+
+83.3% 88.9% –
+
+BEERT + Ridge
+
+78.26% 4.54
+
+79.17%
+
+81.82%
+
+95.2%
+
+83.3%
+
+89.6%
+
+84%
+
+81%
+
+88%
+
+75%
+
+4.56
+
+4.43
+
+–
+
+–
+
+1.  Comparability: standardized datasets and evaluation metrics have enabled direct com-
+parisons between different approaches. This comparability has facilitated a more robust 
+assessment of methodological advancements, as evidenced by the progressive improve-
+ments in accuracy and other performance metrics seen in Tables 5 and 6.
+
+2.  Reproducibility: by using common datasets, researchers can more easily reproduce and 
+validate each other’s work, enhancing the reliability of findings in the field. This has led 
+to a more solid foundation for further research and development.
+
+3.  Focus on real-world applicability: the ADReSSo challenge has pushed researchers to 
+develop models that work directly with speech input, closely aligning with real-world 
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3 
+  325 
+
+  Page 28 of 43
+
+Accuracy
+78.87%
+
+85.35%
+
+Table 6  Comparisons of research on ADReSSo dataset
+ML/DL Models
+Publication
+Luz et al. (2021) 
+late fusion + SVM, support 
+Baseline
+vector regression (SVR)
+Ilias and Askou-
+BERT + DeiT + Optimal 
+nis (2023)
+transport + Co-attention 
+fusion (deep context) + label 
+smoothing
+Otter.ai transcription + Ro-
+BERTa + DNN (3-layers)
+
+Priyadarshinee et 
+al. (2023)
+Pan et al. (2023) WAV2VEC2.0 + Tree bag-
+ger (TB)
+VAD Pause feature and eGe-
+MAPS + Tree bagger (TB)
+Multi-layer Perceptron
+
+Liu et al. (2023)
+
+Yadav et al. 
+(2022)
+Vats et al. (2022) Linear support vector 
+
+78.87%
+
+70.7%
+
+71.85%
+
+63.4%
+
+88.7%
+
+Precision
+77.8%
+
+Recall
+80%
+
+RMSE
+
+F1
+78.87% 5.29
+
+84.43%
+
+86.29% 85.27% –
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+78.49% –
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+Deng et al. 
+(2022)
+
+87.32%
+
+87.62%
+
+87.26% 87.28% –
+
+–
+
+–
+
+84%
+
+72.3%
+
+80.3%
+
+97.1% 82.9% 6.25
+
+Agbavor and 
+Liang (2022)
+Rohanian et al. 
+(2021)
+Pan et al. (2021) BERTlarge
+Zhu et al. (2021b) WavBERT
+Pappagari et al. 
+logistic regression + Score 
+(2021)
+fusion
+Pandey et al. 
+CNN + DistillBert + Score 
+(2021)
+fusion
+Liu et al. (2021b) MLP
+97.18%
+Luz et al. (2021) described the ADReSSo Challenge in detail and presented a baseline for comprehensive 
+methodological comparisons
+
+77.14% 81.82% 4.44
+3.85
+83%
+74%
+
+96.34% 97.09% 3.76
+
+88.57% 84.93% –
+
+82.14% 75.4% –
+
+83.1%
+84.51%
+
+87.1%
+92%
+
+84.51%
+
+73.68%
+
+69.69%
+
+81.58%
+
+4.26
+
+–
+
+–
+
+machine
+SVM + multi-head-self-
+attention (MHSA)-CNN + 
+Average fusion
+Wav2Vec2 + GPT-3 Text 
+embedding + SVM
+LSTM w/Gating
+
+clinical  applications.  This  focus  has  accelerated  the  development  of  techniques  that 
+could potentially be translated into practical diagnostic tools.
+
+6  Discussion
+
+In this section, we aggregate findings from various studies to provide a comprehensive view 
+of the landscape of Alzheimer’s disease detection through speech analysis. This discussion 
+allows for a nuanced understanding of the methodologies and trends within the field.
+
+K. Ding et al.1 3Page 29 of 43 
+
+  325 
+
+6.1  Domain-specific features versus deep learning-derived features
+
+The  debate  over  incorporating  domain-specific  features  versus  relying  on  deep  learning-
+derived features in feature engineering is a critical issue in the field of AD detection through 
+speech analysis.
+
+Traditional models with domain-specific features: Traditional models leverage domain-
+specific features, which are manually crafted based on expert knowledge in linguistics and 
+acoustics. These features enhance model interpretability, contributing to greater transpar-
+ency in decision-making processes. For instance, linguistic features might include syntax, 
+semantics, and phonetic patterns, while acoustic features might encompass pitch, tone, and 
+pauses. The primary advantage of this approach is its interpretability, as clinicians can eas-
+ily understand and trust the model’s decision-making process. However, the downside is 
+that  the  model’s  performance  is  heavily  reliant  on  the  quality  and  comprehensiveness  of 
+the manually extracted features, which may not capture all the nuances present in the data.
+Deep learning-derived features: In contrast, deep learning models, such as those utilizing 
+BERT embeddings, automatically derive features from raw data, often capturing complex 
+patterns and long-range dependencies that domain-specific features might miss. Deep learn-
+ing  models  have  achieved  state-of-the-art  performance  across  various  NLP  tasks  due  to 
+their ability to model intricate relationships within the data. For example, Balagopalan et al. 
+(2021) compared two approaches for the automatic detection of AD from speech: one using 
+domain knowledge to extract linguistic and acoustic features, and another using pre-trained 
+language  models  like  BERT  for  transfer  learning.  Both  approaches  significantly  outper-
+formed the baseline linguistic model on the ADReSS dataset, with BERT models showing 
+slightly higher performance, although the difference was not statistically significant. The 
+authors also explored the interpretability of the BERT model, finding that attention weights 
+reveal patterns related to important information content units, pauses, and filler words in 
+the speech.
+
+6.2  Acoustic and linguistic features
+
+In studies focusing solely on audio features, such as that conducted by Meghanani et al. 
+(2021), which utilized log-Mel spectrogram and Mel-Frequency Cepstral Coefficients, the 
+achieved accuracy often decreases to below 70%, as evidenced by an accuracy of 64.58%. 
+Conversely, the efficacy of language models surpasses that of acoustic models in dementia 
+detection, a trend observed in various studies, including the ADReSS Challenge paper (Luz 
+et al. 2020). Additionally, the integration of both acoustic and linguistic features has been 
+shown to provide complementary information, as highlighted in the literature (Deng et al. 
+2022), with most studies (Meerza et al. 2022; Zhu et al. 2021a; Deng et al. 2022) employing 
+this combined approach achieving accuracies above 85%. Notably, Parsapoor et al. (2023) 
+are among the few to suggest that machine learning classifiers trained with acoustic features 
+outperform those trained solely with linguistic features.
+
+6.3  Dominance of deep learning and pre-trained models
+
+A prevailing trend in the literature is the widespread utilization of deep learning models (Pri-
+yadarshinee et al. 2023; Pan et al. 2021; Ilias et al. 2023; Chen et al. 2023b; Chatzianastasis 
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 30 of 43
+
+et al. 2023; Zhu et al. 2021b; Vats et al. 2022; Pérez-Toro et al. 2022; Pandey et al. 2021), 
+often leveraging pre-trained models such as BERT. This underscores the effectiveness and 
+popularity of these advanced techniques compared with Domain-specific features in captur-
+ing intricate patterns in speech and transcript data, showcasing their dominance in the field.
+
+6.4  Temporal features for AD detection
+
+Notably, features related to pauses and silence have been identified as valuable contributors 
+to AD detection. MohamedShreif and Lawgali (2022), Liu et al. (2023) and Rohanian et al. 
+(2021) findings highlight the complementary information provided by these temporal fea-
+tures, suggesting their significance in capturing nuances associated with cognitive impair-
+ments in speech patterns. Focusing solely on accuracy, Martinc et al. (2021) demonstrated 
+the efficacy of employing semantic bag-of-n-grams features alone, achieving an accuracy 
+of  89.58%  in  discerning  between  individuals  with AD  and  healthy  controls.  Subsequent 
+incorporation of temporal and structural information, achieved through the integration of 
+bag-of-n-grams features with ADR audio/textual features, led to an enhancement in accu-
+racy, reaching 91.67% on the test dataset. Notably, employing late fusion techniques yielded 
+an accuracy of 93.75%, representing the highest reported performance in the literature for 
+ADReSS dataset.
+
+6.5  Exploration of non-speech representations
+
+Syed  et  al.  (2021)  proposed  the  utilization  of  deep  acoustic  embeddings  derived  from 
+environmental  sounds  and  music  for  dementia  classification  and  regression  tasks.  Their 
+suggestion  of  the  potential  utility  of  non-speech  representations  in  speech-related  appli-
+cations emphasizes the need to explore diverse sources of information beyond traditional 
+speech features, pointing towards a broader perspective in feature extraction for dementia 
+recognition.
+
+7  Challenge
+
+Despite extensive research over many years, recognizing AD through speech remains chal-
+lenging. The key challenges are highlighted in the following subsections, with relevant facts 
+to provide a clearer understanding of the issues.
+
+7.1  Data scarcity
+
+The main problem of data scarcity is overfitting. Berisha et al. (2022) showed that reported 
+accuracy declines as sample size increases, indicating an overoptimistic estimate of accu-
+racy in small sample size studies. The overestimation of true model accuracy in published 
+literature  can  lead  to  unrealistic  expectations  and  potential  negative  consequences  in  the 
+deployment of clinical speech analytic models. There are three potential solutions to data 
+scarcity.
+
+The  first  approach  to  address  this  challenge  involves  proactively  addressing  dataset 
+imbalances by collecting new data. However, it is important to acknowledge that this under-
+
+K. Ding et al.1 3Page 31 of 43 
+
+  325 
+
+taking may entail considerable time, financial investment, and resource allocation, making it 
+a potentially arduous task for individuals unless collaborative efforts with external entities, 
+such as healthcare industry stakeholders, are initiated.
+
+The  second  approach  is  to  use  transfer  learning  technique  by  training  the  model  with 
+a  large  dataset  comprising  of  normal  speech. Yang  et  al.  (2022)  proposed  an  augmented 
+adversarial  self-supervised  learning  method  for AD  detection  using  limited  speech  data. 
+The model is trained in an adversarial manner using limited Alzheimer’s data with a large 
+scale of easily-collected normal speech data and an augmented set of Alzheimer’s data. This 
+could be a more practical, easy and effective approach to handle the data sparsity problems.
+The third approach is to use data augmentation technique. Data augmentation is a com-
+mon method for expanding the amount of training data, avoiding over-fitting, and boosting 
+model robustness. Woszczyk et al. (2022) used Noise, Lexical substitution, Paraphrase, and 
+Text Generation for text augmentation and Standard transformations, Vocal Tract Length 
+Perturbation and generative models for audio augmentation. Their results showed that data 
+augmentation  improves  the  performance  of  the  models,  achieving  comparable  results  to 
+state-of-the-art models on the ADReSS dataset. Bertini et al. (2021) pioneered the appli-
+cation  of  SpecAugment,  a  data  augmentation  technique,  which  operates  on  the  log  mel 
+spectrogram of the input audio. SpecAugment consists of three operations: time warping, 
+frequency masking, and time masking. These operations are applied to each input spectro-
+gram, resulting in a final training dataset twice the size of the original one. Moreover, This 
+approach is computationally cheaper compared to methods based on audio deformation.
+
+7.2  Lack of standardized datasets
+
+With recent advancements in AD research, the emergence of challenges such as ADReSS 
+(Luz et al. 2020), ADReSSo (Luz et al. 2021), and ADReSS-m (Luz et al. 2023) has led 
+to  the  creation  of  more  benchmark  datasets.  However,  it  is  noteworthy  that  a  significant 
+portion  of  these  challenge  datasets  are  derived  from  the  DementiaBank  resource,  result-
+ing in limited diversity in data sources. There exists a notable disparity in terms of dataset 
+availability across different modalities, such as neuroimaging, which are essential for com-
+prehensive AD research. Furthermore, a pressing concern in the realm of standardization 
+pertains to poor replicability. Not all researchers share their code publicly, exacerbating the 
+challenge of reproducing research findings and hindering the validation of results. Addition-
+ally, there is a significant disparity in the availability of datasets across different languages. 
+Most of the existing datasets are predominantly in English, limiting the generalizability of 
+research findings to non-English-speaking populations. This linguistic limitation can result 
+in biased models that may not perform effectively across diverse linguistic backgrounds, 
+underscoring the need for multilingual datasets to enhance the robustness and applicability 
+of AD detection methods globally.
+
+7.3  Privacy concerns
+
+The integration of machine learning in healthcare raises significant ethical and privacy con-
+cerns that demand careful consideration and mitigation strategies. These concerns encom-
+pass various aspects such as data usage and patient confidentiality. One approach to address 
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 32 of 43
+
+privacy concern is to adopt federated learning which was first proposed by Google in 2016 
+(McMahan et al. 2017).
+
+Meerza et al. (2022) proposed the first federated learning-based approach for automatic 
+AD diagnosis through speech analysis, ensuring privacy and fairness. Their machine learn-
+ing  model  consisted  of  a  Long  Short-term  Memory  network  and  a  feed-forward  neural 
+network based on combination of acoustic mel-frequency features and linguistic features 
+(pause rate and duration). This model achieved high accuracy 89.1% in centralized learning 
+and  comparable  performance  in  federated  learning  settings.  However,  there  is  no  perfor-
+mance guarantee for each client due to the data heterogeneity. For example, some patients 
+with sufficient data may have a relatively high accuracy than others.
+
+7.4  Interpretable concerns
+
+Interpretable is also a major concern in the healthcare system. It allows for reliable explana-
+tions of automated AD diagnosis, which is crucial for clinical impact and decision-making. 
+First, interpretability helps build trust in machine learning models among healthcare profes-
+sionals, patients, and regulatory bodies. When stakeholders can understand and interpret the 
+decisions made by a model, they are more likely to adopt and accept it as a valuable tool 
+in  healthcare  decision-making.  Second,  interpretability  is  essential  for  clinicians  to  com-
+prehend and trust the recommendations provided by these models, allowing them to make 
+informed decisions about patient diagnosis, treatment plans, and overall management. How-
+ever, it is against the nature of most deep learning methods used in this field. Because of the 
+“Black Box”, decision-making transparency is very hard to get from normal deep learning 
+methods. The work of Ilias and Askounis (2022a) stands out for its focus on interpretable 
+methods  in Alzheimer’s  disease  detection.  The  authors  achieved  interpretability  through 
+multiple  approaches,  including  the  use  of  transformer-based  models,  siamese  networks, 
+and  explainable AI  techniques  such  as  Local  Interpretable  Model-agnostic  Explanations 
+(LIME) (Ribeiro et al. 2016). They emphasized model interpretability to reveal the linguis-
+tic  patterns  and  differences  between AD  and  non-AD  patients.  Their  multi-task  learning 
+model, which simultaneously detects AD and assesses its severity, further contributes to the 
+interpretability by providing a more comprehensive analysis. The authors’ detailed linguis-
+tic analysis, including text statistics, vocabulary uniqueness, and word usage correlations, 
+offers additional interpretable insights into the language characteristics of AD patients in 
+deep learning.
+
+8  Future direction
+
+8.1  Benchmarking with previous models
+
+Current approaches to benchmarking AD detection models often face challenges since they 
+utilize different datasets, making direct comparisons more complex. A critical future direc-
+tion is the re-implementation of previous best-performing methods on standardized datasets 
+such  as  the ADReSS  benchmark  for  meaningful  comparison.  Mahajan  and  Baths  (2021) 
+attempted this by re-implementing existing NLP methods using CNN-LSTM architectures 
+on the ADReSS dataset, finding that accuracy dropped to 72.92%, in contrast to state-of-the-
+
+K. Ding et al.1 3Page 33 of 43 
+
+  325 
+
+art results on the DementiaBank dataset. The recurring instances of samples from the same 
+subject within the Pitt Corpus dataset constitute a predominant factor. Such recurrent occur-
+rences have the potential to induce substantial overfitting in models developed utilizing this 
+dataset, particularly with respect to participant-specific characteristics.
+
+8.2  Practical application of AD models
+
+Although  state-of-the-art AD  models  have  shown  promise,  their  practical  application  in 
+clinical settings requires further rigorous testing and implementation. In this context, Pigli-
+autile  et  al.  (2022)  pioneered  the  development  of  the  Dementia  Monitoring  application 
+(DMapp)  as  an  integral  component  of  the  Memento  project.  This  innovative  application 
+harnesses  recent  advancements  in  Natural  Language  Processing  techniques  for  meticu-
+lous textual analysis. Moreover, extending the scope beyond clinical settings, Liang et al. 
+(2022) focused on early cognitive decline detection among older adults using voice com-
+mands from Amazon Alexa. Machine-learning models, including decision trees and random 
+forests,  achieved  high  classification  accuracies  ranging  from  80  to  90%.  However,  these 
+applications highlight the need for further development to ensure reliability and accuracy 
+in diverse real-world scenarios. Future research should focus on refining these models for 
+broader and more consistent clinical and home-based use.
+
+8.3  Multilingual AD recognition
+
+The use of multilingual models offers a practical solution to the problem of lacking of a 
+large dataset in many languages. As there is a limited collection of text data from Alzheim-
+er’s patients in many languages, training a multilingual model in a source language (such 
+as  English)  and  applying  it  to  making  inference  in  the  target  language  can  offer  a  valu-
+able solution. The ADReSS-M Challenge 2023 (Luz et al. 2023) exemplifies this by having 
+
+Table 7  Comparisons of research on ADReSS-M dataset
+Publication ML/DL models
+Shah et al. 
+(2023)
+
+Accuracy
+69.57%
+
+Precision
+–
+
+Recall F1
+–
+
+–
+
+RMSE
+4.7693
+
+Mei et al. 
+(2023)
+
+Chen et al. 
+(2023b)
+
+Tamm et al. 
+(2023)
+
+Jin et al. 
+(2023)
+
+Logistic regression with 
+L2-regularizer
+Support vector machine
+XGBoost employed for AD detection
+Support vector regression (SVR) and 
+XGBoost regressors
+OpenSmile tool + SVM
+XLSR-53 + fully connected layer 
+(FC)
+Whisper + RoBERTa + FC
+25-D eGeMAPS feature vector 
+(openSMILE) batch normalization + 
+down-projected feature + attention 
+pooling + linear projection
+wav2vec, x-vector feature, 18 disflu-
+ency features Swin transformer, ran-
+dom forests, DNN, gradient boosting
+Complementary and simultaneous 
+ensemble, selective averaging, major-
+ity voting
+
+73.9%
+
+–
+
+–
+
+–
+
+4.610
+
+69.6%
+
+69.23%
+
+75%
+
+72% 4.788
+
+82.6%
+
+88.9%
+
+72.7% 80% 4.345
+
+86.96%
+
+–
+
+–
+
+–
+
+3.727
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 34 of 43
+
+participants train models on English speech data and evaluate them on Greek speech data, 
+aiming to identify speech features that are predictive across languages. Table 7 presents a 
+comparison of research conducted on the ADReSS-M dataset. However, significant research 
+gaps still remain for languages with substantial linguistic differences from English. Future 
+research should aim to develop universal models that can effectively generalize across more 
+diverse languages and dialects, incorporating culturally and linguistically relevant features. 
+Here are several studies that specifically examine non-English languages.
+
+Pérez-Toro et al. (2022) investigated the feasibility of combining information from Eng-
+lish and Spanish languages to discriminate AD which based on known acoustic (Wav2Vec) 
+and word (BERT, RoBERTa) embeddings using different classifiers.
+
+Bertini  et  al.  (2022b)  proposed  a  cross-language AD  classifier  based  on  spontaneous 
+speech, which is an end-to-end autoencoder model trained on spectrogram. Their method 
+achieved good classification results for both English and Italian languages which indicates 
+its ability to capture language-independent signs of dementia.
+
+Lindsay  et  al.  (2021)  includes  participants  from  two  different  languages  (English  and 
+French)  and  extracts  task-specific,  semantic,  syntactic,  and  paralinguistic  features  using 
+NLP technique to detect language impairment in AD through picture description tasks. They 
+find out the generalizable language feature set, particularly semantic features, outperforms 
+the all language feature set in detecting language impairment in AD, showing its effective-
+ness in clinical applications.
+
+Adhikari et al. (2022) created a novel dataset of transcripts from AD patients and control 
+subjects in Nepali and applied various ML and DL algorithms for classification. The author 
+suggested further improvements, namely including acoustic features such as the duration of 
+pause a person takes while speaking.
+
+Sangchocanonta  et  al.  (2021)  presents  the  development  of  a Thai  Picture  Description 
+Task for Alzheimer’s screening using PoS tagging. Two picture description tasks, Thais-at-
+Home and Thai Temple Fair, were designed to be suitable and relatable to Thai culture. Six 
+machine learning algorithms (Adaboost, Logistic regression, Multilayer perceptron, Native 
+Bayes, Random Forest, and Decision tree) were applied to train with the PoS feature, and 
+the multilayer perceptron model achieved the best classification results with 90.00% sensi-
+tivity, 80.00% specificity, and 86.67% accuracy in distinguishing patients with AD and mild 
+cognitive impairment from healthy controls.
+
+Calzà et al. (2021) present a pioneering investigation, as it constitutes the first known 
+study conducted in the Italian language context. It examined an extensive array of features 
+for the purpose of constructing automated classifiers designed to identify individuals with 
+mild cognitive impairment from health control. A multidimensional parameters computation 
+was performed on the data, taking into consideration a large set of 87 acoustical, rhythmical, 
+morpho-syntactic, and lexical features as well as some readability indexes and demographic 
+information.  Subsequently,  the  Authors  used  two  different  machine  learning  classifiers, 
+Support Vector Classifier and the Random Forest Classifier. Notably, SVC achieves high F1 
+scores around 75%, underscoring its efficacy as a valuable tool for the classification task. 
+However, the author chose not to employ any DNN classifier as they did not believe there 
+was enough annotated data to train them.
+
+Bertini et al. (2021) trained an autoencoder using the spectrogram representation of the 
+audio signal and used a data augmentation approach to overcome the lack of annotated data 
+in the Italian language. The learned representations of each spectrogram are extracted from 
+
+K. Ding et al.1 3Page 35 of 43 
+
+  325 
+
+the hidden layer of the autoencoder and fed into a multilayer perceptron for classification, 
+such proposed method achieves an accuracy of 90.57% in classifying the audio files of sub-
+jects with MCI and early dementia.
+
+8.4  Emerging multimodal approaches in dementia detection
+
+Recent research has begun exploring the integration of multiple modalities beyond speech 
+and text, such as eye-tracking, gait, and drawing behaviors, to enhance dementia detection. 
+Sheng et al. (2022) propose a method of detecting dementia from the simultaneous speech 
+and  eye-tracking  recordings  of  subjects  in  a  picture  description  task. Their  experimental 
+results demonstrate that the detection accuracy of the proposed method is 84.26%, which 
+outperforms baseline methods and ablated models using single speech or eye-tracking input.
+Similarly, Jang et al. (2021) analyses four tasks: pupil fixation, description of a pleasant 
+past  experience,  picture  description,  and  paragraph  reading.  The  novel  tasks  (pupil  fixa-
+tion and pleasant past experience) showed similar classification accuracy to the established 
+tasks (picture description and paragraph reading), indicating their discriminative ability for 
+memory clinic patients. The fusion of multimodal data across tasks yielded the highest over-
+all AUC of 0.83
+
+0.01.
+
+Apart from eye-tracking, Yamada et al. (2021) investigated the use of gait, speech, and 
+drawing behaviors as potential indicators for the diagnosis of AD and mild cognitive impair-
+ment. Combining all three behavioral modalities achieved 93.0% accuracy in classifying 
+AD, MCI, and CN, compared to 81.9% accuracy when using the best individual modality. 
+Each behavioral modality was associated with different cognitive and clinical measures for 
+diagnosing AD  and  MCI,  indicating  that  they  provide  complementary  information  about 
+cognitive impairments.
+
+±
+
+These studies demonstrate the current application and potential of multimodal approaches 
+in providing complementary information for dementia detection. While showing promise, 
+there’s room for further exploration. Future research could focus on integrating additional 
+modalities  and  refining  fusion  techniques  to  enhance  diagnostic  accuracy  and  robustness 
+across diverse populations.
+
+8.5  Automatic speech recognition (ASR) in AD
+
+Current commercial ASR systems often exhibit high word error rates (WER) when used 
+with AD patients, impacting the accuracy of downstream tasks. Despite various efforts using 
+systems like Google Cloud Speech Recognizer, IBM Watson, and iFlyt, transcription errors 
+remain  a  significant  challenge.  Future  research  should  focus  on  developing ASR  models 
+tailored specifically for AD patients’ unique speech patterns. This could involve using con-
+fidence scores as a measure of transcription quality and integrating these scores into sub-
+sequent  analyses  to  mitigate  the  impact  of  errors  or  incorporating ASR  systems  directly 
+into the end-to-end training loop. Here are some studies that utilize different existing ASR 
+system for downstream AD detection task.
+
+In the ADReSSo challenge, Luz et al. (2021) utilized the Google Cloud-based Speech 
+Recognizer  to  automatically  transcribe  audio  files,  converting  these  transcripts  into  the 
+CHAT format for linguistic analysis. Calzà et al. (2021) also employed Google Cloud ASR, 
+trained for Italian, achieving a WER of 27.78%, which was considered acceptable given the 
+
+Speech based detection of Alzheimer’s disease: a survey of AI…1 3  325 
+
+  Page 36 of 43
+
+nature of the speech samples. Pompili et al. (2020a) used the Google Cloud Speech-to-Text 
+API, acknowledging that erroneous transcriptions could impact AD detection performance. 
+To address this, Pan et al. (2021) incorporated ASR confidence scores into text embeddings 
+to inform the classifier about transcription quality. Soroski et al. (2022) compared Google 
+Cloud STT-generated transcripts with manually verified ones, examining confidence scores, 
+error rates, and classification accuracy for AD.
+
+Apart from Google ASR system, Yamada et al. (2023) used IBM Watson for automatic 
+transcription in their research. Similarly, Rohanian et al. (2021) also employed IBM Watson, 
+leveraging its detailed word timing outputs as features in their system. This highlighting 
+the importance of IBM Watson ASR due to its retention of hesitation markers and disflu-
+encies, which are crucial features for AD detection. Deng et al. (2022) used iFlyt ASR to 
+obtain transcripts for the ADReSSo challenge, noting that despite some accuracy loss due 
+to transcription errors, their system remained robust for AD recognition. Liu et al. (2021b) 
+compared two transcript-driven speech recognition systems, CMUSphinx and Mozilla Deep 
+Speech, demonstrating outstanding performance. They hypothesized that ASR-transcribed 
+speech emphasizes hidden features in words and language fluency, potentially affecting AD 
+diagnosis.
+
+Beside previous commercial ASR system, Ye et al. (2021) developed a state-of-the-art 
+ASR system using the DementiaBank Pitt corpus, incorporating techniques like segmen-
+tation  refinement,  audio  augmentation,  Bayesian  adaptation,  and  a Transformer  language 
+model. This system reduced the WER by 11.72% absolute (26.11% relative) over the base-
+line system, with future research directions including tighter integration of recognition and 
+NCD detection components, fusion with paralinguistic features, and further perturbation of 
+elderly speech.
+
+9  Conclusion
+
+The  utilization  of  speech  data  in  the  detection  of AD  represents  a  promising  avenue  for 
+clinical diagnosis and decision-making. As AD continues to present a growing healthcare 
+challenge  worldwide,  the  importance  of  non-invasive,  accessible  diagnostic  tools  can-
+not be overstated. This review paper highlights the advancement of artificial intelligence 
+and machine learning algorithms in detecting and understanding the relationship between 
+speech patterns and AD.
+
+The  major  developments  in  the  field  are  emphasized  via  a  comprehensive  analysis  of 
+state-of-the-art algorithms and a rigorous comparative examination using benchmark datas-
+ets such as ADReSS and ADReSSo. These advancements not only underscore the potential 
+of speech-based diagnostic approaches but also offer valuable insights for future research 
+and clinical applications. Moreover, we also elaborate on several challenges that still persist 
+in this domain, including benchmark issues related to data scarcity, poor standardization, 
+privacy, and interpretive concerns.
+
+The findings from this review have significant potential clinical implications. The high 
+accuracy rates achieved by integrating acoustic and linguistic features, particularly through 
+deep  learning  models,  suggest  that  speech-based AD  detection  could  become  a  valuable 
+tool in clinical practice. This non-invasive, cost-effective method could enable earlier detec-
+tion and intervention, potentially improving patient outcomes and quality of life. However, 
+
+K. Ding et al.1 3Page 37 of 43 
+
+  325 
+
+translating these findings into practice requires addressing several challenges, including the 
+development of user-friendly, interpretable tools for clinicians, and the refinement of mul-
+tilingual  models  to  expand  access  to  diverse  populations,  while  privacy-preserving  tech-
+niques like federated learning could facilitate larger-scale implementation across healthcare 
+systems. Additionally,  the  exploration  of  multimodal  approaches  combining  speech  with 
+other behavioural markers (e.g., eye-tracking, gait analysis) could further enhance diagnos-
+tic accuracy.
+
+Despite  these  promising  developments,  this  review  acknowledges  several  limitations 
+inherent in the current body of research. Publication bias may skew the perceived efficacy of 
+certain methods, as studies with negative or null results are less likely to be published. The 
+search  strategy  and  selection  criteria  for  included  studies  could  have  inadvertently  omit-
+ted relevant research, leading to an incomplete synthesis of the literature. Also, Limiting 
+the  review  to  studies  published  within  five  year  can  exclude  older  studies  that  may  still 
+be relevant. The quality of the included studies varies, which may impact the reliability of 
+the  conclusions  drawn. Additionally,  the  rapidly  evolving  nature  of  this  field  means  that 
+our review might quickly become outdated as new studies are published. This survey will 
+enable future research to refine and expand upon existing methods, enhance opportunities 
+for collaboration across interdisciplinary domains, and further investigate the potential of 
+multi-modal approaches that combine speech data with other clinical indicators. This holis-
+tic view of the domain will culminate in the development of more accurate and accessible 
+diagnostic tools for AD.
+
+As  the  review  provides  a  unique  comparison  of  different AI  methods  with  the  same 
+benchmark datasets, it will serve as a catalyst for translating crucial research findings into 
+meaningful clinical outcomes. As we continue to explore the intricate relationship between 
+speech  and AD,  these  efforts  of  systematically  consolidating  information  will  ultimately 
+enhance early detection, intervention, and care for individuals affected by this debilitating 
+condition. While promising, it’s important to note that these speech-based methods should 
+complement, not replace, existing diagnostic procedures, with their primary value lying in 
+early screening and monitoring. As research progresses, clinical trials will be necessary to 
+validate these approaches and establish standardized protocols for their use in practice.
