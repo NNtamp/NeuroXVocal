@@ -2,12 +2,13 @@ import streamlit as st
 from pathlib import Path
 import os
 from utils import *
+from constants import *
 
 # Set up recordings directory
 RECORDINGS_PATH = Path("C:/Users/30697/Desktop/Personal Projects/NeuroXVocal/app/recordings")
 RECORDINGS_PATH.mkdir(exist_ok=True)
 
-
+# Initialize session states
 if 'patient_number' not in st.session_state:
     st.session_state.patient_number = 1
 if 'is_recording' not in st.session_state:
@@ -20,10 +21,12 @@ if 'recording_completed' not in st.session_state:
     st.session_state.recording_completed = False
 if 'current_audio_path' not in st.session_state:
     st.session_state.current_audio_path = None
+if 'explanation_generated' not in st.session_state:
+    st.session_state.explanation_generated = False
 
 st.set_page_config(page_title="NeuroXVocal Machine", layout="centered")
 
-
+# Apply custom styling
 st.markdown(
     """
     <style>
@@ -83,7 +86,6 @@ if image_loaded:
 else:
     st.info("Please ensure the image path is correct.")
 
-
 col1, col2, col3 = st.columns([1, 6, 1])
 with col2:
     if st.button("START/STOP", use_container_width=True, key="record_button"):
@@ -124,6 +126,42 @@ if st.session_state.get('current_audio_path'):
                         """, 
                         unsafe_allow_html=True
                     )
+                    if not st.session_state.explanation_generated:
+                        st.markdown("### Detailed AI Explanation")
+                        with st.spinner("Generating detailed analysis explanation..."):
+                            try:
+                                data_loader = DataLoader()
+                                vector_store = VectorStore()
+                                prompt_builder = PromptBuilder()
+                                llm_explainer = LLMExplainer()
+                                literature = data_loader.load_literature()
+                                vector_store.create_literature_index(literature)
+                                patient_features = pd.read_csv(os.path.join(audio_folder, 'audio_features_llm.csv')).iloc[0]
+                                with open(text_path, 'r') as f:
+                                    transcription = f.read()
+
+                                patient_data = {
+                                    'patient_id': 'current',
+                                    'class': 'AD' if predicted_class == 1 else 'CN',
+                                    'features': patient_features,
+                                    'transcription': transcription
+                                }
+                                query = create_feature_query(patient_features)
+                                relevant_literature = vector_store.get_relevant_literature(query)
+                                prompt = prompt_builder.create_prompt(patient_data, relevant_literature)
+                                explanation = llm_explainer.generate_explanation(prompt)
+
+                                st.markdown(
+                                    """
+                                    <div style='background-color: #1E1E1E; padding: 20px; border-radius: 10px; margin: 10px 0;'>
+                                        <p style='color: #FFFFFF; margin: 0;'>""" + explanation.replace('\n', '<br>') + """</p>
+                                    </div>
+                                    """,
+                                    unsafe_allow_html=True
+                                )
+                                st.session_state.explanation_generated = True
+                            except Exception as e:
+                                st.error(f"Error generating explanation: {str(e)}")
 
 st.markdown(
     """

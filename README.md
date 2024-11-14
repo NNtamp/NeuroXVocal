@@ -130,7 +130,7 @@ Before running the system, ensure that the paths in the following Python files a
 
 Execute the main script with the desired `patient_id` to generate explanations based on our data folder structure:
 
-```bash
+```
 python src/explainer/main.py --patient_id {patient_id}
 ```
 
@@ -153,4 +153,22 @@ Based on the elevated speech pause ratio and increased number of pauses, it is i
 First of all, on top of *requirements_cls.txt* and *requirements_exp.txt* install all the necessary requirements:
 ```
 pip install -r requirements_app.txt
+```
+
+### I. Path Configuration
+
+Before running the system, ensure that the paths in the following Python files are correctly set to match your local environment:
+
+```
+1. src/app/constants.py
+2. src/app/utils.py
+3. src/neuroxvocal_app.py
+```
+
+### II. Deploy NeuroXVocal
+
+Deploy app bwith the below command and follow UI prompts:
+
+```
+streamlit run app/neuroxvocal_app.py
 ```

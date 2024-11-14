@@ -16,6 +16,12 @@ import shutil
 import whisper
 from constants import *
 
+sys.path.append(EXPLAINER_DIR)
+from data_loader import DataLoader
+from vector_store import VectorStore
+from prompt_builder import PromptBuilder
+from llm_explainer import LLMExplainer
+
 
 if TRAIN_DIR not in sys.path:
     sys.path.append(TRAIN_DIR)
@@ -46,10 +52,10 @@ def create_patient_folder(recordings_path):
     return patient_folder
 
 def start_recording(sample_rate):
-    """Starts recording audio."""
     st.session_state.is_recording = True
     st.session_state.recording_completed = False
     st.session_state.transcription_completed = False
+    st.session_state.explanation_generated = False 
     st.session_state.record_start_time = time.time()
     
     duration = 3600  # maximum duration 1 hour
@@ -303,3 +309,27 @@ def generate_prediction_message(predicted_class, confidence_score):
         """
     
     return message.strip()
+
+def create_feature_query(features: pd.Series) -> str:
+    """Create a query string from patient features for the vector store."""
+    query = f"""
+    Speech patterns and acoustic features related to cognitive decline indicators:
+    
+    1. Temporal Characteristics:
+       - Recording duration: {features.get('duration', 0):.2f} seconds
+       - Total speech time: {features.get('total_speech_time', 0):.2f} seconds
+       
+    2. Pause Patterns:
+       - Speech-pause ratio: {features.get('speech_pause_ratio', 0):.3f}
+       - Number of pauses: {features.get('num_pauses', 0):.0f}
+       - Average pause duration: {features.get('avg_pause_duration', 0):.3f} seconds
+       
+    3. Speech Rate Metrics:
+       - Speaking rate: {features.get('speaking_rate', 0):.2f} syllables/second
+       - Articulation rate: {features.get('articulation_rate', 0):.2f} syllables/second
+       
+    4. Voice Characteristics:
+       - Pitch mean: {features.get('pitch_mean', 0):.1f} Hz
+       - Intensity mean: {features.get('intensity_mean', 0):.1f} dB
+    """
+    return query
