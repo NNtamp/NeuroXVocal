@@ -1,5 +1,7 @@
 # 🔊🎙️NeuroXVocal🖥️🩺
 
+![Cookie Theft Image](app/image/cookie_theft.jpg)
+
 ## 🧠⚙️[A] Neuro Training & Inference
 
 First of all install all the necessary requirements:
