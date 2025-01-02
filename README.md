@@ -1,8 +1,10 @@
 # 🔊🎙️NeuroXVocal🖥️🩺
 
-![Cookie Theft Image](app/image/cookie_theft.jpg)
+![NeuroXVocal Architecture](app/image/architecture.jpg)
 
 ## 🧠⚙️[A] Neuro Training & Inference
+
+![Cookie Theft Image](app/image/cookie_theft.jpg)
 
 First of all install all the necessary requirements:
 ```
