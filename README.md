@@ -1,10 +1,14 @@
 # 🔊🎙️NeuroXVocal🖥️🩺
 
-![NeuroXVocal Architecture](app/image/architecture.jpg)
+<p align="center">
+<img src="app/image/architecture.jpg" width="600" alt="NeuroXVocal Architecture">
+</p>
 
 ## 🧠⚙️[A] Neuro Training & Inference
 
-![Cookie Theft Image](app/image/cookie_theft.jpg)
+<p align="center">
+<img src="app/image/cookie_theft.jpg" width="450" alt="Cookie Theft Image">
+</p>
 
 First of all install all the necessary requirements:
 ```
