@@ -12,10 +12,10 @@ sys.path.append(train_dir)
 from models import NeuroXVocal
 
 # Define paths
-model_path = r"C:/Users/30697/Desktop/Personal Projects/NeuroXVocal/results/best.pth"
-text_file_path = r"C:/Users/30697/Desktop/Personal Projects/NeuroXVocal/data/ADReSSo21_audio/diagnosis/questionaire_data_test/adrsdt1_ad/adrsdt1.txt"
-embedding_csv = r"C:/Users/30697/Desktop/Personal Projects/NeuroXVocal/data/ADReSSo21_audio/diagnosis/questionaire_data_test/adrsdt1_ad/audio_embeddings_adrsdt1.csv"
-audio_features_csv = r"C:/Users/30697/Desktop/Personal Projects/NeuroXVocal/data/ADReSSo21_audio/diagnosis/questionaire_data_test/adrsdt1_ad/audio_features_adrsdt1.csv"
+model_path = r"./NeuroXVocal/results/best.pth"
+text_file_path = r"./NeuroXVocal/data/.../adrsdt1.txt"
+embedding_csv = r"./NeuroXVocal/data/.../audio_embeddings_adrsdt1.csv"
+audio_features_csv = r"./NeuroXVocal/data/.../audio_features_adrsdt1.csv"
 
 TEXT_EMBEDDING_MODEL = 'microsoft/deberta-v3-base'  
 NUM_MFCC_FEATURES = 47  

@@ -4,11 +4,11 @@ import os
 from utils import *
 from constants import *
 
-# Set up recordings directory
-RECORDINGS_PATH = Path("C:/Users/30697/Desktop/Personal Projects/NeuroXVocal/app/recordings")
+
+RECORDINGS_PATH = Path("/NeuroXVocal/app/recordings")
 RECORDINGS_PATH.mkdir(exist_ok=True)
 
-# Initialize session states
+
 if 'patient_number' not in st.session_state:
     st.session_state.patient_number = 1
 if 'is_recording' not in st.session_state:
@@ -26,7 +26,7 @@ if 'explanation_generated' not in st.session_state:
 
 st.set_page_config(page_title="NeuroXVocal Machine", layout="centered")
 
-# Apply custom styling
+
 st.markdown(
     """
     <style>

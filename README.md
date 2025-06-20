@@ -1,13 +1,19 @@
 # 🔊🎙️NeuroXVocal🖥️🩺
 
+**📄 Paper:** [NeuroXVocal: Detection and Explanation of Alzheimer's Disease through Non-invasive Analysis of Picture-prompted Speech](https://arxiv.org/abs/2502.10108)  
+**🏛️ Conference:** MICCAI 2025
+
+Official implementation of **"NeuroXVocal: Detection and Explanation of Alzheimer's Disease through Non-invasive Analysis of Picture-prompted Speech"** accepted at MICCAI 2025.
+
 <p align="center">
-<img src="app/image/architecture.jpg" width="600" alt="NeuroXVocal Architecture">
+<img src="app/image/architecture.png" width="600" alt="NeuroXVocal Architecture" style="background-color: white; padding: 10px;">
 </p>
 
 ## 🧠⚙️[A] Neuro Training & Inference
 
 <p align="center">
 <img src="app/image/cookie_theft.jpg" width="450" alt="Cookie Theft Image">
+<figcaption>The Cookie Theft picture from the Boston Diagnostic Aphasia Examination (Goodglass, Kaplan, & Barresi, 2001)</figcaption>
 </p>
 
 First of all install all the necessary requirements:

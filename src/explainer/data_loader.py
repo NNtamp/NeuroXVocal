@@ -11,9 +11,9 @@ and literature for the Alzheimer's explainer system.
 
 class DataLoader:
     def __init__(self):
-        self.ad_path = Path(r"C:/Users/30697/Desktop/Personal Projects/NeuroXVocal/data/ADReSSo21_audio/diagnosis/train/llm_processed_data/ad")
-        self.cn_path = Path(r"C:/Users/30697/Desktop/Personal Projects/NeuroXVocal/data/ADReSSo21_audio/diagnosis/train/llm_processed_data/cn")
-        self.literature_path = Path(r"C:/Users/30697/Desktop/Personal Projects/NeuroXVocal/src/explainer/literature")
+        self.ad_path = Path(r"./NeuroXVocal/data/.../ad")
+        self.cn_path = Path(r"./NeuroXVocal/data/.../cn")
+        self.literature_path = Path(r"./NeuroXVocal/src/explainer/literature")
         for path in [self.ad_path, self.cn_path, self.literature_path]:
             if not path.exists():
                 raise FileNotFoundError(f"Directory not found: {path}")
