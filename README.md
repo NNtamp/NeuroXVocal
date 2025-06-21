@@ -6,7 +6,7 @@
 Official implementation of **"NeuroXVocal: Detection and Explanation of Alzheimer's Disease through Non-invasive Analysis of Picture-prompted Speech"** accepted at MICCAI 2025.
 
 <p align="center">
-<img src="app/image/architecture.png" width="600" alt="NeuroXVocal Architecture" style="background-color: white; padding: 10px;">
+<img src="app/image/architecture.png" width="600" alt="NeuroXVocal Architecture" style="background-color: white; padding: 20px;">
 </p>
 
 ## 🧠⚙️[A] Neuro Training & Inference
